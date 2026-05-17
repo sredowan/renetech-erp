@@ -1,0 +1,242 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/0btl8g2wson3c.js","/_next/static/chunks/10~t6emm0lg0r.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0g9u7cbxn4r.i.js"],""]
+3:I[58541,["/_next/static/chunks/0btl8g2wson3c.js","/_next/static/chunks/10~t6emm0lg0r.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0g9u7cbxn4r.i.js"],"default"]
+10:I[85437,["/_next/static/chunks/0btl8g2wson3c.js","/_next/static/chunks/10~t6emm0lg0r.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0g9u7cbxn4r.i.js"],"Image"]
+16:I[97249,["/_next/static/chunks/0btl8g2wson3c.js","/_next/static/chunks/10~t6emm0lg0r.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0g9u7cbxn4r.i.js"],"default"]
+1a:I[97367,["/_next/static/chunks/0btl8g2wson3c.js","/_next/static/chunks/10~t6emm0lg0r.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+1b:"$Sreact.suspense"
+1d:I[93829,["/_next/static/chunks/0btl8g2wson3c.js","/_next/static/chunks/10~t6emm0lg0r.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0g9u7cbxn4r.i.js"],"default"]
+1e:I[72502,["/_next/static/chunks/0btl8g2wson3c.js","/_next/static/chunks/10~t6emm0lg0r.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0g9u7cbxn4r.i.js"],"default"]
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://languageacademy.com.bd\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Learning Hub\",\"item\":\"https://languageacademy.com.bd/blog\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"PTE Reading Module Strategies: How to Score 79+ in Fill in the Blanks & Reorder\",\"item\":\"https://languageacademy.com.bd/blog/pte-reading-module-strategies-2026\"}]}"}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"PTE Reading Module Strategies: How to Score 79+ in Fill in the Blanks & Reorder\",\"description\":\"Boost your PTE Reading score with expert strategies for Fill in the Blanks, Reorder Paragraphs, and Multiple Choice questions. Proven tips for 79+.\",\"image\":\"http://127.0.0.1:8000/uploads/blogs/pte-reading-module-strategies.webp\",\"datePublished\":\"2026-05-10T08:21:24.000000Z\",\"dateModified\":\"2026-05-11T05:14:52.000000Z\",\"author\":{\"@type\":\"Organization\",\"name\":\"Language Academy Bangladesh\",\"url\":\"https://languageacademy.com.bd\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Language Academy Bangladesh\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https://languageacademy.com.bd/logo.webp\"}},\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://languageacademy.com.bd/blog/pte-reading-module-strategies-2026\"}}"}}],["$","div",null,{"className":"blog-detail-page","children":[["$","div",null,{"className":"border-b border-slate-200/80 bg-white/80 backdrop-blur-md sticky top-[124px] md:top-[138px] z-30","children":["$","div",null,{"className":"container-shell max-w-6xl","children":["$","nav",null,{"className":"flex items-center gap-2 py-3 text-[13px] text-slate-500 overflow-x-auto hide-scrollbar","children":[["$","$L2",null,{"href":"/","className":"hover:text-slate-800 transition-colors whitespace-nowrap","children":"Home"}],["$","$L3",null,{"iconNode":[["path",{"d":"m9 18 6-6-6-6","key":"mthhwq"}]],"className":"lucide-chevron-right text-slate-300 flex-shrink-0","size":12}],["$","$L2",null,{"href":"/blog","className":"hover:text-slate-800 transition-colors whitespace-nowrap","children":"Learning Hub"}],["$","$L3",null,{"iconNode":"$0:rsc:props:children:0:2:props:children:0:props:children:props:children:props:children:1:props:iconNode","className":"lucide-chevron-right text-slate-300 flex-shrink-0","size":12}],[["$","span",null,{"className":"text-slate-400 whitespace-nowrap","children":"PTE"}],["$","$L3",null,{"iconNode":"$0:rsc:props:children:0:2:props:children:0:props:children:props:children:props:children:1:props:iconNode","className":"lucide-chevron-right text-slate-300 flex-shrink-0","size":12}]],["$","span",null,{"className":"text-slate-800 font-medium truncate max-w-[200px] md:max-w-[400px]","children":"PTE Reading Module Strategies: How to Score 79+ in Fill in the Blanks & Reorder"}]]}]}]}],["$","header",null,{"className":"relative bg-gradient-to-b from-slate-50 to-white","children":[["$","div",null,{"className":"container-shell max-w-6xl pt-8 pb-6 md:pt-12 md:pb-8","children":["$","div",null,{"className":"max-w-4xl","children":[["$","$L2",null,{"href":"/blog","className":"inline-flex items-center gap-2 text-[13px] font-semibold text-slate-500 hover:text-primary transition-colors mb-6 group","children":[["$","$L3",null,{"iconNode":[["path",{"d":"m12 19-7-7 7-7","key":"1l729n"}],["path",{"d":"M19 12H5","key":"x3x0zl"}]],"className":"lucide-arrow-left transition-transform group-hover:-translate-x-1","size":14}],"Back to Learning Hub"]}],["$","div",null,{"className":"flex flex-wrap items-center gap-3 mb-5","children":[["$","span",null,{"className":"inline-flex items-center gap-1.5 px-3 py-1 bg-primary/8 text-primary rounded-full font-bold uppercase tracking-wider text-[11px] border border-primary/10","children":["$L4","PTE"]}],"$L5"]}],"$L6","$L7","$L8","$L9"]}]}],"$La"]}],"$Lb","$Lc","$Ld"]}]],["$Le"],"$Lf"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_4XJsmIU12xLf5f3GTAka"}
+4:["$","$L3",null,{"iconNode":[["path",{"d":"M12 7v14","key":"1akyts"}],["path",{"d":"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z","key":"ruj8y"}]],"className":"lucide-book-open","size":11}]
+5:["$","div",null,{"className":"flex items-center gap-4 text-[13px] text-slate-400","children":[["$","span",null,{"className":"flex items-center gap-1.5","children":[["$","$L3",null,{"iconNode":[["path",{"d":"M8 2v4","key":"1cmpym"}],["path",{"d":"M16 2v4","key":"4m81vk"}],["rect",{"width":"18","height":"18","x":"3","y":"4","rx":"2","key":"1hopcy"}],["path",{"d":"M3 10h18","key":"8toen8"}]],"className":"lucide-calendar","size":13}],"May 10, 2026"]}],["$","span",null,{"className":"flex items-center gap-1.5","children":[["$","$L3",null,{"iconNode":[["circle",{"cx":"12","cy":"12","r":"10","key":"1mglay"}],["path",{"d":"M12 6v6l4 2","key":"mmk7yg"}]],"className":"lucide-clock","size":13}],7," min read"]}]]}]
+6:["$","h1",null,{"className":"text-[1.75rem] sm:text-[2rem] md:text-[2.25rem] lg:text-[2.5rem] font-extrabold text-slate-900 leading-[1.2] tracking-tight mb-4","children":"PTE Reading Module Strategies: How to Score 79+ in Fill in the Blanks & Reorder"}]
+7:["$","p",null,{"className":"text-[15px] md:text-base text-slate-500 leading-relaxed max-w-2xl mb-5","children":"Boost your PTE Reading score with expert strategies for Fill in the Blanks, Reorder Paragraphs, and Multiple Choice questions. Proven tips for 79+."}]
+8:["$","div",null,{"className":"flex flex-wrap gap-1.5 mb-5","children":[["$","span","PTE Reading",{"className":"text-[11px] font-medium bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md border border-slate-200/60 hover:bg-slate-200/80 transition-colors cursor-default","children":["#","PTE Reading"]}],["$","span","Fill in Blanks",{"className":"text-[11px] font-medium bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md border border-slate-200/60 hover:bg-slate-200/80 transition-colors cursor-default","children":["#","Fill in Blanks"]}],["$","span","Reorder Paragraphs",{"className":"text-[11px] font-medium bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md border border-slate-200/60 hover:bg-slate-200/80 transition-colors cursor-default","children":["#","Reorder Paragraphs"]}],["$","span","PTE Strategies",{"className":"text-[11px] font-medium bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md border border-slate-200/60 hover:bg-slate-200/80 transition-colors cursor-default","children":["#","PTE Strategies"]}],["$","span","PTE Score",{"className":"text-[11px] font-medium bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md border border-slate-200/60 hover:bg-slate-200/80 transition-colors cursor-default","children":["#","PTE Score"]}]]}]
+9:["$","$L2",null,{"href":"/courses","className":"inline-flex items-center gap-2 bg-gradient-to-r from-primary to-emerald-500 text-white font-semibold px-5 py-2.5 rounded-xl text-[13px] hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 transition-all","children":[["$","$L3",null,{"iconNode":"$4:props:iconNode","className":"lucide-book-open","size":14}],"Explore ","PTE"," Courses",["$","$L3",null,{"iconNode":"$0:rsc:props:children:0:2:props:children:0:props:children:props:children:props:children:1:props:iconNode","className":"lucide-chevron-right","size":14}]]}]
+a:["$","div",null,{"className":"container-shell max-w-6xl pb-8 md:pb-12","children":["$","div",null,{"className":"aspect-[2/1] sm:aspect-[2.2/1] w-full overflow-hidden rounded-2xl md:rounded-3xl relative shadow-xl shadow-slate-200/50 ring-1 ring-slate-200/50","children":[["$","$L10",null,{"src":"http://127.0.0.1:8000/uploads/blogs/pte-reading-module-strategies.webp","alt":"PTE Reading Module Strategies: How to Score 79+ in Fill in the Blanks & Reorder","fill":true,"sizes":"(max-width: 768px) 100vw, 1152px","className":"object-cover","priority":true}],["$","div",null,{"className":"absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"}]]}]}]
+11:T6c9, blog-prose prose prose-slate max-w-none px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12  prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-slate-900 prose-h2:text-[1.3rem] prose-h2:md:text-[1.45rem] prose-h2:mt-10 prose-h2:mb-4 prose-h2:pb-3 prose-h2:border-b prose-h2:border-slate-100 prose-h3:text-[1.1rem] prose-h3:md:text-[1.2rem] prose-h3:mt-7 prose-h3:mb-3 prose-h4:text-[1rem] prose-h4:mt-6 prose-h4:mb-2  prose-p:text-[15px] prose-p:md:text-[15.5px] prose-p:leading-[1.8] prose-p:text-slate-600 prose-p:mb-4 prose-a:text-primary prose-a:font-semibold prose-a:no-underline hover:prose-a:underline prose-a:transition-colors prose-strong:text-slate-800 prose-strong:font-bold  prose-ul:my-4 prose-ul:pl-0 prose-ol:my-4 prose-ol:pl-0 prose-li:text-[15px] prose-li:md:text-[15.5px] prose-li:leading-[1.75] prose-li:text-slate-600 prose-li:mb-1.5 prose-li:marker:text-primary/50  prose-img:rounded-xl prose-img:shadow-md prose-img:my-6 prose-blockquote:border-l-[3px] prose-blockquote:border-primary/40 prose-blockquote:bg-primary/[0.03] prose-blockquote:pl-5 prose-blockquote:py-3 prose-blockquote:rounded-r-xl prose-blockquote:not-italic prose-blockquote:text-slate-600  prose-code:bg-slate-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-[13px] prose-code:font-medium prose-code:text-slate-700 prose-code:before:content-none prose-code:after:content-none  prose-table:w-full prose-table:text-[14px] prose-table:border-collapse prose-th:bg-slate-50 prose-th:text-slate-700 prose-th:font-bold prose-th:text-left prose-th:px-4 prose-th:py-3 prose-th:border prose-th:border-slate-200 prose-td:px-4 prose-td:py-3 prose-td:border prose-td:border-slate-200 prose-td:text-slate-600 12:T7b2,<h2>PTE Reading: Your Strategy Guide</h2>
+<p>The PTE Reading section lasts <strong>29-30 minutes</strong> and tests your ability to understand academic texts. Key task types include Fill in the Blanks (both Reading and R&W), Reorder Paragraphs, and Multiple Choice.</p>
+
+<h2>Fill in the Blanks (Reading & Writing)</h2>
+<p>This is one of the <strong>most important tasks</strong> as it contributes to both Reading and Writing scores.</p>
+<h3>Strategy</h3>
+<ul>
+<li>Read the <strong>entire sentence</strong> before choosing an answer</li>
+<li>Look for <strong>collocations</strong> — words that naturally go together</li>
+<li>Check <strong>grammatical fit</strong>: does the word match the sentence structure?</li>
+<li>Use <strong>context clues</strong> from surrounding sentences</li>
+</ul>
+
+<h2>Reorder Paragraphs</h2>
+<h3>Step-by-Step Approach</h3>
+<ol>
+<li><strong>Find the topic sentence</strong> — it introduces a new idea without referring back</li>
+<li>Look for <strong>pronoun references</strong> (this, that, these, such)</li>
+<li>Identify <strong>transition words</strong> (however, moreover, consequently)</li>
+<li>Check for <strong>logical flow</strong> — cause before effect, general before specific</li>
+</ol>
+
+<h2>Multiple Choice Questions</h2>
+<ul>
+<li>Read the question <strong>before</strong> reading the passage</li>
+<li>Eliminate obviously wrong answers first</li>
+<li>For "select multiple" questions, look for answers supported by <strong>direct evidence</strong> in the text</li>
+</ul>
+
+<h2>Vocabulary Building Tips</h2>
+<p>Reading scores improve dramatically with <strong>strong vocabulary</strong>. Read academic journals, news editorials, and scientific articles daily. Focus on learning words in context rather than isolated definitions.</p>
+
+<h2>Improve Your PTE Reading at Language Academy</h2>
+<p>Our structured PTE courses include targeted Reading practice with expert guidance. <a href="/courses">Start your preparation</a> today!</p>b:["$","div",null,{"className":"container-shell max-w-6xl","children":["$","div",null,{"className":"flex flex-col lg:flex-row gap-10 lg:gap-14 justify-between","children":[["$","article",null,{"className":"flex-1 min-w-0 max-w-3xl pb-16","children":[["$","div",null,{"className":"bg-white rounded-2xl border border-slate-200/60 shadow-sm","children":["$","div",null,{"className":"$11","dangerouslySetInnerHTML":{"__html":"$12"}}]}],"$L13","$L14"]}],"$L15"]}]}]
+17:T904,<h2>Why Study in the USA?</h2>
+<p>The United States hosts over <strong>1 million international students</strong> and is home to the world's most prestigious universities. With unmatched research opportunities, diverse campus cultures, and strong alumni networks, a US degree opens global doors.</p>
+
+<h2>Top US Universities</h2>
+<ul>
+<li><strong>MIT</strong> — #1 globally (QS 2026)</li>
+<li><strong>Harvard University</strong> — #4 globally</li>
+<li><strong>Stanford University</strong> — #7 globally</li>
+<li><strong>University of California, Berkeley</strong> — #12 globally</li>
+<li><strong>University of Chicago</strong> — #21 globally</li>
+</ul>
+
+<h2>Cost of Studying in the USA</h2>
+<table>
+<tr><th>Expense</th><th>Annual Cost (USD)</th></tr>
+<tr><td>Public University Tuition</td><td>$20,000 - $40,000</td></tr>
+<tr><td>Private University Tuition</td><td>$40,000 - $60,000+</td></tr>
+<tr><td>Living Costs</td><td>$10,000 - $18,000</td></tr>
+<tr><td>Health Insurance</td><td>$1,500 - $2,500</td></tr>
+</table>
+
+<h2>F-1 Student Visa</h2>
+<h3>Requirements</h3>
+<ul>
+<li><strong>I-20 form</strong> from a SEVP-certified institution</li>
+<li><strong>English proficiency</strong>: TOEFL 80+, IELTS 6.5+, or PTE 58+</li>
+<li>Proof of financial ability to cover first year</li>
+<li><strong>DS-160 application</strong> + visa interview at US Embassy</li>
+<li>SEVIS fee payment ($350)</li>
+</ul>
+
+<h2>Work Rights & OPT</h2>
+<ul>
+<li>On-campus work: <strong>20 hours/week</strong> during term</li>
+<li><strong>CPT</strong> (Curricular Practical Training): internship during study</li>
+<li><strong>OPT</strong> (Optional Practical Training): 12 months post-graduation</li>
+<li><strong>STEM OPT Extension</strong>: additional 24 months for STEM graduates</li>
+</ul>
+
+<h2>Financial Aid & Scholarships</h2>
+<ul>
+<li><strong>Fulbright Program</strong> — fully funded for graduate study</li>
+<li><strong>University merit scholarships</strong> — varies by institution</li>
+<li><strong>Graduate assistantships</strong> — tuition waiver + stipend</li>
+<li><strong>Need-blind admissions</strong> at some Ivy League schools</li>
+</ul>
+
+<h2>Prepare for USA with Language Academy</h2>
+<p>Get your English test score ready for US universities. <a href="/courses">Start preparation</a> at Language Academy!</p>c:["$","section",null,{"className":"border-t border-slate-200/60 bg-slate-50/50 mt-8","children":["$","div",null,{"className":"container-shell max-w-7xl py-14 md:py-20","children":[["$","div",null,{"className":"flex items-center justify-between mb-8","children":[["$","h2",null,{"className":"text-xl md:text-2xl font-extrabold text-slate-900 tracking-tight","children":"Continue Reading"}],["$","$L2",null,{"href":"/blog","className":"hidden sm:inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:text-primary/80 transition-colors","children":["View all articles",["$","$L3",null,{"iconNode":"$0:rsc:props:children:0:2:props:children:0:props:children:props:children:props:children:1:props:iconNode","className":"lucide-chevron-right","size":14}]]}]]}],["$","div",null,{"className":"grid gap-6 sm:grid-cols-2 lg:grid-cols-3","children":[["$","$L16","19",{"blog":{"id":19,"branch_id":1,"author_id":1,"title":"Study in USA 2026: Top Universities, F-1 Visa Guide & Financial Aid for International Students","slug":"study-in-usa-guide-2026","excerpt":"Comprehensive guide to studying in USA in 2026. Ivy League and top universities, F-1 student visa process, costs, OPT work rights, and scholarship opportunities.","content":"$17","image_url":"/uploads/blogs/study-in-usa-guide.webp","is_published":true,"published_at":"2026-05-10T08:21:40.000000Z","created_at":"2026-05-10T08:21:40.000000Z","updated_at":"2026-05-11T05:15:58.000000Z","category":"Study Abroad","tags":["[\"Study in USA\"","\"American Universities\"","\"F-1 Visa\"","\"OPT\"","\"USA Education\"]"],"course_relation":"PTE","reading_time":10,"seo_title":"Study in USA 2026 | Top Universities, F-1 Visa & Scholarships","seo_description":"Complete guide to study in USA 2026. Top universities, F-1 visa, costs, OPT work rights & scholarships for international students.","is_featured":false}}],"$L18","$L19"]}]]}]}]
+d:["$","section",null,{"className":"bg-white","children":["$","div",null,{"className":"container-shell max-w-4xl py-14 md:py-20","children":["$","div",null,{"className":"relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-8 py-14 md:px-14 md:py-16 text-center","children":[["$","div",null,{"className":"absolute top-0 right-0 w-80 h-80 bg-primary/25 rounded-full blur-[120px]"}],["$","div",null,{"className":"absolute bottom-0 left-0 w-80 h-80 bg-emerald-400/15 rounded-full blur-[120px]"}],["$","div",null,{"className":"relative z-10","children":[["$","span",null,{"className":"inline-block rounded-full bg-white/10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white/70 mb-5","children":"Start Your Journey"}],["$","h2",null,{"className":"text-2xl md:text-3xl font-extrabold text-white tracking-tight mb-4","children":["Ready to ace your ","PTE"," exam?"]}],["$","p",null,{"className":"mx-auto max-w-lg text-[15px] text-slate-300 leading-relaxed mb-8","children":"Join Language Academy and prepare with expert trainers, proven strategies, and unlimited mock tests."}],["$","div",null,{"className":"flex flex-col sm:flex-row items-center justify-center gap-3","children":[["$","$L2",null,{"href":"/courses","className":"inline-flex items-center justify-center gap-2 rounded-xl bg-primary text-white px-7 py-3 text-[14px] font-semibold transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/30 w-full sm:w-auto","children":["Explore Courses",["$","$L3",null,{"iconNode":"$0:rsc:props:children:0:2:props:children:0:props:children:props:children:props:children:1:props:iconNode","className":"lucide-chevron-right","size":16}]]}],["$","$L2",null,{"href":"/contact","className":"inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 text-white px-7 py-3 text-[14px] font-semibold transition-all hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/10 w-full sm:w-auto","children":"Book Consultation"}]]}]]}]]}]}]}]
+e:["$","script","script-0",{"src":"/_next/static/chunks/0g9u7cbxn4r.i.js","async":true}]
+f:["$","$L1a",null,{"children":["$","$1b",null,{"name":"Next.MetadataOutlet","children":"$@1c"}]}]
+13:["$","$L1d",null,{}]
+14:["$","div",null,{"className":"mt-6 bg-white rounded-2xl border border-slate-200/60 shadow-sm p-6 flex items-center gap-5","children":[["$","div",null,{"className":"w-14 h-14 rounded-full bg-gradient-to-br from-primary to-emerald-400 flex items-center justify-center flex-shrink-0 shadow-md shadow-primary/20","children":["$","span",null,{"className":"text-white font-bold text-lg","children":"LA"}]}],["$","div",null,{"children":[["$","p",null,{"className":"font-bold text-slate-800 text-[15px]","children":"Language Academy Bangladesh"}],["$","p",null,{"className":"text-[13px] text-slate-400 leading-relaxed mt-0.5","children":"Expert PTE & IELTS preparation with proven strategies and unlimited mock tests."}]]}]]}]
+1f:T7b2,<h2>PTE Reading: Your Strategy Guide</h2>
+<p>The PTE Reading section lasts <strong>29-30 minutes</strong> and tests your ability to understand academic texts. Key task types include Fill in the Blanks (both Reading and R&W), Reorder Paragraphs, and Multiple Choice.</p>
+
+<h2>Fill in the Blanks (Reading & Writing)</h2>
+<p>This is one of the <strong>most important tasks</strong> as it contributes to both Reading and Writing scores.</p>
+<h3>Strategy</h3>
+<ul>
+<li>Read the <strong>entire sentence</strong> before choosing an answer</li>
+<li>Look for <strong>collocations</strong> — words that naturally go together</li>
+<li>Check <strong>grammatical fit</strong>: does the word match the sentence structure?</li>
+<li>Use <strong>context clues</strong> from surrounding sentences</li>
+</ul>
+
+<h2>Reorder Paragraphs</h2>
+<h3>Step-by-Step Approach</h3>
+<ol>
+<li><strong>Find the topic sentence</strong> — it introduces a new idea without referring back</li>
+<li>Look for <strong>pronoun references</strong> (this, that, these, such)</li>
+<li>Identify <strong>transition words</strong> (however, moreover, consequently)</li>
+<li>Check for <strong>logical flow</strong> — cause before effect, general before specific</li>
+</ol>
+
+<h2>Multiple Choice Questions</h2>
+<ul>
+<li>Read the question <strong>before</strong> reading the passage</li>
+<li>Eliminate obviously wrong answers first</li>
+<li>For "select multiple" questions, look for answers supported by <strong>direct evidence</strong> in the text</li>
+</ul>
+
+<h2>Vocabulary Building Tips</h2>
+<p>Reading scores improve dramatically with <strong>strong vocabulary</strong>. Read academic journals, news editorials, and scientific articles daily. Focus on learning words in context rather than isolated definitions.</p>
+
+<h2>Improve Your PTE Reading at Language Academy</h2>
+<p>Our structured PTE courses include targeted Reading practice with expert guidance. <a href="/courses">Start your preparation</a> today!</p>15:["$","$L1e",null,{"content":"$1f"}]
+20:Ta46,<h2>IELTS Speaking Test: Complete Guide</h2>
+<p>The IELTS Speaking test is a <strong>face-to-face interview</strong> with a certified examiner lasting 11-14 minutes. It's the only section where you interact with a real person, making it both the most personal and the most nerve-wracking part of the exam.</p>
+
+<h2>Test Structure</h2>
+<h3>Part 1: Introduction & Interview (4-5 minutes)</h3>
+<p>The examiner asks <strong>familiar topics</strong>: work, studies, hobbies, hometown, family.</p>
+<ul>
+<li>Give answers of <strong>2-3 sentences</strong> — not too short, not too long</li>
+<li>Use the format: <strong>Answer + Reason + Example</strong></li>
+<li>Example: "I enjoy reading. It helps me relax after a long day. I usually read fiction novels before bed."</li>
+</ul>
+
+<h3>Part 2: Individual Long Turn (3-4 minutes)</h3>
+<p>You receive a <strong>cue card</strong> with a topic and 1 minute to prepare. Speak for 1-2 minutes.</p>
+<h4>2026 Common Cue Card Topics</h4>
+<ul>
+<li>Describe a person who inspires you</li>
+<li>Talk about a time you helped someone</li>
+<li>Describe a place you'd like to visit</li>
+<li>Talk about a skill you want to learn</li>
+<li>Describe an important decision you made</li>
+</ul>
+
+<h3>Part 3: Discussion (4-5 minutes)</h3>
+<p>The examiner asks <strong>abstract, opinion-based questions</strong> related to the Part 2 topic.</p>
+<ul>
+<li>Give <strong>developed answers</strong> with reasons, examples, and comparisons</li>
+<li>Use phrases like: "From my perspective...", "I'd argue that..."</li>
+<li>It's OK to pause briefly to think — use fillers like "That's an interesting question..."</li>
+</ul>
+
+<h2>Band 7+ Speaking Strategies</h2>
+<ul>
+<li>Use <strong>idiomatic expressions</strong> naturally: "It's a piece of cake", "Once in a blue moon"</li>
+<li>Show <strong>self-correction</strong>: "I went... I mean, I had gone there before"</li>
+<li>Vary your <strong>intonation</strong> — don't speak in a monotone</li>
+<li>Use <strong>discourse markers</strong>: "Having said that", "On the other hand"</li>
+<li>Maintain <strong>eye contact</strong> with the examiner</li>
+</ul>
+
+<h2>Common Mistakes to Avoid</h2>
+<ul>
+<li>❌ Memorizing scripted answers (examiners can tell)</li>
+<li>❌ Speaking too fast or too slowly</li>
+<li>❌ Giving yes/no answers without elaboration</li>
+<li>❌ Using vocabulary you're not comfortable with</li>
+<li>❌ Going off-topic during Part 2</li>
+</ul>
+
+<h2>Practice Speaking at Language Academy</h2>
+<p>Our IELTS courses include mock speaking tests with experienced instructors. <a href="/courses">Join Language Academy</a> and practice with confidence!</p>18:["$","$L16","18",{"blog":{"id":18,"branch_id":1,"author_id":1,"title":"IELTS Speaking Test 2026: Common Topics, Cue Cards & Expert Tips for Band 7+","slug":"ielts-speaking-test-tips-2026","excerpt":"Ace the IELTS Speaking test with expert tips for all 3 parts. Common 2026 cue card topics, vocabulary tips, and strategies to score Band 7+ confidently.","content":"$20","image_url":"/uploads/blogs/ielts-speaking-test-tips.webp","is_published":true,"published_at":"2026-05-10T08:21:40.000000Z","created_at":"2026-05-10T08:21:40.000000Z","updated_at":"2026-05-11T05:15:58.000000Z","category":"IELTS","tags":["[\"[\\\"IELTS Speaking\\\"\"","\"\\\"Speaking Tips\\\"\"","\"\\\"Cue Cards\\\"\"","\"\\\"IELTS Band 7\\\"\"","\"\\\"Speaking Test\\\"]\"]"],"course_relation":"IELTS","reading_time":8,"seo_title":"IELTS Speaking Tips 2026 | Cue Cards & Band 7+ Strategies","seo_description":"Master IELTS Speaking with expert tips for Part 1, 2 & 3. Common 2026 cue card topics and vocabulary strategies for Band 7+. Language Academy.","is_featured":false}}]
+21:T9ee,<h2>Best Scholarships for International Students in 2026</h2>
+<p>Funding is often the biggest barrier to studying abroad. Fortunately, many governments and universities offer <strong>generous scholarships</strong> that cover tuition, living expenses, and even travel costs.</p>
+
+<h2>Government-Funded Scholarships</h2>
+
+<h3>🇦🇺 Australia Awards Scholarships</h3>
+<ul>
+<li><strong>Coverage</strong>: Full tuition, living allowance, airfare, health insurance</li>
+<li><strong>Eligibility</strong>: Students from participating countries</li>
+<li><strong>Deadline</strong>: Usually April-May each year</li>
+</ul>
+
+<h3>🇬🇧 Chevening Scholarships (UK)</h3>
+<ul>
+<li><strong>Coverage</strong>: Full tuition, living expenses, travel, visa</li>
+<li><strong>Eligibility</strong>: 2+ years work experience, return to home country</li>
+<li><strong>Deadline</strong>: November each year</li>
+</ul>
+
+<h3>🇨🇦 Vanier Canada Graduate Scholarships</h3>
+<ul>
+<li><strong>Coverage</strong>: CAD $50,000/year for 3 years</li>
+<li><strong>Eligibility</strong>: PhD students with leadership and academic excellence</li>
+</ul>
+
+<h3>🇺🇸 Fulbright Foreign Student Program</h3>
+<ul>
+<li><strong>Coverage</strong>: Tuition, living expenses, airfare, health insurance</li>
+<li><strong>Eligibility</strong>: Graduate students from 160+ countries</li>
+</ul>
+
+<h2>University-Specific Scholarships</h2>
+<table>
+<tr><th>University</th><th>Scholarship</th><th>Value</th></tr>
+<tr><td>University of Melbourne</td><td>Graduate Research Scholarships</td><td>Full tuition + AUD $35,000/yr</td></tr>
+<tr><td>University of Toronto</td><td>Lester B. Pearson Scholarships</td><td>Full tuition + living costs</td></tr>
+<tr><td>University of Oxford</td><td>Clarendon Scholarships</td><td>Full tuition + living costs</td></tr>
+<tr><td>MIT</td><td>MIT Scholarships</td><td>Need-based full funding</td></tr>
+</table>
+
+<h2>How to Improve Your Scholarship Chances</h2>
+<ul>
+<li>Achieve a <strong>high English test score</strong> (IELTS 7+ or PTE 65+)</li>
+<li>Write a <strong>compelling personal statement</strong></li>
+<li>Demonstrate <strong>leadership and community involvement</strong></li>
+<li>Apply to <strong>multiple scholarships</strong> simultaneously</li>
+<li>Meet all deadlines — late applications are never considered</li>
+</ul>
+
+<h2>Language Academy: Your Scholarship-Ready Partner</h2>
+<p>A strong PTE or IELTS score is essential for scholarship applications. <a href="/courses">Prepare with Language Academy</a> and maximize your scholarship chances!</p>19:["$","$L16","17",{"blog":{"id":17,"branch_id":1,"author_id":1,"title":"Top Scholarships for International Students 2026: Fully Funded Opportunities Worldwide","slug":"top-scholarships-international-students-2026","excerpt":"Discover the best fully funded scholarships for international students in 2026. Government scholarships, university grants, and financial aid across top destinations.","content":"$21","image_url":"/uploads/blogs/scholarships-international-students.webp","is_published":true,"published_at":"2026-05-10T08:21:35.000000Z","created_at":"2026-05-10T08:21:35.000000Z","updated_at":"2026-05-11T05:15:58.000000Z","category":"Study Abroad","tags":["[\"Scholarships\"","\"Fully Funded\"","\"International Students\"","\"Study Abroad Scholarships\"","\"Financial Aid\"]"],"course_relation":"PTE","reading_time":10,"seo_title":"Top Scholarships for International Students 2026 | Fully Funded","seo_description":"Best fully funded scholarships for international students 2026. Government scholarships, university grants for Australia, Canada, UK, USA & more.","is_featured":true}}]
+1c:null

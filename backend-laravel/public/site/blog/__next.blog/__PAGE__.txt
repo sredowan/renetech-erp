@@ -1,0 +1,747 @@
+1:"$Sreact.fragment"
+2:I[98885,["/_next/static/chunks/0btl8g2wson3c.js","/_next/static/chunks/10~t6emm0lg0r.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0swc0cxi.76mg.js"],"default"]
+15:I[97367,["/_next/static/chunks/0btl8g2wson3c.js","/_next/static/chunks/10~t6emm0lg0r.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+16:"$Sreact.suspense"
+3:T904,<h2>Why Study in the USA?</h2>
+<p>The United States hosts over <strong>1 million international students</strong> and is home to the world's most prestigious universities. With unmatched research opportunities, diverse campus cultures, and strong alumni networks, a US degree opens global doors.</p>
+
+<h2>Top US Universities</h2>
+<ul>
+<li><strong>MIT</strong> — #1 globally (QS 2026)</li>
+<li><strong>Harvard University</strong> — #4 globally</li>
+<li><strong>Stanford University</strong> — #7 globally</li>
+<li><strong>University of California, Berkeley</strong> — #12 globally</li>
+<li><strong>University of Chicago</strong> — #21 globally</li>
+</ul>
+
+<h2>Cost of Studying in the USA</h2>
+<table>
+<tr><th>Expense</th><th>Annual Cost (USD)</th></tr>
+<tr><td>Public University Tuition</td><td>$20,000 - $40,000</td></tr>
+<tr><td>Private University Tuition</td><td>$40,000 - $60,000+</td></tr>
+<tr><td>Living Costs</td><td>$10,000 - $18,000</td></tr>
+<tr><td>Health Insurance</td><td>$1,500 - $2,500</td></tr>
+</table>
+
+<h2>F-1 Student Visa</h2>
+<h3>Requirements</h3>
+<ul>
+<li><strong>I-20 form</strong> from a SEVP-certified institution</li>
+<li><strong>English proficiency</strong>: TOEFL 80+, IELTS 6.5+, or PTE 58+</li>
+<li>Proof of financial ability to cover first year</li>
+<li><strong>DS-160 application</strong> + visa interview at US Embassy</li>
+<li>SEVIS fee payment ($350)</li>
+</ul>
+
+<h2>Work Rights & OPT</h2>
+<ul>
+<li>On-campus work: <strong>20 hours/week</strong> during term</li>
+<li><strong>CPT</strong> (Curricular Practical Training): internship during study</li>
+<li><strong>OPT</strong> (Optional Practical Training): 12 months post-graduation</li>
+<li><strong>STEM OPT Extension</strong>: additional 24 months for STEM graduates</li>
+</ul>
+
+<h2>Financial Aid & Scholarships</h2>
+<ul>
+<li><strong>Fulbright Program</strong> — fully funded for graduate study</li>
+<li><strong>University merit scholarships</strong> — varies by institution</li>
+<li><strong>Graduate assistantships</strong> — tuition waiver + stipend</li>
+<li><strong>Need-blind admissions</strong> at some Ivy League schools</li>
+</ul>
+
+<h2>Prepare for USA with Language Academy</h2>
+<p>Get your English test score ready for US universities. <a href="/courses">Start preparation</a> at Language Academy!</p>4:Ta46,<h2>IELTS Speaking Test: Complete Guide</h2>
+<p>The IELTS Speaking test is a <strong>face-to-face interview</strong> with a certified examiner lasting 11-14 minutes. It's the only section where you interact with a real person, making it both the most personal and the most nerve-wracking part of the exam.</p>
+
+<h2>Test Structure</h2>
+<h3>Part 1: Introduction & Interview (4-5 minutes)</h3>
+<p>The examiner asks <strong>familiar topics</strong>: work, studies, hobbies, hometown, family.</p>
+<ul>
+<li>Give answers of <strong>2-3 sentences</strong> — not too short, not too long</li>
+<li>Use the format: <strong>Answer + Reason + Example</strong></li>
+<li>Example: "I enjoy reading. It helps me relax after a long day. I usually read fiction novels before bed."</li>
+</ul>
+
+<h3>Part 2: Individual Long Turn (3-4 minutes)</h3>
+<p>You receive a <strong>cue card</strong> with a topic and 1 minute to prepare. Speak for 1-2 minutes.</p>
+<h4>2026 Common Cue Card Topics</h4>
+<ul>
+<li>Describe a person who inspires you</li>
+<li>Talk about a time you helped someone</li>
+<li>Describe a place you'd like to visit</li>
+<li>Talk about a skill you want to learn</li>
+<li>Describe an important decision you made</li>
+</ul>
+
+<h3>Part 3: Discussion (4-5 minutes)</h3>
+<p>The examiner asks <strong>abstract, opinion-based questions</strong> related to the Part 2 topic.</p>
+<ul>
+<li>Give <strong>developed answers</strong> with reasons, examples, and comparisons</li>
+<li>Use phrases like: "From my perspective...", "I'd argue that..."</li>
+<li>It's OK to pause briefly to think — use fillers like "That's an interesting question..."</li>
+</ul>
+
+<h2>Band 7+ Speaking Strategies</h2>
+<ul>
+<li>Use <strong>idiomatic expressions</strong> naturally: "It's a piece of cake", "Once in a blue moon"</li>
+<li>Show <strong>self-correction</strong>: "I went... I mean, I had gone there before"</li>
+<li>Vary your <strong>intonation</strong> — don't speak in a monotone</li>
+<li>Use <strong>discourse markers</strong>: "Having said that", "On the other hand"</li>
+<li>Maintain <strong>eye contact</strong> with the examiner</li>
+</ul>
+
+<h2>Common Mistakes to Avoid</h2>
+<ul>
+<li>❌ Memorizing scripted answers (examiners can tell)</li>
+<li>❌ Speaking too fast or too slowly</li>
+<li>❌ Giving yes/no answers without elaboration</li>
+<li>❌ Using vocabulary you're not comfortable with</li>
+<li>❌ Going off-topic during Part 2</li>
+</ul>
+
+<h2>Practice Speaking at Language Academy</h2>
+<p>Our IELTS courses include mock speaking tests with experienced instructors. <a href="/courses">Join Language Academy</a> and practice with confidence!</p>5:T9ee,<h2>Best Scholarships for International Students in 2026</h2>
+<p>Funding is often the biggest barrier to studying abroad. Fortunately, many governments and universities offer <strong>generous scholarships</strong> that cover tuition, living expenses, and even travel costs.</p>
+
+<h2>Government-Funded Scholarships</h2>
+
+<h3>🇦🇺 Australia Awards Scholarships</h3>
+<ul>
+<li><strong>Coverage</strong>: Full tuition, living allowance, airfare, health insurance</li>
+<li><strong>Eligibility</strong>: Students from participating countries</li>
+<li><strong>Deadline</strong>: Usually April-May each year</li>
+</ul>
+
+<h3>🇬🇧 Chevening Scholarships (UK)</h3>
+<ul>
+<li><strong>Coverage</strong>: Full tuition, living expenses, travel, visa</li>
+<li><strong>Eligibility</strong>: 2+ years work experience, return to home country</li>
+<li><strong>Deadline</strong>: November each year</li>
+</ul>
+
+<h3>🇨🇦 Vanier Canada Graduate Scholarships</h3>
+<ul>
+<li><strong>Coverage</strong>: CAD $50,000/year for 3 years</li>
+<li><strong>Eligibility</strong>: PhD students with leadership and academic excellence</li>
+</ul>
+
+<h3>🇺🇸 Fulbright Foreign Student Program</h3>
+<ul>
+<li><strong>Coverage</strong>: Tuition, living expenses, airfare, health insurance</li>
+<li><strong>Eligibility</strong>: Graduate students from 160+ countries</li>
+</ul>
+
+<h2>University-Specific Scholarships</h2>
+<table>
+<tr><th>University</th><th>Scholarship</th><th>Value</th></tr>
+<tr><td>University of Melbourne</td><td>Graduate Research Scholarships</td><td>Full tuition + AUD $35,000/yr</td></tr>
+<tr><td>University of Toronto</td><td>Lester B. Pearson Scholarships</td><td>Full tuition + living costs</td></tr>
+<tr><td>University of Oxford</td><td>Clarendon Scholarships</td><td>Full tuition + living costs</td></tr>
+<tr><td>MIT</td><td>MIT Scholarships</td><td>Need-based full funding</td></tr>
+</table>
+
+<h2>How to Improve Your Scholarship Chances</h2>
+<ul>
+<li>Achieve a <strong>high English test score</strong> (IELTS 7+ or PTE 65+)</li>
+<li>Write a <strong>compelling personal statement</strong></li>
+<li>Demonstrate <strong>leadership and community involvement</strong></li>
+<li>Apply to <strong>multiple scholarships</strong> simultaneously</li>
+<li>Meet all deadlines — late applications are never considered</li>
+</ul>
+
+<h2>Language Academy: Your Scholarship-Ready Partner</h2>
+<p>A strong PTE or IELTS score is essential for scholarship applications. <a href="/courses">Prepare with Language Academy</a> and maximize your scholarship chances!</p>6:T83b,<h2>Why Study in the UK?</h2>
+<p>The UK is home to some of the <strong>world's oldest and most prestigious universities</strong>. With shorter degree programs (3-year Bachelor's, 1-year Master's), students save both time and money compared to other destinations.</p>
+
+<h2>Top UK Universities</h2>
+<ul>
+<li><strong>University of Oxford</strong> — #3 globally (QS 2026)</li>
+<li><strong>University of Cambridge</strong> — #5 globally</li>
+<li><strong>Imperial College London</strong> — #6 globally</li>
+<li><strong>UCL (University College London)</strong> — #9 globally</li>
+<li><strong>University of Edinburgh</strong> — #22 globally</li>
+</ul>
+
+<h2>Cost of Studying in the UK</h2>
+<table>
+<tr><th>Expense</th><th>Annual Cost (GBP)</th></tr>
+<tr><td>Undergraduate Tuition</td><td>£10,000 - £38,000</td></tr>
+<tr><td>Postgraduate Tuition</td><td>£11,000 - £40,000</td></tr>
+<tr><td>Living Costs (London)</td><td>£12,006 - £15,000</td></tr>
+<tr><td>Living Costs (Outside London)</td><td>£9,207 - £12,000</td></tr>
+</table>
+
+<h2>Student Visa Requirements</h2>
+<ul>
+<li><strong>CAS (Confirmation of Acceptance for Studies)</strong> from your university</li>
+<li><strong>English proficiency</strong>: IELTS 5.5-7.0 or PTE equivalent</li>
+<li>Financial proof: enough for tuition + living costs for 9 months</li>
+<li>TB test certificate (for certain countries)</li>
+</ul>
+
+<h2>Graduate Route Visa</h2>
+<p>After completing your degree, you can stay in the UK to <strong>work for 2 years</strong> (3 years for PhD graduates) without a sponsor through the Graduate Route visa.</p>
+
+<h2>Scholarships</h2>
+<ul>
+<li><strong>Chevening Scholarships</strong> — fully funded by UK government</li>
+<li><strong>Commonwealth Scholarships</strong> — for developing country students</li>
+<li><strong>GREAT Scholarships</strong> — partial funding for specific countries</li>
+<li>University-specific scholarships and fee waivers</li>
+</ul>
+
+<h2>Prepare for UK with Language Academy</h2>
+<p>Get your IELTS score ready for UK universities. <a href="/courses">Start your preparation</a> at Language Academy!</p>7:T81e,<h2>Why Study in Canada?</h2>
+<p>Canada is one of the <strong>most welcoming countries</strong> for international students, offering high-quality education, affordable tuition compared to the US and UK, and clear <strong>pathways to permanent residency</strong>.</p>
+
+<h2>Top Canadian Universities</h2>
+<ul>
+<li><strong>University of Toronto</strong> — #21 globally (QS 2026)</li>
+<li><strong>McGill University</strong> — #29 globally</li>
+<li><strong>University of British Columbia</strong> — #34 globally</li>
+<li><strong>University of Alberta</strong> — Top 100 globally</li>
+<li><strong>University of Waterloo</strong> — Top 100 for Engineering</li>
+</ul>
+
+<h2>Cost of Studying in Canada</h2>
+<table>
+<tr><th>Expense</th><th>Annual Cost (CAD)</th></tr>
+<tr><td>Undergraduate Tuition</td><td>$15,000 - $35,000</td></tr>
+<tr><td>Graduate Tuition</td><td>$10,000 - $30,000</td></tr>
+<tr><td>Living Costs</td><td>$10,000 - $15,000</td></tr>
+<tr><td>Health Insurance</td><td>$600 - $900</td></tr>
+</table>
+
+<h2>Study Permit Requirements</h2>
+<ul>
+<li>Acceptance letter from a <strong>Designated Learning Institution (DLI)</strong></li>
+<li><strong>English proficiency</strong>: IELTS 6.0-6.5 or PTE 50-60</li>
+<li>Proof of financial support: CAD $10,000/year + tuition</li>
+<li>Clean criminal record and medical exam</li>
+</ul>
+
+<h2>Work Rights & PR Pathways</h2>
+<ul>
+<li>Work <strong>20 hours/week off-campus</strong> during studies</li>
+<li><strong>Post-Graduation Work Permit (PGWP)</strong>: up to 3 years</li>
+<li><strong>Express Entry</strong>: Canadian education gives extra CRS points</li>
+<li><strong>Provincial Nominee Programs</strong>: additional PR pathways</li>
+</ul>
+
+<h2>Popular Programs for International Students</h2>
+<ul>
+<li>Computer Science & IT</li>
+<li>Business Administration & MBA</li>
+<li>Engineering</li>
+<li>Healthcare & Nursing</li>
+<li>Data Science & AI</li>
+</ul>
+
+<h2>Prepare for Canada with Language Academy</h2>
+<p>Achieve your IELTS or PTE target score for Canadian universities. <a href="/courses">Explore our courses</a> today!</p>8:T8f0,<h2>Why Study in Australia?</h2>
+<p>Australia is the <strong>third most popular study destination</strong> globally, hosting over 750,000 international students. With world-class universities, generous post-study work rights, and a multicultural society, Australia offers an exceptional education experience.</p>
+
+<h2>Top Australian Universities (2026 Rankings)</h2>
+<ul>
+<li><strong>University of Melbourne</strong> — #14 globally (QS 2026)</li>
+<li><strong>University of Sydney</strong> — #18 globally</li>
+<li><strong>UNSW Sydney</strong> — #19 globally</li>
+<li><strong>Australian National University</strong> — #30 globally</li>
+<li><strong>Monash University</strong> — #37 globally</li>
+</ul>
+
+<h2>Cost of Studying in Australia</h2>
+<table>
+<tr><th>Expense</th><th>Annual Cost (AUD)</th></tr>
+<tr><td>Undergraduate Tuition</td><td>$20,000 - $45,000</td></tr>
+<tr><td>Postgraduate Tuition</td><td>$22,000 - $50,000</td></tr>
+<tr><td>Living Costs</td><td>$21,041 (minimum required)</td></tr>
+<tr><td>Health Insurance (OSHC)</td><td>$500 - $700</td></tr>
+</table>
+
+<h2>Student Visa (Subclass 500)</h2>
+<h3>Requirements</h3>
+<ul>
+<li>Confirmation of Enrolment (CoE) from a registered institution</li>
+<li><strong>English proficiency</strong>: IELTS 5.5-6.5 or PTE 42-58 (varies by course)</li>
+<li>Genuine Temporary Entrant (GTE) statement</li>
+<li>Financial capacity proof: AUD $21,041/year for living</li>
+<li>Overseas Student Health Cover (OSHC)</li>
+</ul>
+
+<h2>Post-Study Work Rights</h2>
+<ul>
+<li><strong>Bachelor's degree</strong>: 2-year post-study work visa</li>
+<li><strong>Master's degree</strong>: 3-year post-study work visa</li>
+<li><strong>PhD</strong>: 4-year post-study work visa</li>
+<li>Students can work <strong>48 hours per fortnight</strong> during study</li>
+</ul>
+
+<h2>Scholarships for International Students</h2>
+<ul>
+<li><strong>Australia Awards Scholarships</strong> — fully funded by Australian government</li>
+<li><strong>Destination Australia</strong> — for regional area study</li>
+<li>University-specific merit and needs-based scholarships</li>
+</ul>
+
+<h2>Prepare for Australia with Language Academy</h2>
+<p>Get your PTE or IELTS score ready for Australian universities. <a href="/courses">Start your preparation</a> at Language Academy!</p>9:Ta4b,<h2>Your Complete Study Abroad Guide for 2026</h2>
+<p>Studying abroad is a <strong>life-changing experience</strong> that opens doors to world-class education, global career opportunities, and personal growth. In 2026, international student numbers continue to rise with new scholarship programs and simplified visa processes in many countries.</p>
+
+<h2>Step 1: Choose Your Destination</h2>
+<p>Consider these factors when selecting a country:</p>
+<ul>
+<li><strong>Academic reputation</strong> — university rankings in your field</li>
+<li><strong>Post-study work rights</strong> — can you work after graduation?</li>
+<li><strong>Living costs</strong> — tuition + accommodation + daily expenses</li>
+<li><strong>Safety and culture</strong> — quality of life for international students</li>
+<li><strong>Language requirements</strong> — PTE, IELTS, or TOEFL scores needed</li>
+</ul>
+
+<h2>Step 2: Meet English Language Requirements</h2>
+<table>
+<tr><th>Country</th><th>Typical IELTS Requirement</th><th>Typical PTE Requirement</th></tr>
+<tr><td>Australia</td><td>6.5-7.0</td><td>58-65</td></tr>
+<tr><td>Canada</td><td>6.0-6.5</td><td>50-60</td></tr>
+<tr><td>UK</td><td>6.0-7.0</td><td>55-65</td></tr>
+<tr><td>USA</td><td>6.5-7.0</td><td>58-68</td></tr>
+<tr><td>New Zealand</td><td>6.0-6.5</td><td>50-58</td></tr>
+</table>
+
+<h2>Step 3: Application Timeline</h2>
+<ol>
+<li><strong>12 months before</strong>: Research universities, take English test</li>
+<li><strong>9 months before</strong>: Prepare documents, write SOP</li>
+<li><strong>6 months before</strong>: Submit applications, apply for scholarships</li>
+<li><strong>3 months before</strong>: Accept offer, apply for visa</li>
+<li><strong>1 month before</strong>: Book flights, arrange accommodation</li>
+</ol>
+
+<h2>Step 4: Financial Planning</h2>
+<ul>
+<li>Research <strong>tuition fee waivers</strong> and merit scholarships</li>
+<li>Calculate total costs including <strong>health insurance and travel</strong></li>
+<li>Explore <strong>part-time work</strong> opportunities for students</li>
+<li>Check if your country offers <strong>education loans</strong> for study abroad</li>
+</ul>
+
+<h2>Step 5: Visa Application</h2>
+<ul>
+<li>Gather all required documents: offer letter, financial proof, English test scores</li>
+<li>Prepare for <strong>visa interview</strong> (if applicable)</li>
+<li>Apply early to avoid delays</li>
+</ul>
+
+<h2>Start Your Study Abroad Journey with Language Academy</h2>
+<p>Language Academy provides complete study abroad guidance including PTE/IELTS preparation, university selection, and visa assistance. <a href="/courses">Get started today</a>!</p>a:T922,<h2>IELTS Writing Task 2: The Complete Guide</h2>
+<p>Writing Task 2 requires you to write a <strong>250+ word essay</strong> in 40 minutes on a given topic. It counts for <strong>two-thirds of your Writing score</strong>, making it the most important writing task.</p>
+
+<h2>Essay Types & Templates</h2>
+
+<h3>1. Opinion Essay (Agree/Disagree)</h3>
+<p><em>"To what extent do you agree or disagree?"</em></p>
+<ul>
+<li><strong>Introduction</strong>: Paraphrase topic + clear opinion</li>
+<li><strong>Body 1</strong>: First reason for your opinion + example</li>
+<li><strong>Body 2</strong>: Second reason + example</li>
+<li><strong>Conclusion</strong>: Restate opinion</li>
+</ul>
+
+<h3>2. Discussion Essay (Both Views)</h3>
+<p><em>"Discuss both views and give your opinion."</em></p>
+<ul>
+<li><strong>Introduction</strong>: Paraphrase + state you'll discuss both sides</li>
+<li><strong>Body 1</strong>: View A + reasons</li>
+<li><strong>Body 2</strong>: View B + reasons</li>
+<li><strong>Conclusion</strong>: Your opinion + summary</li>
+</ul>
+
+<h3>3. Problem-Solution Essay</h3>
+<p><em>"What are the problems and what solutions can you suggest?"</em></p>
+<ul>
+<li><strong>Introduction</strong>: Paraphrase the problem</li>
+<li><strong>Body 1</strong>: Problems explained with examples</li>
+<li><strong>Body 2</strong>: Solutions with expected outcomes</li>
+<li><strong>Conclusion</strong>: Summarize and recommend</li>
+</ul>
+
+<h2>Band 8 Writing Checklist</h2>
+<ul>
+<li>✅ Clear position throughout the essay</li>
+<li>✅ Well-developed ideas with relevant examples</li>
+<li>✅ Logical paragraph structure with linking words</li>
+<li>✅ Range of vocabulary with few errors</li>
+<li>✅ Mix of complex and simple sentence structures</li>
+<li>✅ Minimum 250 words (aim for 270-290)</li>
+</ul>
+
+<h2>Common 2026 Essay Topics</h2>
+<ul>
+<li>Should governments invest more in public transport or roads?</li>
+<li>Is social media beneficial or harmful for society?</li>
+<li>Should university education be free for all students?</li>
+<li>Do the advantages of remote work outweigh the disadvantages?</li>
+<li>Is technology making people less creative?</li>
+</ul>
+
+<h2>Master IELTS Writing at Language Academy</h2>
+<p>Our IELTS writing workshops include essay correction by experienced examiners. <a href="/courses">Join our IELTS course</a> today!</p>b:Ta57,<h2>Reaching IELTS Band 7: What It Takes</h2>
+<p>An <strong>IELTS Band 7</strong> is the minimum requirement for most competitive universities and immigration programs. It requires you to demonstrate <strong>"good user" level English</strong> — handling complex language with occasional inaccuracies.</p>
+
+<h2>Band 7 Requirements by Module</h2>
+<table>
+<tr><th>Module</th><th>What Band 7 Means</th></tr>
+<tr><td>Listening</td><td>30-32 correct out of 40</td></tr>
+<tr><td>Reading</td><td>30-32 correct (Academic)</td></tr>
+<tr><td>Writing</td><td>Strong structure, varied vocabulary, few errors</td></tr>
+<tr><td>Speaking</td><td>Fluent with good vocabulary range</td></tr>
+</table>
+
+<h2>Listening: Score 30+/40</h2>
+<ul>
+<li>Practice <strong>prediction</strong> — read questions before audio plays</li>
+<li>Focus on <strong>plural vs singular</strong> answers</li>
+<li>Watch for <strong>answer changes</strong> — speakers sometimes correct themselves</li>
+<li>Use the 10-minute transfer time wisely — double-check spellings</li>
+</ul>
+
+<h2>Reading: Score 30+/40</h2>
+<ul>
+<li>Read the <strong>first and last sentences</strong> of each paragraph first</li>
+<li>For matching headings, eliminate the easiest matches first</li>
+<li>Remember: "Not Given" means the information simply <strong>isn't in the text</strong></li>
+<li>Practice speed reading with academic articles</li>
+</ul>
+
+<h2>Writing: Band 7 Essentials</h2>
+<ul>
+<li>Task 2 is worth <strong>twice as much</strong> as Task 1 — prioritize it</li>
+<li>Use <strong>less common vocabulary</strong>: "detrimental" instead of "bad"</li>
+<li>Show <strong>grammatical range</strong>: conditionals, passive voice, relative clauses</li>
+<li>Always proofread for basic errors in the last 3 minutes</li>
+</ul>
+
+<h2>Speaking: Band 7 Essentials</h2>
+<ul>
+<li>Speak <strong>naturally</strong> — don't use memorized speeches</li>
+<li>Use <strong>discourse markers</strong>: "Having said that", "On the flip side"</li>
+<li>Develop answers with <strong>reasons and examples</strong></li>
+<li>Show willingness to <strong>self-correct</strong> when you notice a mistake</li>
+</ul>
+
+<h2>Common Band 6.5 Mistakes to Avoid</h2>
+<ul>
+<li>Writing essays that are <strong>too short</strong></li>
+<li>Using <strong>memorized phrases</strong> that don't fit the question</li>
+<li>Giving <strong>one-word answers</strong> in Speaking Part 1</li>
+<li>Not managing time in Reading — getting stuck on hard questions</li>
+</ul>
+
+<h2>Get Band 7+ with Language Academy</h2>
+<p>Our IELTS intensive courses are designed for Band 7+ aspirants. <a href="/courses">Enroll now</a> and achieve your target score!</p>c:T8e4,<h2>IELTS vs PTE: The Complete 2026 Comparison</h2>
+<p>Choosing between <strong>IELTS and PTE Academic</strong> is one of the first decisions you'll make on your study abroad or migration journey. Both are globally accepted, but they have key differences that may make one a better fit for you.</p>
+
+<h2>Quick Comparison Table</h2>
+<table>
+<tr><th>Feature</th><th>IELTS</th><th>PTE Academic</th></tr>
+<tr><td>Test Format</td><td>Paper + Computer</td><td>Computer only</td></tr>
+<tr><td>Duration</td><td>2 hrs 45 min</td><td>2 hours</td></tr>
+<tr><td>Speaking</td><td>Face-to-face examiner</td><td>AI-scored (computer)</td></tr>
+<tr><td>Scoring</td><td>Band 1-9</td><td>Score 10-90</td></tr>
+<tr><td>Results</td><td>13 days</td><td>1-2 days</td></tr>
+<tr><td>Test Fee</td><td>~BDT 25,500</td><td>~BDT 16,000</td></tr>
+<tr><td>Validity</td><td>2 years</td><td>2 years</td></tr>
+</table>
+
+<h2>Choose IELTS If:</h2>
+<ul>
+<li>You prefer <strong>speaking to a human examiner</strong></li>
+<li>You're applying to <strong>UK universities</strong> (IELTS has strongest UK acceptance)</li>
+<li>You're comfortable with <strong>handwritten essays</strong></li>
+<li>You want a <strong>widely recognized test</strong> for migration</li>
+</ul>
+
+<h2>Choose PTE If:</h2>
+<ul>
+<li>You prefer <strong>computer-based testing</strong></li>
+<li>You want <strong>faster results</strong> (1-2 days)</li>
+<li>You're applying to <strong>Australian universities</strong></li>
+<li>You're <strong>shy in face-to-face conversations</strong></li>
+<li>You want <strong>flexible test dates</strong></li>
+</ul>
+
+<h2>Score Equivalence</h2>
+<table>
+<tr><th>IELTS Band</th><th>PTE Score</th></tr>
+<tr><td>9.0</td><td>86-90</td></tr>
+<tr><td>8.0</td><td>79-83</td></tr>
+<tr><td>7.0</td><td>65-72</td></tr>
+<tr><td>6.5</td><td>58-64</td></tr>
+<tr><td>6.0</td><td>50-57</td></tr>
+</table>
+
+<h2>The Verdict</h2>
+<p>Neither test is inherently easier or harder — it depends on <strong>your strengths</strong>. If you're good at typing and prefer machines, choose PTE. If you're a strong communicator, IELTS might suit you better.</p>
+
+<h2>Prepare for Both at Language Academy</h2>
+<p>Language Academy offers expert preparation for both IELTS and PTE. <a href="/courses">View our courses</a> to find the right fit!</p>d:Tac4,<h2>Your Ultimate IELTS Preparation Guide for 2026</h2>
+<p>The <strong>International English Language Testing System (IELTS)</strong> remains the world's most popular English proficiency test, accepted by over 11,000 organizations in 140+ countries. Whether you're applying for study abroad, migration, or professional registration, a strong IELTS score opens doors globally.</p>
+
+<h2>IELTS Format Overview</h2>
+<p>IELTS has two versions: <strong>Academic</strong> (for university admission) and <strong>General Training</strong> (for migration/work). Both share the same Speaking and Listening modules.</p>
+<table>
+<tr><th>Module</th><th>Duration</th><th>Questions</th></tr>
+<tr><td>Listening</td><td>30 minutes + 10 min transfer</td><td>40 questions</td></tr>
+<tr><td>Reading</td><td>60 minutes</td><td>40 questions</td></tr>
+<tr><td>Writing</td><td>60 minutes</td><td>2 tasks</td></tr>
+<tr><td>Speaking</td><td>11-14 minutes</td><td>3 parts</td></tr>
+</table>
+
+<h2>Module-by-Module Strategy</h2>
+<h3>Listening</h3>
+<ul>
+<li>Read questions <strong>before</strong> the audio plays</li>
+<li>Listen for <strong>synonyms and paraphrases</strong></li>
+<li>Pay attention to <strong>signpost words</strong>: however, on the other hand, actually</li>
+<li>Practice with different English accents (British, Australian, American)</li>
+</ul>
+
+<h3>Reading</h3>
+<ul>
+<li>Use <strong>skimming and scanning</strong> techniques</li>
+<li>Don't read every word — focus on key information</li>
+<li>Manage time: spend <strong>20 minutes per passage</strong></li>
+<li>Practice True/False/Not Given with careful attention to "Not Given"</li>
+</ul>
+
+<h3>Writing</h3>
+<ul>
+<li><strong>Task 1</strong>: Describe data trends objectively (150+ words)</li>
+<li><strong>Task 2</strong>: Write a structured essay (250+ words)</li>
+<li>Use <strong>topic sentences</strong> to begin each paragraph</li>
+<li>Include a range of vocabulary and grammatical structures</li>
+</ul>
+
+<h3>Speaking</h3>
+<ul>
+<li>Part 1: Answer naturally, expand answers with reasons</li>
+<li>Part 2: Use the 1-minute preparation time wisely — make notes</li>
+<li>Part 3: Give detailed opinions with examples</li>
+</ul>
+
+<h2>8-Week IELTS Study Plan</h2>
+<table>
+<tr><th>Week</th><th>Focus</th></tr>
+<tr><td>1-2</td><td>Take diagnostic test, understand format</td></tr>
+<tr><td>3-4</td><td>Listening & Reading intensive practice</td></tr>
+<tr><td>5-6</td><td>Writing & Speaking skills development</td></tr>
+<tr><td>7-8</td><td>Full practice tests & final revision</td></tr>
+</table>
+
+<h2>Start Your IELTS Journey with Language Academy</h2>
+<p>Language Academy offers comprehensive IELTS preparation with experienced instructors and regular mock tests. <a href="/courses">Explore our IELTS courses</a> today!</p>e:T7c6,<h2>PTE Listening Module: Complete Guide</h2>
+<p>The Listening section is the <strong>final part of PTE Academic</strong>, lasting 30-43 minutes. It's crucial because it contains <strong>Write from Dictation</strong>, one of the highest-scoring tasks in the entire exam.</p>
+
+<h2>Write from Dictation (WFD)</h2>
+<p>This task alone can contribute <strong>up to 29 points</strong> to your Listening and Writing scores.</p>
+<h3>Key Tips</h3>
+<ul>
+<li>Listen for <strong>content words first</strong> (nouns, verbs, adjectives)</li>
+<li>Write the sentence <strong>immediately</strong> after hearing it</li>
+<li>Focus on correct <strong>spelling</strong> — each word counts</li>
+<li>Practice with commonly repeated WFD sentences</li>
+</ul>
+
+<h2>Summarize Spoken Text (SST)</h2>
+<h3>Structure</h3>
+<p>Write 50-70 words summarizing the lecture. Use this template:</p>
+<ul>
+<li><strong>Opening</strong>: "The speaker discussed/explained..."</li>
+<li><strong>Key Points</strong>: "The main points included... Additionally..."</li>
+<li><strong>Conclusion</strong>: "In conclusion, the speaker emphasized..."</li>
+</ul>
+
+<h2>Other Listening Tasks</h2>
+<h3>Highlight Correct Summary</h3>
+<p>Listen for the <strong>overall message</strong>, not just individual details. Eliminate options that contradict the main idea.</p>
+
+<h3>Fill in the Blanks</h3>
+<p>Follow along with the transcript and fill missing words. Focus on <strong>spelling accuracy</strong> and word form (singular vs. plural).</p>
+
+<h2>Daily Listening Practice Routine</h2>
+<ul>
+<li>Listen to <strong>BBC, CNN, or TED Talks</strong> for 30 minutes daily</li>
+<li>Practice <strong>note-taking</strong> while listening</li>
+<li>Do 5-10 WFD practice sentences every day</li>
+<li>Take a full listening mock test weekly</li>
+</ul>
+
+<h2>Excel in PTE Listening with Language Academy</h2>
+<p>Our PTE courses include extensive listening practice with AI-scored mock tests. <a href="/courses">Join Language Academy</a> for expert preparation!</p>f:T7b2,<h2>PTE Reading: Your Strategy Guide</h2>
+<p>The PTE Reading section lasts <strong>29-30 minutes</strong> and tests your ability to understand academic texts. Key task types include Fill in the Blanks (both Reading and R&W), Reorder Paragraphs, and Multiple Choice.</p>
+
+<h2>Fill in the Blanks (Reading & Writing)</h2>
+<p>This is one of the <strong>most important tasks</strong> as it contributes to both Reading and Writing scores.</p>
+<h3>Strategy</h3>
+<ul>
+<li>Read the <strong>entire sentence</strong> before choosing an answer</li>
+<li>Look for <strong>collocations</strong> — words that naturally go together</li>
+<li>Check <strong>grammatical fit</strong>: does the word match the sentence structure?</li>
+<li>Use <strong>context clues</strong> from surrounding sentences</li>
+</ul>
+
+<h2>Reorder Paragraphs</h2>
+<h3>Step-by-Step Approach</h3>
+<ol>
+<li><strong>Find the topic sentence</strong> — it introduces a new idea without referring back</li>
+<li>Look for <strong>pronoun references</strong> (this, that, these, such)</li>
+<li>Identify <strong>transition words</strong> (however, moreover, consequently)</li>
+<li>Check for <strong>logical flow</strong> — cause before effect, general before specific</li>
+</ol>
+
+<h2>Multiple Choice Questions</h2>
+<ul>
+<li>Read the question <strong>before</strong> reading the passage</li>
+<li>Eliminate obviously wrong answers first</li>
+<li>For "select multiple" questions, look for answers supported by <strong>direct evidence</strong> in the text</li>
+</ul>
+
+<h2>Vocabulary Building Tips</h2>
+<p>Reading scores improve dramatically with <strong>strong vocabulary</strong>. Read academic journals, news editorials, and scientific articles daily. Focus on learning words in context rather than isolated definitions.</p>
+
+<h2>Improve Your PTE Reading at Language Academy</h2>
+<p>Our structured PTE courses include targeted Reading practice with expert guidance. <a href="/courses">Start your preparation</a> today!</p>10:T80b,<h2>PTE Writing Module: What You Need to Know</h2>
+<p>The PTE Writing section includes two task types: <strong>Summarize Written Text (SWT)</strong> and <strong>Essay Writing</strong>. Both are AI-scored for content, grammar, vocabulary, and structure.</p>
+
+<h2>Summarize Written Text (SWT)</h2>
+<h3>Key Rules</h3>
+<ul>
+<li>Write <strong>one single sentence</strong> between 5-75 words</li>
+<li>Use complex sentence structures with connectors</li>
+<li>Capture the <strong>main idea and key supporting points</strong></li>
+<li>Time limit: 10 minutes per passage</li>
+</ul>
+
+<h3>SWT Template Strategy</h3>
+<p>Use this structure: <em>"The passage discusses [main idea], highlighting that [key point 1], while also emphasizing [key point 2], and concluding that [key point 3]."</em></p>
+
+<h2>Essay Writing</h2>
+<h3>Essay Structure (200-300 words)</h3>
+<ol>
+<li><strong>Introduction</strong> (40-50 words): Paraphrase the topic + thesis statement</li>
+<li><strong>Body Paragraph 1</strong> (70-80 words): Main argument + example</li>
+<li><strong>Body Paragraph 2</strong> (70-80 words): Supporting argument + evidence</li>
+<li><strong>Conclusion</strong> (30-40 words): Summarize + final thought</li>
+</ol>
+
+<h3>Common Essay Topics in 2026</h3>
+<ul>
+<li>Technology's impact on education and communication</li>
+<li>Environmental sustainability and climate change</li>
+<li>Work-life balance in the modern world</li>
+<li>Globalization and cultural identity</li>
+<li>Government vs. individual responsibility</li>
+</ul>
+
+<h3>Grammar Checklist for High Scores</h3>
+<ul>
+<li>Use a mix of <strong>simple, compound, and complex sentences</strong></li>
+<li>Avoid spelling errors — they directly reduce your score</li>
+<li>Use <strong>academic collocations</strong>: "significant impact", "growing concern"</li>
+<li>Maintain consistent verb tenses throughout</li>
+</ul>
+
+<h2>Practice with Language Academy</h2>
+<p>Our PTE Writing workshops include AI essay grading and personalized feedback. <a href="/courses">Explore our PTE courses</a> to improve your writing score!</p>11:T9e7,<h2>Master PTE Speaking: Your Guide to a High Score</h2>
+<p>The PTE Speaking section is <strong>AI-scored</strong>, meaning the computer evaluates your pronunciation, fluency, and oral accuracy. Unlike IELTS, there's no human examiner — which means <strong>consistency and clarity</strong> are your best friends.</p>
+
+<h2>PTE Speaking Task Breakdown</h2>
+<ul>
+<li><strong>Read Aloud (6-7 items)</strong> — Read a text passage aloud</li>
+<li><strong>Repeat Sentence (10-12 items)</strong> — Listen and repeat exactly</li>
+<li><strong>Describe Image (3-4 items)</strong> — Describe a graph, chart, or image</li>
+<li><strong>Retell Lecture (1-2 items)</strong> — Summarize a lecture you heard</li>
+<li><strong>Answer Short Question (5-6 items)</strong> — Give brief answers</li>
+</ul>
+
+<h3>Tip 1: Speak at a Natural Pace</h3>
+<p>Don't rush. The AI evaluates <strong>fluency</strong>, which means smooth, natural delivery. Speaking too fast causes mumbling and reduces your score.</p>
+
+<h3>Tip 2: Use Chunking in Read Aloud</h3>
+<p>Break sentences into <strong>meaningful chunks</strong> of 3-5 words. Pause briefly between chunks. This improves both fluency and pronunciation scores.</p>
+
+<h3>Tip 3: Shadow Native Speakers</h3>
+<p>Listen to English podcasts or TED talks and <strong>repeat along simultaneously</strong>. This builds natural intonation patterns.</p>
+
+<h3>Tip 4: Memorize Describe Image Templates</h3>
+<p>Use a structured approach: <em>"This image shows/illustrates... The main trend is... In conclusion..."</em>. Practice with different chart types daily.</p>
+
+<h3>Tip 5: Focus on Content Words in Repeat Sentence</h3>
+<p>If you can't remember every word, prioritize <strong>nouns, verbs, and adjectives</strong>. Content words carry more weight than function words.</p>
+
+<h3>Tip 6: Record and Review Yourself</h3>
+<p>Record your practice sessions and compare with model answers. Identify pronunciation errors and work on them systematically.</p>
+
+<h3>Tip 7: Don't Correct Mistakes Mid-Sentence</h3>
+<p>If you make an error, <strong>keep going</strong>. Self-correction breaks fluency and costs more points than the original mistake.</p>
+
+<h3>Tip 8: Practice with a Quality Microphone</h3>
+<p>Audio quality affects AI scoring. Use a good headset and practice in a quiet environment to simulate exam conditions.</p>
+
+<h2>Get Expert Coaching at Language Academy</h2>
+<p>Our PTE Speaking masterclass includes AI-powered practice tools and instructor feedback. <a href="/courses">Join our PTE course</a> today!</p>12:Tee0,<h2>Your Complete Roadmap to PTE Academic Success in 2026</h2>
+<p>The <strong>PTE Academic</strong> (Pearson Test of English) is one of the most widely accepted English proficiency tests for study abroad, migration, and professional registration. With its AI-based scoring system, PTE rewards <strong>consistency, clarity, and strategy</strong> over memorized templates.</p>
+
+<h2>Understanding the PTE Academic Format</h2>
+<p>PTE Academic is a <strong>computer-based test</strong> lasting approximately 2 hours. It consists of three main sections:</p>
+<ul>
+<li><strong>Speaking & Writing</strong> (54–67 minutes): Read Aloud, Repeat Sentence, Describe Image, Retell Lecture, Summarize Written Text, Essay</li>
+<li><strong>Reading</strong> (29–30 minutes): Fill in the Blanks, Multiple Choice, Re-order Paragraphs</li>
+<li><strong>Listening</strong> (30–43 minutes): Summarize Spoken Text, Multiple Choice, Fill in Blanks, Write from Dictation</li>
+</ul>
+
+<h2>Top 10 Strategies to Score 79+ in PTE Academic</h2>
+<h3>1. Focus on Integrated Scoring</h3>
+<p>PTE uses <strong>integrated scoring</strong> — your Speaking performance can affect your Reading and Listening scores. Understanding this cross-scoring system is crucial for maximizing your overall result.</p>
+
+<h3>2. Master Read Aloud</h3>
+<p>Read Aloud contributes to both Speaking and Reading scores. Practice reading at a <strong>natural pace with clear pronunciation</strong>. Don't rush — the AI scores fluency and oral accuracy.</p>
+
+<h3>3. Practice Repeat Sentence Daily</h3>
+<p>This task tests your short-term memory and oral fluency. Listen carefully, retain the sentence structure, and repeat with <strong>natural intonation</strong>.</p>
+
+<h3>4. Use Templates Wisely for Essays</h3>
+<p>While templates can help structure your essay, the AI now detects over-reliance on memorized content. Focus on <strong>relevant arguments with proper grammar</strong>.</p>
+
+<h3>5. Improve Spelling for Write from Dictation</h3>
+<p>Write from Dictation is one of the <strong>highest-scoring tasks</strong>. Each correct word earns points. Practice spelling commonly dictated academic words.</p>
+
+<h3>6. Build Academic Vocabulary</h3>
+<p>Strong vocabulary improves scores across all four communicative skills. Read academic articles daily and maintain a vocabulary journal.</p>
+
+<h3>7. Take Timed Mock Tests Weekly</h3>
+<p>Simulate real exam conditions with <strong>full-length mock tests</strong>. Analyze your scores and identify weak areas for targeted improvement.</p>
+
+<h3>8. Work on Pronunciation</h3>
+<p>The AI evaluates vowel sounds, consonant clusters, and word stress. Use shadowing techniques with native English audio content.</p>
+
+<h3>9. Manage Your Time Effectively</h3>
+<p>PTE is strictly timed. Practice completing each task within the allocated time. Don't spend too long on any single question.</p>
+
+<h3>10. Stay Calm and Consistent</h3>
+<p>The AI scores consistency. Maintain a <strong>steady pace throughout the exam</strong>. Avoid sudden changes in volume or speed.</p>
+
+<h2>Recommended Study Plan</h2>
+<table>
+<tr><th>Week</th><th>Focus Area</th><th>Daily Hours</th></tr>
+<tr><td>1-2</td><td>Understanding format & baseline test</td><td>2 hours</td></tr>
+<tr><td>3-4</td><td>Speaking & Writing intensive</td><td>3 hours</td></tr>
+<tr><td>5-6</td><td>Reading & Listening practice</td><td>3 hours</td></tr>
+<tr><td>7-8</td><td>Full mock tests & review</td><td>3-4 hours</td></tr>
+</table>
+
+<h2>Start Your PTE Journey with Language Academy</h2>
+<p>At <strong>Language Academy</strong>, we offer expert-led PTE preparation courses with unlimited mock tests, personalized feedback, and proven strategies. Our students consistently achieve 79+ scores. <a href="/courses">Explore our PTE courses</a> and start your journey today!</p>0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"blogs":[{"id":19,"branch_id":1,"author_id":1,"title":"Study in USA 2026: Top Universities, F-1 Visa Guide & Financial Aid for International Students","slug":"study-in-usa-guide-2026","excerpt":"Comprehensive guide to studying in USA in 2026. Ivy League and top universities, F-1 student visa process, costs, OPT work rights, and scholarship opportunities.","content":"$3","image_url":"/uploads/blogs/study-in-usa-guide.webp","is_published":true,"published_at":"2026-05-10T08:21:40.000000Z","created_at":"2026-05-10T08:21:40.000000Z","updated_at":"2026-05-11T05:15:58.000000Z","category":"Study Abroad","tags":["[\"Study in USA\"","\"American Universities\"","\"F-1 Visa\"","\"OPT\"","\"USA Education\"]"],"course_relation":"PTE","reading_time":10,"seo_title":"Study in USA 2026 | Top Universities, F-1 Visa & Scholarships","seo_description":"Complete guide to study in USA 2026. Top universities, F-1 visa, costs, OPT work rights & scholarships for international students.","is_featured":false},{"id":18,"branch_id":1,"author_id":1,"title":"IELTS Speaking Test 2026: Common Topics, Cue Cards & Expert Tips for Band 7+","slug":"ielts-speaking-test-tips-2026","excerpt":"Ace the IELTS Speaking test with expert tips for all 3 parts. Common 2026 cue card topics, vocabulary tips, and strategies to score Band 7+ confidently.","content":"$4","image_url":"/uploads/blogs/ielts-speaking-test-tips.webp","is_published":true,"published_at":"2026-05-10T08:21:40.000000Z","created_at":"2026-05-10T08:21:40.000000Z","updated_at":"2026-05-11T05:15:58.000000Z","category":"IELTS","tags":["[\"[\\\"IELTS Speaking\\\"\"","\"\\\"Speaking Tips\\\"\"","\"\\\"Cue Cards\\\"\"","\"\\\"IELTS Band 7\\\"\"","\"\\\"Speaking Test\\\"]\"]"],"course_relation":"IELTS","reading_time":8,"seo_title":"IELTS Speaking Tips 2026 | Cue Cards & Band 7+ Strategies","seo_description":"Master IELTS Speaking with expert tips for Part 1, 2 & 3. Common 2026 cue card topics and vocabulary strategies for Band 7+. Language Academy.","is_featured":false},{"id":17,"branch_id":1,"author_id":1,"title":"Top Scholarships for International Students 2026: Fully Funded Opportunities Worldwide","slug":"top-scholarships-international-students-2026","excerpt":"Discover the best fully funded scholarships for international students in 2026. Government scholarships, university grants, and financial aid across top destinations.","content":"$5","image_url":"/uploads/blogs/scholarships-international-students.webp","is_published":true,"published_at":"2026-05-10T08:21:35.000000Z","created_at":"2026-05-10T08:21:35.000000Z","updated_at":"2026-05-11T05:15:58.000000Z","category":"Study Abroad","tags":["[\"Scholarships\"","\"Fully Funded\"","\"International Students\"","\"Study Abroad Scholarships\"","\"Financial Aid\"]"],"course_relation":"PTE","reading_time":10,"seo_title":"Top Scholarships for International Students 2026 | Fully Funded","seo_description":"Best fully funded scholarships for international students 2026. Government scholarships, university grants for Australia, Canada, UK, USA & more.","is_featured":true},{"id":16,"branch_id":1,"author_id":1,"title":"Study in the UK 2026: Russell Group Universities, Student Visa & Funding Options","slug":"study-in-uk-guide-2026","excerpt":"Complete guide to studying in the UK in 2026. Russell Group universities, student visa requirements, tuition fees, scholarships, and the Graduate Route visa.","content":"$6","image_url":"/uploads/blogs/study-in-uk-guide.webp","is_published":true,"published_at":"2026-05-10T08:21:35.000000Z","created_at":"2026-05-10T08:21:35.000000Z","updated_at":"2026-05-11T05:15:58.000000Z","category":"Study Abroad","tags":["[\"Study in UK\"","\"UK Universities\"","\"Student Visa UK\"","\"Russell Group\"","\"UK Education\"]"],"course_relation":"IELTS","reading_time":9,"seo_title":"Study in UK 2026 | Top Universities, Visa & Scholarships Guide","seo_description":"Complete guide to study in UK 2026. Russell Group universities, student visa, fees, Chevening scholarships & Graduate Route. Language Academy.","is_featured":false},{"id":15,"branch_id":1,"author_id":1,"title":"Study in Canada 2026: Top Universities, Study Permits & Immigration Pathways","slug":"study-in-canada-guide-2026","excerpt":"Everything you need to know about studying in Canada in 2026. Universities, study permits, costs, part-time work, and PR pathways for international students.","content":"$7","image_url":"/uploads/blogs/study-in-canada-guide.webp","is_published":true,"published_at":"2026-05-10T08:21:35.000000Z","created_at":"2026-05-10T08:21:35.000000Z","updated_at":"2026-05-11T05:15:58.000000Z","category":"Study Abroad","tags":["[\"Study in Canada\"","\"Canadian Universities\"","\"Study Permit\"","\"Canada PR\"","\"Canada Education\"]"],"course_relation":"IELTS","reading_time":10,"seo_title":"Study in Canada 2026 | Universities, Visa & PR Pathways Guide","seo_description":"Complete guide to study in Canada 2026. Top universities, study permit, costs, work rights & PR pathways for international students.","is_featured":false},{"id":14,"branch_id":1,"author_id":1,"title":"Study in Australia 2026: Universities, Costs, Visa & Post-Study Work Rights","slug":"study-in-australia-guide-2026","excerpt":"Complete guide to studying in Australia. Top universities, tuition costs, student visa (subclass 500), post-study work rights, and scholarship opportunities.","content":"$8","image_url":"/uploads/blogs/study-in-australia-guide.webp","is_published":true,"published_at":"2026-05-10T08:21:35.000000Z","created_at":"2026-05-10T08:21:35.000000Z","updated_at":"2026-05-11T05:15:58.000000Z","category":"Study Abroad","tags":["[\"Study in Australia\"","\"Australian Universities\"","\"Student Visa\"","\"Post-Study Work\"","\"Australia Education\"]"],"course_relation":"PTE","reading_time":10,"seo_title":"Study in Australia 2026 | Universities, Visa & Scholarships Guide","seo_description":"Complete guide to study in Australia 2026. Top universities, costs, student visa 500, scholarships & post-study work rights. Language Academy.","is_featured":false},{"id":13,"branch_id":1,"author_id":1,"title":"Complete Study Abroad Guide 2026: How to Plan Your International Education Journey","slug":"complete-study-abroad-guide-2026","excerpt":"Planning to study abroad in 2026? Our comprehensive guide covers destination selection, application process, visa requirements, scholarships, and living costs.","content":"$9","image_url":"/uploads/blogs/complete-study-abroad-guide.webp","is_published":true,"published_at":"2026-05-10T08:21:35.000000Z","created_at":"2026-05-10T08:21:35.000000Z","updated_at":"2026-05-11T05:15:58.000000Z","category":"Study Abroad","tags":["[\"[\\\"Study Abroad\\\"\"","\"\\\"International Education\\\"\"","\"\\\"Study Abroad 2026\\\"\"","\"\\\"Visa Guide\\\"\"","\"\\\"Application Process\\\"]\"]"],"course_relation":"PTE","reading_time":12,"seo_title":"Study Abroad Guide 2026 | Complete Planning Guide for Students","seo_description":"Complete 2026 study abroad guide. Destination selection, application process, visa, scholarships & costs. Expert guidance from Language Academy.","is_featured":true},{"id":12,"branch_id":1,"author_id":1,"title":"IELTS Writing Task 2 Essay Guide: Templates, Topics & Band 8 Samples","slug":"ielts-writing-task-2-essay-guide","excerpt":"Master IELTS Writing Task 2 with our complete guide. Get essay templates for Opinion, Discussion, Problem-Solution essays plus Band 8 sample answers.","content":"$a","image_url":"/uploads/blogs/ielts-writing-task-2-guide.webp","is_published":true,"published_at":"2026-05-10T08:21:29.000000Z","created_at":"2026-05-10T08:21:29.000000Z","updated_at":"2026-05-11T05:14:51.000000Z","category":"IELTS","tags":["IELTS Writing","Task 2","IELTS Essay","Essay Templates","Band 8 Writing"],"course_relation":"IELTS","reading_time":10,"seo_title":"IELTS Writing Task 2 Guide 2026 | Templates & Band 8 Samples","seo_description":"Complete IELTS Writing Task 2 guide with essay templates, common topics, and Band 8 sample answers. Expert tips from Language Academy.","is_featured":false},{"id":11,"branch_id":1,"author_id":1,"title":"How to Achieve IELTS Band 7+: Proven Tips for Each Module","slug":"how-to-achieve-ielts-band-7-score","excerpt":"Want to score IELTS Band 7 or higher? Discover module-specific strategies, common mistakes to avoid, and a proven study plan for achieving your target score.","content":"$b","image_url":"/uploads/blogs/ielts-band-7-score-tips.webp","is_published":true,"published_at":"2026-05-10T08:21:29.000000Z","created_at":"2026-05-10T08:21:29.000000Z","updated_at":"2026-05-11T05:14:51.000000Z","category":"IELTS","tags":["[\"IELTS Band 7\"","\"IELTS High Score\"","\"IELTS Tips\"","\"IELTS Strategy\"","\"Band 7 Tips\"]"],"course_relation":"IELTS","reading_time":10,"seo_title":"How to Score IELTS Band 7+ | Module-wise Tips & Strategy 2026","seo_description":"Proven strategies to achieve IELTS Band 7+ in all four modules. Common mistakes, study plan, and expert tips from Language Academy.","is_featured":false},{"id":10,"branch_id":1,"author_id":1,"title":"IELTS vs PTE Academic 2026: Which English Test Should You Choose?","slug":"ielts-vs-pte-comparison-2026","excerpt":"Confused between IELTS and PTE? Compare test format, scoring, difficulty, acceptance, and find out which exam is right for your goals in 2026.","content":"$c","image_url":"/uploads/blogs/ielts-vs-pte-comparison.webp","is_published":true,"published_at":"2026-05-10T08:21:29.000000Z","created_at":"2026-05-10T08:21:29.000000Z","updated_at":"2026-05-11T05:15:58.000000Z","category":"IELTS","tags":["[\"IELTS vs PTE\"","\"PTE vs IELTS\"","\"English Test Comparison\"","\"Which Test\"","\"IELTS or PTE\"]"],"course_relation":"IELTS","reading_time":9,"seo_title":"IELTS vs PTE 2026: Which English Test is Better? Complete Comparison","seo_description":"IELTS vs PTE Academic 2026 comparison. Format, scoring, difficulty, cost & acceptance compared. Find the right test for study abroad or migration.","is_featured":false},{"id":9,"branch_id":1,"author_id":1,"title":"IELTS Preparation Guide 2026: Everything You Need to Score Band 7+","slug":"ielts-preparation-guide-2026","excerpt":"Complete IELTS preparation guide for 2026. Learn strategies for Listening, Reading, Writing & Speaking to achieve Band 7+ with expert tips from Language Academy.","content":"$d","image_url":"/uploads/blogs/ielts-preparation-guide-2025.webp","is_published":true,"published_at":"2026-05-10T08:21:29.000000Z","created_at":"2026-05-10T08:21:29.000000Z","updated_at":"2026-05-11T05:15:57.000000Z","category":"IELTS","tags":["[\"IELTS\"","\"IELTS Preparation\"","\"IELTS Band 7\"","\"IELTS 2026\"","\"IELTS Tips\"]"],"course_relation":"IELTS","reading_time":11,"seo_title":"IELTS Preparation Guide 2026 | How to Score Band 7+ Tips","seo_description":"Complete IELTS preparation guide 2026. Expert strategies for all 4 modules. Score Band 7+ with proven tips from Language Academy Bangladesh.","is_featured":true},{"id":8,"branch_id":1,"author_id":1,"title":"PTE Listening Module Guide: Ace Write from Dictation & Summarize Spoken Text","slug":"pte-listening-module-guide-2026","excerpt":"Master the PTE Listening module with expert tips for Write from Dictation, Summarize Spoken Text, and other high-scoring tasks. Complete 2026 guide.","content":"$e","image_url":"/uploads/blogs/pte-listening-module-guide.webp","is_published":true,"published_at":"2026-05-10T08:21:24.000000Z","created_at":"2026-05-10T08:21:24.000000Z","updated_at":"2026-05-11T05:14:52.000000Z","category":"PTE","tags":["PTE Listening","Write from Dictation","Summarize Spoken Text","PTE Tips","Listening Practice"],"course_relation":"PTE","reading_time":8,"seo_title":"PTE Listening Tips 2026 | Write from Dictation & SST Guide","seo_description":"Complete PTE Listening guide with expert tips for Write from Dictation, Summarize Spoken Text & more. Score high with Language Academy strategies.","is_featured":false},{"id":7,"branch_id":1,"author_id":1,"title":"PTE Reading Module Strategies: How to Score 79+ in Fill in the Blanks & Reorder","slug":"pte-reading-module-strategies-2026","excerpt":"Boost your PTE Reading score with expert strategies for Fill in the Blanks, Reorder Paragraphs, and Multiple Choice questions. Proven tips for 79+.","content":"$f","image_url":"/uploads/blogs/pte-reading-module-strategies.webp","is_published":true,"published_at":"2026-05-10T08:21:24.000000Z","created_at":"2026-05-10T08:21:24.000000Z","updated_at":"2026-05-11T05:14:52.000000Z","category":"PTE","tags":["PTE Reading","Fill in Blanks","Reorder Paragraphs","PTE Strategies","PTE Score"],"course_relation":"PTE","reading_time":7,"seo_title":"PTE Reading Tips 2026 | Fill in Blanks & Reorder Strategies for 79+","seo_description":"Expert PTE Reading strategies for Fill in the Blanks, Reorder Paragraphs & Multiple Choice. Score 79+ with proven tips from Language Academy.","is_featured":false},{"id":6,"branch_id":1,"author_id":1,"title":"PTE Writing Module Mastery: Essay Templates & Summarize Written Text Tips","slug":"pte-writing-module-mastery-guide","excerpt":"Complete guide to PTE Writing — master Summarize Written Text and Essay Writing with proven templates, grammar tips, and scoring strategies for 2026.","content":"$10","image_url":"/uploads/blogs/pte-writing-module-mastery.webp","is_published":true,"published_at":"2026-05-10T08:21:24.000000Z","created_at":"2026-05-10T08:21:24.000000Z","updated_at":"2026-05-11T05:14:52.000000Z","category":"PTE","tags":["PTE Writing","PTE Essay","Summarize Written Text","PTE Grammar","PTE Templates"],"course_relation":"PTE","reading_time":9,"seo_title":"PTE Writing Tips 2026 | Essay Templates & SWT Strategies","seo_description":"Master PTE Writing with expert essay templates and Summarize Written Text strategies. Grammar tips and scoring guide from Language Academy.","is_featured":false},{"id":5,"branch_id":1,"author_id":1,"title":"PTE Speaking Module: 8 Expert Tips to Maximize Your Score in 2026","slug":"pte-speaking-module-tips-2026","excerpt":"Struggling with PTE Speaking? Learn 8 expert-proven tips for Read Aloud, Repeat Sentence, Describe Image & Retell Lecture to boost your speaking score.","content":"$11","image_url":"/uploads/blogs/pte-speaking-module-tips.webp","is_published":true,"published_at":"2026-05-10T08:21:24.000000Z","created_at":"2026-05-10T08:21:24.000000Z","updated_at":"2026-05-11T05:14:52.000000Z","category":"PTE","tags":["PTE Speaking","PTE Tips","Read Aloud","Repeat Sentence","Describe Image"],"course_relation":"PTE","reading_time":8,"seo_title":"PTE Speaking Tips 2026 | 8 Expert Strategies for High Score","seo_description":"Master PTE Speaking with 8 expert tips for Read Aloud, Repeat Sentence, Describe Image & Retell Lecture. Proven strategies from Language Academy.","is_featured":false},{"id":4,"branch_id":1,"author_id":1,"title":"PTE Academic Complete Preparation Guide 2026: Score 79+ With Proven Strategies","slug":"pte-academic-preparation-guide-2026","excerpt":"Master the PTE Academic exam with our comprehensive 2026 preparation guide. Learn proven strategies for Speaking, Writing, Reading & Listening to achieve your target score of 79+.","content":"$12","image_url":"/uploads/blogs/pte-preparation-guide-2025.webp","is_published":true,"published_at":"2026-05-10T08:21:24.000000Z","created_at":"2026-05-10T08:21:24.000000Z","updated_at":"2026-05-11T05:14:52.000000Z","category":"PTE","tags":["[\"PTE Academic\"","\"PTE Preparation\"","\"PTE Tips\"","\"PTE 2026\"","\"Score 79+\"]"],"course_relation":"PTE","reading_time":12,"seo_title":"PTE Academic Preparation Guide 2026 | Score 79+ Tips & Strategies","seo_description":"Complete PTE Academic preparation guide for 2026. Expert strategies for Speaking, Writing, Reading & Listening modules. Free tips to score 79+ from Language Academy.","is_featured":true},{"id":1,"branch_id":1,"author_id":1,"title":"Test","slug":"155845","excerpt":"","content":"<h1>Hi </h1><p>Hello</p><p></p><p></p>","image_url":"","is_published":true,"published_at":"2026-05-09T16:07:05.000000Z","created_at":"2026-05-09T16:07:05.000000Z","updated_at":"2026-05-09T16:07:05.000000Z","category":null,"tags":null,"course_relation":null,"reading_time":null,"seo_title":null,"seo_description":null,"is_featured":false},{"id":3,"branch_id":2,"author_id":1,"title":"Mastering IELTS in 30 Days","slug":"mastering-ielts-30-days-test-2","excerpt":"A 30-day guide to mastering the IELTS exam.","content":"<h2>Day 1-5: Understanding the Format</h2>","image_url":"/uploads/blogs/ielts-preparation-guide-2025.webp","is_published":true,"published_at":null,"created_at":"2026-05-09T16:12:52.000000Z","updated_at":"2026-05-11T05:15:57.000000Z","category":"IELTS","tags":["IELTS","Preparation"],"course_relation":null,"reading_time":10,"seo_title":null,"seo_description":null,"is_featured":true}],"resources":[]}],["$L13"],"$L14"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_4XJsmIU12xLf5f3GTAka"}
+13:["$","script","script-0",{"src":"/_next/static/chunks/0swc0cxi.76mg.js","async":true}]
+14:["$","$L15",null,{"children":["$","$16",null,{"name":"Next.MetadataOutlet","children":"$@17"}]}]
+17:null

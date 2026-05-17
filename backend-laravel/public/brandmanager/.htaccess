@@ -1,4 +1,5 @@
 <IfModule mod_rewrite.c>
+    DirectoryIndex index.html
     RewriteEngine On
     RewriteBase /brandmanager/
     RewriteRule ^index\.html$ - [L]

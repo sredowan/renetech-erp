@@ -8,6 +8,7 @@ use App\Models\CampaignTemplate;
 use App\Models\Contact;
 use App\Models\Course;
 use App\Models\Enrollment;
+use App\Models\Invoice;
 use App\Models\Lead;
 use App\Models\Opportunity;
 use App\Models\Student;
@@ -22,7 +23,13 @@ class CrmController extends Controller
 {
     public function getCourses(Request $request): JsonResponse
     {
-        return ApiResponse::success(BranchScope::apply(Course::query(), $request)->where('status', 'active')->orderBy('title')->get());
+        return ApiResponse::success(
+            BranchScope::apply(Course::query(), $request)
+                ->where('status', 'active')
+                ->with(['batches' => fn ($q) => $q->where('status', 'active')->orderBy('start_date')])
+                ->orderBy('title')
+                ->get()
+        );
     }
 
     public function getAllLeads(Request $request): JsonResponse
@@ -120,41 +127,101 @@ class CrmController extends Controller
         }
 
         $result = DB::transaction(function () use ($lead, $request) {
+            // 1. Create or find user account
             $user = User::query()->firstOrCreate([
                 'email' => $lead->email ?: 'lead_'.$lead->id.'@example.local',
             ], [
-                'name' => $lead->name,
-                'password' => bin2hex(random_bytes(16)),
+                'name' => $request->input('name', $lead->name),
+                'password' => bcrypt($request->input('password') ?: bin2hex(random_bytes(8))),
                 'branch_id' => $lead->branch_id,
                 'role' => 'student',
                 'status' => 'active',
             ]);
 
+            // 2. Create or find student profile
             $student = Student::query()->firstOrCreate([
                 'user_id' => $user->id,
             ], [
                 'branch_id' => $lead->branch_id,
-                'first_name' => $lead->name,
-                'mobile_no' => $lead->phone,
+                'first_name' => $request->input('first_name', $lead->name),
+                'last_name' => $request->input('last_name', ''),
+                'mobile_no' => $request->input('mobile_no', $lead->phone),
+                'email' => $request->input('email', $lead->email),
+                'date_of_birth' => $request->input('date_of_birth'),
                 'enrollment_date' => now()->toDateString(),
                 'status' => 'active',
+                'father_name' => $request->input('father_name'),
+                'mother_name' => $request->input('mother_name'),
+                'current_address' => $request->input('current_address'),
+                'permanent_address' => $request->input('permanent_address'),
+                'nid_birth_cert' => $request->input('nid_birth_cert'),
+                'profession' => $request->input('profession'),
+                'english_level' => $request->input('english_level'),
+                'educational_details' => $request->input('educational_details'),
+                'employment_details' => $request->input('employment_details'),
+                'referred_by' => $request->input('referred_by'),
+                'referral_amount' => $request->input('referral_amount'),
             ]);
 
+            // 3. Determine fee from course
+            $course = Course::find($lead->course_id);
+            $dealValue = (float) $lead->deal_value;
+            $courseFee = (float) ($course->base_fee ?? 0);
+            $totalFee = $request->input('total_fee') ?: ($dealValue > 0 ? $dealValue : $courseFee);
+
+            // 4. Create enrollment
             $enrollment = Enrollment::query()->create([
                 'branch_id' => $lead->branch_id,
                 'student_id' => $student->id,
                 'batch_id' => $request->input('batch_id', $lead->batch_id),
-                'total_fee' => $request->input('total_fee', $lead->deal_value ?: 0),
-                'paid_amount' => $request->input('paid_amount', 0),
-                'status' => $request->input('status', 'pending'),
+                'total_fee' => $totalFee,
+                'paid_amount' => 0,
+                'status' => 'pending',
             ]);
 
-            $lead->fill(['status' => 'enrolled', 'last_activity_at' => now()])->save();
+            // 5. Create pending POS invoice so fees show up in POS
+            $invoice = Invoice::query()->create([
+                'branch_id' => $lead->branch_id,
+                'invoice_no' => 'INV-CRM-' . now()->format('YmdHis') . '-' . $lead->id,
+                'enrollment_id' => $enrollment->id,
+                'student_id' => $student->id,
+                'amount' => $totalFee,
+                'paid' => 0,
+                'status' => 'pending',
+                'due_date' => now()->addDays(7)->toDateString(),
+                'issued_at' => now(),
+                'notes' => 'CRM Enrollment — ' . ($course->title ?? 'Course') . ' — Lead #' . $lead->id,
+            ]);
 
-            return compact('user', 'student', 'enrollment', 'lead');
+            // 6. Move lead to fees_pending (awaiting POS collection)
+            $lead->fill([
+                'status' => 'fees_pending',
+                'last_activity_at' => now(),
+            ])->save();
+
+            // 7. Store student details in lead tags for reference
+            $existingTags = is_array($lead->tags) ? $lead->tags : [];
+            $lead->fill([
+                'tags' => array_merge($existingTags, [
+                    'student_id' => $student->id,
+                    'enrollment_id' => $enrollment->id,
+                    'invoice_id' => $invoice->id,
+                    'student_details' => $request->only([
+                        'first_name', 'last_name', 'middle_name', 'mobile_no', 'email',
+                        'date_of_birth', 'father_name', 'mother_name', 'current_address',
+                        'permanent_address', 'nid_birth_cert', 'profession', 'english_level',
+                        'course_reason', 'preferred_country', 'other_reason',
+                        'educational_details', 'employment_details', 'referred_by', 'referral_amount',
+                    ]),
+                ]),
+            ])->save();
+
+            return compact('user', 'student', 'enrollment', 'invoice', 'lead');
         });
 
-        return ApiResponse::success($result, 201);
+        return ApiResponse::success(array_merge($result, [
+            'message' => 'Student created & pending invoice sent to POS. Go to Finance → POS to collect fees.',
+        ]), 201);
     }
 
     public function markSuccessful(Request $request, int $id): JsonResponse

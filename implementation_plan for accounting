@@ -1,0 +1,194 @@
+# Implementation Plan — Finance & Accounting Portal Expansion
+
+Massive upgrade to both the **Admin Portal** and **Accounting Portal** with premium dark-mode dashboards matching the reference UI designs.
+
+---
+
+## Architecture Overview
+
+```
+[Admin Portal :5174]
+  └── /pos       → POS & Fee Management (redesigned)
+  └── /finance   → Accounts Overview (redesigned)
+
+[Accounting Portal :5176]
+  └── /              → Accounts Overview Dashboard
+  └── /pos-fees      → POS & Fee Management
+  └── /ledger        → General Ledger + Trial Balance
+  └── /journal       → Transaction Journal
+  └── /invoices      → Invoice Management (redesigned)
+  └── /expenses      → Expense Manager
+  └── /budget        → Budget Tracker
+  └── /cashflow      → Cash Flow Report
+  └── /reports       → Reports Hub (P&L, Income vs Expense, Student-wise, Audit Logs)
+  └── /reconciliation → Bank Reconciliation (existing)
+```
+
+---
+
+## Phase 1 — Backend API Expansion
+
+### 1.1 New Models
+
+#### [NEW] `backend/models/Invoice.js`
+- [id](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/admin-portal/src/components/Sidebar.jsx#24-194), `invoice_no` (unique), `enrollment_id` (FK), `student_id` (FK), `amount`, `paid`, `status` (paid/pending/overdue/draft), `due_date`, `issued_at`, `branch_id`
+
+#### [NEW] `backend/models/Expense.js`
+- [id](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/admin-portal/src/components/Sidebar.jsx#24-194), `account_id` (FK→Account), `amount`, `description`, `category`, `payment_method`, `receipt_url`, `approved_by`, `branch_id`, `date`
+
+#### [NEW] `backend/models/Budget.js`
+- [id](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/admin-portal/src/components/Sidebar.jsx#24-194), `account_id` (FK), `branch_id`, `period` (monthly/quarterly/yearly), `period_start`, `period_end`, `allocated`, `spent`
+
+#### [NEW] `backend/models/AuditLog.js`
+- [id](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/admin-portal/src/components/Sidebar.jsx#24-194), `user_id` (FK), `action`, `entity`, `entity_id`, `old_value` (JSON), `new_value` (JSON), `ip_address`, `branch_id`
+
+### 1.2 New API Routes
+
+#### [MODIFY] [backend/routes/finance.routes.js](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/backend/routes/finance.routes.js)
+Add endpoints:
+| Method | Endpoint | Description |
+|:--|:--|:--|
+| GET | `/finance/overview` | Dashboard KPIs (revenue, expenses, net profit, receivables) |
+| GET | `/finance/profit-loss` | P&L statement for date range |
+| GET | `/finance/cashflow` | Cash flow report |
+| GET | `/finance/income-expense` | Income vs Expense breakdown |
+| GET | `/finance/student-income/:id` | Student-wise income report |
+| GET | `/finance/trial-balance` | Trial balance check |
+
+#### [NEW] `backend/routes/invoice.routes.js`
+| Method | Endpoint | Description |
+|:--|:--|:--|
+| GET | `/invoices` | All invoices with filters |
+| GET | `/invoices/aging` | Aging analysis (0-30, 31-60, 61-90, 90+) |
+| POST | `/invoices` | Create invoice |
+| PUT | `/invoices/:id` | Update invoice |
+
+#### [NEW] `backend/routes/expense.routes.js`
+| Method | Endpoint | Description |
+|:--|:--|:--|
+| GET | `/expenses` | All expenses with filters |
+| GET | `/expenses/split` | Expense category split (pie chart) |
+| POST | `/expenses` | Record expense |
+
+#### [NEW] `backend/routes/budget.routes.js`
+| Method | Endpoint | Description |
+|:--|:--|:--|
+| GET | `/budget` | All budget allocations |
+| POST | `/budget` | Create budget allocation |
+| GET | `/budget/vs-actual` | Budget vs Actual comparison |
+
+#### [MODIFY] [backend/routes/accounting.routes.js](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/backend/routes/accounting.routes.js)
+Add:
+| Method | Endpoint | Description |
+|:--|:--|:--|
+| GET | `/accounting/journal` | Full transaction journal with search/filter |
+| GET | `/accounting/ledger-summary` | Account summary with debit/credit totals |
+| GET | `/accounting/audit-log` | Audit trail |
+
+### 1.3 New Controllers
+
+- [NEW] `backend/controllers/invoice.controller.js`
+- [NEW] `backend/controllers/expense.controller.js`
+- [NEW] `backend/controllers/budget.controller.js`
+- [MODIFY] [backend/controllers/finance.controller.js](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/backend/controllers/finance.controller.js) — add overview, P&L, cashflow, trial-balance
+- [MODIFY] [backend/controllers/accounting.controller.js](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/backend/controllers/accounting.controller.js) — add journal listing, ledger summary, audit log
+
+---
+
+## Phase 2 — Accounting Portal Frontend (Complete Redesign)
+
+### 2.1 Sidebar Update
+**[MODIFY]** [accounting-portal/src/components/AccountingSidebar.jsx](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/accounting-portal/src/components/AccountingSidebar.jsx)
+- Add all new menu items with badges for overdue counts
+- Group items under sections: OVERVIEW, FINANCE, REPORTS
+
+### 2.2 New/Redesigned Pages
+
+#### [MODIFY] [FinanceHub.jsx](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/accounting-portal/src/pages/FinanceHub.jsx) → Accounts Overview Dashboard
+- 4x KPI cards: Revenue YTD, Expenses YTD, Net Profit, Receivables Due
+- Mini sparkline bar charts in each card
+- Profit & Loss summary section
+- Expense Split donut chart
+
+#### [NEW] `POSFees.jsx` → POS & Fee Management
+- 3x stat cards: Total Collected, Pending, Overdue 30D+
+- Recent Transactions table with method badges, course access status
+- Payment Channels donut chart
+- "Collect Fee" and "Generate Receipt" action buttons
+
+#### [MODIFY] [Ledger.jsx](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/accounting-portal/src/pages/Ledger.jsx) → General Ledger
+- Account Summary table (Account, Type badge, Debit Total, Credit Total, Balance)
+- Trial Balance Check panel with Balanced/Unbalanced status
+- Accounting Period date picker with Regenerate button
+
+#### [NEW] `Journal.jsx` → Transaction Journal
+- Full-width table: Date, Ref#, Description, Account, Debit, Credit, Running Balance, Posted By
+- Search + filter by type
+- "+ Entry" quick-add button
+
+#### [MODIFY] [Invoices.jsx](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/accounting-portal/src/pages/Invoices.jsx) → Invoice Management
+- 4x KPI cards: Total Invoiced, Paid, Pending, Overdue
+- Tab filters: All, Paid, Pending, Overdue, Draft
+- Invoice cards with status badges
+- Aging Analysis sidebar (0-30, 31-60, 61-90, 90+ days)
+
+#### [NEW] `ExpenseManager.jsx`
+- Expense listing table with category, amount, date, approval status
+- Add Expense modal form
+- Category-wise expense breakdown
+
+#### [NEW] `BudgetTracker.jsx`
+- Budget vs Actual comparison cards per account
+- Progress bars showing utilization percentage
+- Period selector
+
+#### [NEW] `CashFlow.jsx`
+- Cash inflows vs outflows by month
+- Net cash position
+- Bar chart visualization
+
+#### [NEW] `ReportsHub.jsx`
+- P&L Report with period selector
+- Income vs Expense Statement
+- Student-wise Income report
+- Dues & Receivables aging
+- Audit Logs table
+
+### 2.3 Router Update
+**[MODIFY]** [accounting-portal/src/App.jsx](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/accounting-portal/src/App.jsx) — add all new routes
+
+---
+
+## Phase 3 — Admin Portal Finance Pages Update
+
+### [MODIFY] [admin-portal/src/pages/POS.jsx](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/admin-portal/src/pages/POS.jsx)
+- Redesign to match reference: stat cards, payment channels chart, transaction table
+
+### [MODIFY] [admin-portal/src/pages/Finance.jsx](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/admin-portal/src/pages/Finance.jsx)
+- Redesign to full Accounts Overview dashboard with P&L, expense split
+
+### [MODIFY] [admin-portal/src/pages/Reports.jsx](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/admin-portal/src/pages/Reports.jsx)
+- Add dedicated reports: P&L, Trial Balance, Cash Flow, Student Income
+
+---
+
+## Execution Order
+
+Since this is a very large task, I will execute in this priority order:
+1. **Backend Models & Routes** (Invoice, Expense, Budget, AuditLog + all new API endpoints)
+2. **Accounting Portal Pages** (start with Accounts Overview, then POS, Ledger, Journal, Invoices)
+3. **Remaining Accounting Pages** (ExpenseManager, BudgetTracker, CashFlow, ReportsHub)
+4. **Admin Portal Updates** (POS, Finance, Reports redesign)
+5. **Sidebar & Router Updates**
+
+---
+
+## Verification Plan
+
+### Automated
+- Start backend and verify all new API endpoints return mock data
+- Start accounting portal and verify all pages render without errors
+
+### Manual
+- Compare UI with reference screenshots for visual fidelity
+- Test CRUD operations on invoices, expenses, and budgets

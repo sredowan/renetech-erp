@@ -1,0 +1,39 @@
+# Task: Language Academy Public Website
+
+## Phase 1 — Backend Extensions
+- [ ] Extend `Course` model with metadata fields (slug, image, instructor, modules, learning outcomes, is_published)
+- [ ] Create `BlogPost` model
+- [ ] Create `public.routes.js` + `public.controller.js` (unauthenticated)
+- [ ] Create `payment.routes.js` + `payment.controller.js` (SSLCommerz)
+- [ ] Create `facebookCapi.service.js`
+- [ ] Register new routes in [backend/server.js](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/backend/server.js)
+- [ ] Install sslcommerz-lts, axios packages in backend
+
+## Phase 2 — Website Frontend (Next.js 14)
+- [x] Scaffold Next.js 14 project in `website/`
+- [x] Install dependencies (tailwind, framer-motion, shadcn/ui)
+- [x] Build `layout.jsx` (Navbar, Footer, Pixel, Tawk.to)
+- [x] Build Home page (`/`)
+- [ ] Build Courses listing page (`/courses`)
+- [ ] Build Course detail page (`/courses/[slug]`)
+- [ ] Build Enrollment/Checkout page (`/enroll`)
+- [ ] Build Success page (`/enroll/success`)
+- [ ] Build About page (`/about`)
+- [ ] Build Blog listing + detail pages (`/blog`)
+- [ ] Build Materials page (`/materials`)
+- [ ] Build Contact page (`/contact`)
+- [ ] Integrate Facebook Pixel client-side events
+- [ ] Integrate Tawk.to chat widget
+
+## Phase 3 — Gateway Update
+- [ ] Update [gateway/server.js](file:///c:/Users/Redowan%20Sayem/OneDrive/Documents/PERSONAL/DEVELOPMENTS/Language%20Academy/gateway/server.js) to proxy `/` to website (port 3001)
+
+## Phase 4 — Admin Portal Course Publishing
+- [ ] Add publish toggle + metadata fields to LMS page
+
+## Verification
+- [ ] Test course listing syncs live
+- [ ] Test enrollment flow end-to-end
+- [ ] Test Facebook Pixel events fire
+- [ ] Test contact form creates CRM lead
+- [ ] Test mobile responsiveness

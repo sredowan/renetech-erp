@@ -1,0 +1,70 @@
+# Dependencies
+node_modules/
+vendor/
+.npm
+.eslintcache
+
+# Build (only ignore at root level, allow sub-project dist/ and .next/)
+build/
+.cache/
+**/.next/
+
+# Environment
+.env
+.env.*
+.env.local
+.env.*.local
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+*.log
+*build_log*.txt
+*dev_log.txt
+backend_error.log
+student_debug.log
+student_debug_utf8.log
+backend/token.txt
+backend/error.txt
+backend/backend_log.txt
+admin-portal/dev_log.txt
+nul
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large Files
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.iso
+*.sql
+backend.zip
+
+# Test
+coverage/
+
+# Runtime uploads
+backend/uploads/
+
+# Sub-repo specific
+**/node_modules/
+**/vendor/
+**/env
+
+# Local deployment artifacts
+hostinger-deploy/
+hostinger-zip-test/
+
+.agent/
+.claude/
+backend/_token.txt
+tmp/

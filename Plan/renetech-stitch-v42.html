@@ -1,0 +1,3259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RENETECH · Stitch Platform — PTE Centre</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   STITCH DESIGN SYSTEM · RENETECH v2
+═══════════════════════════════════════════ */
+:root {
+  /* Core Palette */
+  --void: #040810;
+  --deep: #070D1A;
+  --bg: #0A1020;
+  --layer1: #0E1628;
+  --layer2: #121D32;
+  --layer3: #172438;
+  --glass: rgba(255,255,255,0.03);
+  --glass2: rgba(255,255,255,0.06);
+  --glass3: rgba(255,255,255,0.09);
+
+  /* Borders */
+  --rim: rgba(255,255,255,0.06);
+  --rim2: rgba(255,255,255,0.1);
+  --rim3: rgba(255,255,255,0.16);
+
+  /* Stitch Accents */
+  --cyan: #00D4FF;
+  --cyan2: #38E8FF;
+  --cyan3: rgba(0,212,255,0.12);
+  --mint: #00FF94;
+  --mint2: #4DFFA8;
+  --mint3: rgba(0,255,148,0.1);
+  --amber: #FFB347;
+  --amber2: #FFCA7A;
+  --amber3: rgba(255,179,71,0.1);
+  --rose: #FF4D6D;
+  --rose2: #FF7088;
+  --rose3: rgba(255,77,109,0.1);
+  --violet: #9B6DFF;
+  --violet2: #B896FF;
+  --violet3: rgba(155,109,255,0.1);
+
+  /* Text */
+  --t1: #F0F7FF;
+  --t2: rgba(240,247,255,0.7);
+  --t3: rgba(240,247,255,0.4);
+  --t4: rgba(240,247,255,0.2);
+
+  /* Sidebar */
+  --sb: 248px;
+  --hh: 60px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { font-size: 14px; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--void);
+  color: var(--t1);
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* Subtle dot grid texture */
+  background-image: radial-gradient(circle, rgba(0,212,255,0.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ── STITCH THREAD LINES (decorative SVG bg) ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 49.9%, rgba(0,212,255,0.02) 50%, transparent 50.1%),
+    linear-gradient(180deg, transparent 49.9%, rgba(0,212,255,0.02) 50%, transparent 50.1%);
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ══════════════════════════════
+   SIDEBAR
+══════════════════════════════ */
+.sidebar {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: var(--sb);
+  background: var(--deep);
+  border-right: 1px solid var(--rim);
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
+  overflow: hidden;
+}
+
+.sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 1px; height: 100%;
+  background: linear-gradient(180deg, transparent, var(--cyan) 30%, var(--mint) 70%, transparent);
+  opacity: 0.3;
+}
+
+.logo-zone {
+  padding: 20px 18px 18px;
+  border-bottom: 1px solid var(--rim);
+  flex-shrink: 0;
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 10px;
+}
+
+.logo-gem {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: #fff;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0,212,255,0.3);
+  flex-shrink: 0;
+}
+
+.logo-gem::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+.logo-name {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--t1);
+  letter-spacing: 0.5px;
+}
+.logo-tag {
+  font-size: 10px;
+  color: var(--t3);
+  margin-top: 1px;
+  font-weight: 400;
+}
+
+/* Stitch status pill */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--mint3);
+  border: 1px solid rgba(0,255,148,0.2);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--mint2);
+  letter-spacing: 0.4px;
+}
+
+.status-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--mint);
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,255,148,0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 4px transparent; }
+}
+
+/* Nav */
+.nav-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 10px;
+}
+.nav-scroll::-webkit-scrollbar { width: 3px; }
+.nav-scroll::-webkit-scrollbar-thumb { background: var(--rim2); border-radius: 2px; }
+
+.nav-group { margin-bottom: 18px; }
+
+.nav-group-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--t4);
+  padding: 0 10px;
+  margin-bottom: 4px;
+}
+
+.ni {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 9px;
+  cursor: pointer;
+  color: var(--t3);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.18s ease;
+  position: relative;
+  user-select: none;
+  margin-bottom: 1px;
+}
+
+.ni:hover {
+  background: var(--glass2);
+  color: var(--t2);
+}
+
+.ni.active {
+  background: linear-gradient(135deg, rgba(0,212,255,0.12), rgba(155,109,255,0.08));
+  color: var(--cyan2);
+  border: 1px solid rgba(0,212,255,0.15);
+}
+
+.ni.active::before {
+  content: '';
+  position: absolute;
+  left: -10px; top: 50%;
+  transform: translateY(-50%);
+  width: 3px; height: 20px;
+  background: linear-gradient(180deg, var(--cyan), var(--violet));
+  border-radius: 0 2px 2px 0;
+}
+
+.ni-icon {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  background: var(--glass);
+  flex-shrink: 0;
+  transition: background 0.18s;
+}
+
+.ni.active .ni-icon {
+  background: rgba(0,212,255,0.1);
+}
+
+.ni-label { flex: 1; }
+
+.ni-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+}
+.ni-badge.c { background: var(--rose); color: #fff; }
+.ni-badge.g { background: var(--mint); color: #000; }
+.ni-badge.a { background: var(--amber); color: #000; }
+.ni-badge.v { background: var(--violet); color: #fff; }
+
+.ni-badge.live {
+  background: var(--mint3);
+  border: 1px solid rgba(0,255,148,0.3);
+  color: var(--mint2);
+  animation: badge-pulse 2s infinite;
+}
+@keyframes badge-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Sidebar footer */
+.sb-footer {
+  border-top: 1px solid var(--rim);
+  padding: 14px 10px;
+  flex-shrink: 0;
+}
+
+.user-tile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--glass);
+  border: 1px solid var(--rim);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.user-tile:hover { background: var(--glass2); border-color: var(--rim2); }
+
+.user-av {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(0,212,255,0.25);
+}
+.user-name { font-size: 12.5px; font-weight: 600; color: var(--t1); }
+.user-role { font-size: 10px; color: var(--t3); margin-top: 1px; }
+.user-more { margin-left: auto; color: var(--t3); font-size: 16px; }
+
+/* ══════════════════════════════
+   TOPBAR
+══════════════════════════════ */
+.topbar {
+  position: fixed;
+  left: var(--sb); right: 0; top: 0;
+  height: var(--hh);
+  background: rgba(7,13,26,0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--rim);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+  z-index: 100;
+}
+
+.breadcrumb {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--t1);
+}
+.breadcrumb-sep { color: var(--t4); margin: 0 6px; font-size: 13px; }
+.breadcrumb-sub { font-size: 13px; color: var(--t3); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; }
+
+.tb-search {
+  flex: 1;
+  max-width: 320px;
+  margin-left: auto;
+  position: relative;
+}
+.tb-search input {
+  width: 100%;
+  background: var(--glass2);
+  border: 1px solid var(--rim);
+  border-radius: 10px;
+  padding: 8px 14px 8px 36px;
+  font-size: 13px;
+  color: var(--t1);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  outline: none;
+  transition: all 0.18s;
+}
+.tb-search input:focus {
+  border-color: rgba(0,212,255,0.3);
+  background: var(--glass3);
+  box-shadow: 0 0 0 3px rgba(0,212,255,0.06);
+}
+.tb-search input::placeholder { color: var(--t4); }
+.tb-search-icon {
+  position: absolute;
+  left: 12px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--t3);
+  font-size: 14px;
+}
+
+.tb-actions { display: flex; align-items: center; gap: 8px; }
+
+.icon-btn {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  background: var(--glass);
+  border: 1px solid var(--rim);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--t2);
+  transition: all 0.15s;
+  position: relative;
+}
+.icon-btn:hover { background: var(--glass2); border-color: var(--rim2); color: var(--t1); }
+
+.notif-dot {
+  position: absolute;
+  top: 7px; right: 7px;
+  width: 6px; height: 6px;
+  background: var(--rose);
+  border-radius: 50%;
+  border: 1.5px solid var(--deep);
+}
+
+/* Stitch Primary Button */
+.btn-stitch {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  white-space: nowrap;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0,212,255,0.2);
+}
+.btn-stitch:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,212,255,0.3); opacity: 0.92; }
+.btn-stitch:active { transform: translateY(0); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: var(--glass);
+  border: 1px solid var(--rim2);
+  color: var(--t2);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.btn-ghost:hover { background: var(--glass2); color: var(--t1); border-color: var(--rim3); }
+
+/* ══════════════════════════════
+   MAIN CANVAS
+══════════════════════════════ */
+.canvas {
+  margin-left: var(--sb);
+  padding-top: var(--hh);
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.view {
+  padding: 24px;
+  display: none;
+  animation: view-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.view.active { display: block; }
+
+@keyframes view-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════
+   STITCH PULSE CARD (stat cards)
+══════════════════════════════ */
+.pulse-grid {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.pg-4 { grid-template-columns: repeat(4, 1fr); }
+.pg-5 { grid-template-columns: repeat(5, 1fr); }
+.pg-3 { grid-template-columns: repeat(3, 1fr); }
+
+.pulse-card {
+  background: var(--layer1);
+  border: 1px solid var(--rim);
+  border-radius: 14px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pulse-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--pc-glow, transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.pulse-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--pc-border, var(--rim2));
+  box-shadow: 0 8px 32px var(--pc-shadow, rgba(0,0,0,0.3));
+}
+.pulse-card:hover::before { opacity: 1; }
+
+.pulse-card.c-cyan {
+  --pc-border: rgba(0,212,255,0.25);
+  --pc-shadow: rgba(0,212,255,0.12);
+  --pc-glow: linear-gradient(135deg, rgba(0,212,255,0.04), transparent);
+}
+.pulse-card.c-mint {
+  --pc-border: rgba(0,255,148,0.25);
+  --pc-shadow: rgba(0,255,148,0.12);
+  --pc-glow: linear-gradient(135deg, rgba(0,255,148,0.04), transparent);
+}
+.pulse-card.c-amber {
+  --pc-border: rgba(255,179,71,0.25);
+  --pc-shadow: rgba(255,179,71,0.12);
+  --pc-glow: linear-gradient(135deg, rgba(255,179,71,0.04), transparent);
+}
+.pulse-card.c-rose {
+  --pc-border: rgba(255,77,109,0.25);
+  --pc-shadow: rgba(255,77,109,0.12);
+  --pc-glow: linear-gradient(135deg, rgba(255,77,109,0.04), transparent);
+}
+.pulse-card.c-violet {
+  --pc-border: rgba(155,109,255,0.25);
+  --pc-shadow: rgba(155,109,255,0.12);
+  --pc-glow: linear-gradient(135deg, rgba(155,109,255,0.04), transparent);
+}
+
+/* Accent top border */
+.pulse-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--pc-line, linear-gradient(90deg, var(--cyan), var(--violet)));
+}
+.pulse-card.c-mint::after { --pc-line: linear-gradient(90deg, var(--mint), var(--cyan)); }
+.pulse-card.c-amber::after { --pc-line: linear-gradient(90deg, var(--amber), var(--rose)); }
+.pulse-card.c-rose::after { --pc-line: linear-gradient(90deg, var(--rose), var(--violet)); }
+.pulse-card.c-violet::after { --pc-line: linear-gradient(90deg, var(--violet), var(--cyan)); }
+
+.pc-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--t3);
+  margin-bottom: 12px;
+}
+.pc-value {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.pc-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--t3);
+}
+.pc-change {
+  font-size: 12px;
+  font-weight: 700;
+}
+.pc-change.up { color: var(--mint2); }
+.pc-change.dn { color: var(--rose2); }
+
+.pc-icon {
+  position: absolute;
+  top: 18px; right: 18px;
+  font-size: 28px;
+  opacity: 0.08;
+}
+
+/* Micro sparkline */
+.sparkline {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 22px;
+  margin-top: 8px;
+}
+.sl-bar {
+  flex: 1;
+  border-radius: 2px;
+  background: var(--sl-c, var(--cyan));
+  opacity: 0.4;
+  transition: opacity 0.15s;
+  min-height: 3px;
+}
+.sl-bar:last-child { opacity: 1; }
+.sl-bar:hover { opacity: 0.8; }
+
+/* ══════════════════════════════
+   STITCH CARD (panel)
+══════════════════════════════ */
+.sc {
+  background: var(--layer1);
+  border: 1px solid var(--rim);
+  border-radius: 14px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.sc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--rim);
+}
+
+.sc-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--t1);
+  letter-spacing: 0.2px;
+}
+
+.sc-body { padding: 20px; }
+
+/* Grid layouts */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.g65 { display: grid; grid-template-columns: 1.7fr 1fr; gap: 16px; }
+.g35 { display: grid; grid-template-columns: 1fr 1.7fr; gap: 16px; }
+.mb16 { margin-bottom: 16px; }
+.mb24 { margin-bottom: 24px; }
+
+/* ══════════════════════════════
+   STITCH TABLE
+══════════════════════════════ */
+.st-wrap { overflow-x: auto; }
+table.stitch {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+table.stitch thead th {
+  background: rgba(0,0,0,0.2);
+  padding: 10px 16px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--t4);
+  border-bottom: 1px solid var(--rim);
+  white-space: nowrap;
+}
+table.stitch tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--rim);
+  color: var(--t2);
+  vertical-align: middle;
+  transition: background 0.1s;
+}
+table.stitch tbody tr:last-child td { border-bottom: none; }
+table.stitch tbody tr:hover td { background: var(--glass2); }
+.td-name { color: var(--t1); font-weight: 600; }
+.td-mono { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--cyan2); }
+
+/* ══════════════════════════════
+   STITCH BADGE
+══════════════════════════════ */
+.sb2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+.sb2-cyan { background: rgba(0,212,255,0.1); color: var(--cyan2); border: 1px solid rgba(0,212,255,0.2); }
+.sb2-mint { background: var(--mint3); color: var(--mint2); border: 1px solid rgba(0,255,148,0.2); }
+.sb2-amber { background: var(--amber3); color: var(--amber2); border: 1px solid rgba(255,179,71,0.2); }
+.sb2-rose { background: var(--rose3); color: var(--rose2); border: 1px solid rgba(255,77,109,0.2); }
+.sb2-violet { background: var(--violet3); color: var(--violet2); border: 1px solid rgba(155,109,255,0.2); }
+.sb2-dim { background: var(--glass); color: var(--t3); border: 1px solid var(--rim); }
+
+/* ══════════════════════════════
+   PAGE HEADER
+══════════════════════════════ */
+.view-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+.view-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -0.5px;
+}
+.view-sub {
+  font-size: 13px;
+  color: var(--t3);
+  margin-top: 4px;
+}
+.view-actions { display: flex; gap: 8px; flex-shrink: 0; }
+
+/* ══════════════════════════════
+   PROGRESS BARS
+══════════════════════════════ */
+.pbar {
+  height: 5px;
+  background: var(--glass2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.pbar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.pf-cyan { background: linear-gradient(90deg, var(--cyan), var(--violet)); }
+.pf-mint { background: linear-gradient(90deg, var(--mint), var(--cyan)); }
+.pf-amber { background: linear-gradient(90deg, var(--amber), var(--rose)); }
+.pf-rose { background: linear-gradient(90deg, var(--rose), var(--violet)); }
+
+/* ══════════════════════════════
+   TABS
+══════════════════════════════ */
+.tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--layer2);
+  border: 1px solid var(--rim);
+  border-radius: 11px;
+  padding: 4px;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+.tab {
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--t3);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.tab:hover { color: var(--t2); }
+.tab.on {
+  background: linear-gradient(135deg, var(--glass3), var(--glass2));
+  color: var(--t1);
+  border: 1px solid var(--rim2);
+}
+
+/* ══════════════════════════════
+   TOGGLE SWITCH
+══════════════════════════════ */
+.toggle {
+  width: 38px; height: 21px;
+  border-radius: 11px;
+  background: var(--layer3);
+  border: 1px solid var(--rim2);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.toggle.on {
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  border-color: transparent;
+  box-shadow: 0 0 10px rgba(0,212,255,0.3);
+}
+.toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s cubic-bezier(0.22,1,0.36,1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+.toggle.on::after { transform: translateX(17px); }
+
+/* ══════════════════════════════
+   KANBAN PIPELINE
+══════════════════════════════ */
+.pipeline {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+.pipeline::-webkit-scrollbar { height: 4px; }
+.pipeline::-webkit-scrollbar-thumb { background: var(--rim2); border-radius: 2px; }
+
+.k-col {
+  flex: 0 0 210px;
+  min-width: 210px;
+}
+
+.k-col-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+}
+
+.k-col-title { font-size: 12px; font-weight: 700; letter-spacing: 0.2px; }
+
+.k-col-count {
+  font-size: 10px; font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.k-cards { display: flex; flex-direction: column; gap: 8px; }
+
+/* Stitch Pulse Card — Lead variant */
+.lead-card {
+  background: var(--layer2);
+  border: 1px solid var(--rim);
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.22,1,0.36,1);
+  position: relative;
+  overflow: hidden;
+}
+.lead-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--lc-accent, var(--cyan));
+  border-radius: 3px 0 0 3px;
+}
+.lead-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--rim2);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+.lc-name { font-size: 13px; font-weight: 600; color: var(--t1); margin-bottom: 3px; }
+.lc-meta { font-size: 11px; color: var(--t3); margin-bottom: 8px; }
+.lc-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.lc-tag {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: var(--glass2);
+  color: var(--t3);
+  border: 1px solid var(--rim);
+}
+.lc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--rim);
+}
+
+/* ══════════════════════════════
+   ACTION DRAWER
+══════════════════════════════ */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 900;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+.drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+.drawer {
+  position: fixed;
+  right: 0; top: 0; bottom: 0;
+  width: 480px;
+  background: var(--layer1);
+  border-left: 1px solid var(--rim2);
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.drawer.open { transform: translateX(0); }
+
+.drawer::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--cyan) 30%, var(--violet) 70%, transparent);
+  opacity: 0.4;
+}
+
+.drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--rim);
+  flex-shrink: 0;
+}
+.drawer-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--t1);
+}
+.drawer-close {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--glass2);
+  border: 1px solid var(--rim);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--t2);
+  font-size: 16px;
+  transition: all 0.15s;
+}
+.drawer-close:hover { background: var(--glass3); color: var(--t1); }
+
+.drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+.drawer-body::-webkit-scrollbar { width: 4px; }
+.drawer-body::-webkit-scrollbar-thumb { background: var(--rim2); border-radius: 2px; }
+
+.drawer-foot {
+  padding: 16px 24px;
+  border-top: 1px solid var(--rim);
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Form controls */
+.fgroup { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+.flabel { font-size: 11.5px; font-weight: 600; color: var(--t3); letter-spacing: 0.3px; }
+.finput, .fselect, .ftextarea {
+  background: var(--layer2);
+  border: 1px solid var(--rim2);
+  border-radius: 9px;
+  padding: 9px 13px;
+  font-size: 13px;
+  color: var(--t1);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  outline: none;
+  transition: all 0.15s;
+  width: 100%;
+}
+.finput:focus, .fselect:focus, .ftextarea:focus {
+  border-color: rgba(0,212,255,0.4);
+  box-shadow: 0 0 0 3px rgba(0,212,255,0.08);
+}
+.finput::placeholder, .ftextarea::placeholder { color: var(--t4); }
+.fselect { cursor: pointer; }
+.fselect option { background: var(--layer2); }
+.ftextarea { resize: vertical; min-height: 80px; }
+
+.fgrid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.divider { height: 1px; background: var(--rim); margin: 20px 0; }
+
+/* ══════════════════════════════
+   PTE PRACTICE ENGINE
+══════════════════════════════ */
+.pte-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 0;
+  border: 1px solid var(--rim);
+  border-radius: 14px;
+  overflow: hidden;
+  min-height: 600px;
+}
+
+.pte-sidebar {
+  background: var(--layer2);
+  border-right: 1px solid var(--rim);
+  overflow-y: auto;
+}
+
+.pte-sidebar::-webkit-scrollbar { width: 3px; }
+.pte-sidebar::-webkit-scrollbar-thumb { background: var(--rim2); }
+
+.pte-section {
+  border-bottom: 1px solid var(--rim);
+}
+
+.pte-section-head {
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+  user-select: none;
+}
+.pte-section-head:hover { background: var(--glass2); }
+.pte-section-head.expanded { background: var(--glass2); }
+
+.pte-section-icon {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.pte-section-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--t1);
+  flex: 1;
+}
+
+.pte-section-arrow {
+  font-size: 10px;
+  color: var(--t3);
+  transition: transform 0.2s;
+}
+.pte-section-head.expanded .pte-section-arrow { transform: rotate(90deg); }
+
+.pte-subtasks {
+  display: none;
+  padding: 4px 0;
+}
+.pte-subtasks.open { display: block; }
+
+.pte-task {
+  padding: 8px 14px 8px 28px;
+  font-size: 12px;
+  color: var(--t3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.1s;
+  gap: 6px;
+}
+.pte-task:hover { background: var(--glass); color: var(--t2); }
+.pte-task.active-task {
+  background: rgba(0,212,255,0.08);
+  color: var(--cyan2);
+  border-right: 2px solid var(--cyan);
+}
+.pte-task-attempts {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 8px;
+  background: var(--glass2);
+  color: var(--t3);
+  flex-shrink: 0;
+}
+.pte-task.active-task .pte-task-attempts {
+  background: rgba(0,212,255,0.1);
+  color: var(--cyan2);
+}
+
+/* Practice Main Area */
+.pte-main {
+  background: var(--layer1);
+  display: flex;
+  flex-direction: column;
+}
+
+.pte-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--rim);
+  background: var(--layer2);
+}
+
+.pte-task-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--t1);
+}
+
+.pte-mode-pills {
+  display: flex;
+  gap: 6px;
+}
+
+.mode-pill {
+  padding: 5px 13px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1px solid var(--rim2);
+  color: var(--t3);
+  background: var(--glass);
+}
+.mode-pill.on {
+  background: linear-gradient(135deg, var(--cyan3), var(--violet3));
+  border-color: rgba(0,212,255,0.3);
+  color: var(--cyan2);
+}
+
+.pte-content-zone {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+/* Practice question card */
+.pq-card {
+  background: var(--layer2);
+  border: 1px solid var(--rim);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  animation: view-in 0.25s ease;
+}
+
+.pq-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--t4);
+  margin-bottom: 10px;
+}
+
+.pq-text {
+  font-size: 14px;
+  color: var(--t1);
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.pq-text em {
+  background: rgba(0,212,255,0.1);
+  color: var(--cyan2);
+  font-style: normal;
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+/* Recording UI */
+.record-ui {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 28px;
+  background: var(--layer2);
+  border: 1px solid var(--rim);
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.record-btn {
+  width: 70px; height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--rose), var(--violet));
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  color: #fff;
+  box-shadow: 0 0 0 0 rgba(255,77,109,0.4);
+  transition: all 0.2s;
+  position: relative;
+}
+.record-btn::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,77,109,0.3);
+  animation: record-ring 2s infinite;
+}
+@keyframes record-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
+.record-btn:hover { transform: scale(1.08); box-shadow: 0 0 0 8px rgba(255,77,109,0.1); }
+
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 40px;
+}
+.wave-bar {
+  width: 4px;
+  border-radius: 2px;
+  background: var(--cyan);
+  opacity: 0.5;
+  animation: wave-anim 1.2s ease infinite;
+}
+@keyframes wave-anim {
+  0%, 100% { height: 8px; opacity: 0.3; }
+  50% { height: 30px; opacity: 0.9; }
+}
+.wave-bar:nth-child(2) { animation-delay: 0.1s; }
+.wave-bar:nth-child(3) { animation-delay: 0.2s; }
+.wave-bar:nth-child(4) { animation-delay: 0.3s; }
+.wave-bar:nth-child(5) { animation-delay: 0.4s; }
+.wave-bar:nth-child(6) { animation-delay: 0.3s; }
+.wave-bar:nth-child(7) { animation-delay: 0.2s; }
+.wave-bar:nth-child(8) { animation-delay: 0.1s; }
+
+.record-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--t1);
+}
+
+.record-hint { font-size: 12px; color: var(--t3); }
+
+/* Score ring */
+.score-ring-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.score-ring-svg {
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 0 12px rgba(0,212,255,0.25));
+}
+.score-ring-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.score-num {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--t1);
+  line-height: 1;
+}
+.score-lbl { font-size: 11px; color: var(--t3); margin-top: 2px; }
+
+.score-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+.score-cell {
+  background: var(--layer2);
+  border: 1px solid var(--rim);
+  border-radius: 10px;
+  padding: 12px;
+}
+.score-cell-name { font-size: 10px; color: var(--t3); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+.score-cell-val {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* Answer box */
+.answer-box {
+  width: 100%;
+  background: var(--layer2);
+  border: 1px solid var(--rim2);
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 14px;
+  color: var(--t1);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  outline: none;
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.7;
+  transition: border-color 0.15s;
+}
+.answer-box:focus {
+  border-color: rgba(0,212,255,0.3);
+  box-shadow: 0 0 0 3px rgba(0,212,255,0.06);
+}
+
+/* MCQ Options */
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--layer2);
+  border: 1px solid var(--rim);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.mcq-opt:hover { border-color: var(--rim2); background: var(--glass2); }
+.mcq-opt.selected {
+  border-color: rgba(0,212,255,0.4);
+  background: rgba(0,212,255,0.06);
+}
+.mcq-circle {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--rim3);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.mcq-opt.selected .mcq-circle {
+  border-color: var(--cyan);
+  background: var(--cyan);
+}
+.mcq-opt.selected .mcq-circle::after {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #fff;
+}
+.mcq-label { font-size: 13.5px; color: var(--t2); }
+
+/* Timer bar */
+.timer-bar-wrap {
+  height: 3px;
+  background: var(--glass2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.timer-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--mint), var(--cyan));
+  border-radius: 2px;
+  width: 75%;
+  transition: width 1s linear;
+}
+
+/* Attempt counter */
+.attempt-counter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--t3);
+}
+.att-pip {
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  background: var(--cyan);
+  opacity: 0.3;
+}
+.att-pip.used { background: var(--glass2); opacity: 1; }
+.att-pip.remaining { background: var(--cyan); opacity: 0.7; }
+
+/* ══════════════════════════════
+   IFTTT RULE BUILDER
+══════════════════════════════ */
+.rule-card {
+  background: var(--layer2);
+  border: 1px solid var(--rim);
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 12px;
+  transition: all 0.2s;
+  position: relative;
+}
+.rule-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--r-color, var(--cyan));
+  border-radius: 3px 0 0 3px;
+}
+.rule-card:hover { border-color: var(--rim2); }
+
+.rule-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.rule-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--t1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rule-body {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.rule-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.rc-trigger { background: rgba(155,109,255,0.1); color: var(--violet2); border: 1px solid rgba(155,109,255,0.2); }
+.rc-arrow { color: var(--t4); font-size: 14px; }
+.rc-action { background: rgba(0,212,255,0.08); color: var(--cyan2); border: 1px solid rgba(0,212,255,0.15); }
+.rc-channel { background: var(--mint3); color: var(--mint2); border: 1px solid rgba(0,255,148,0.15); }
+
+/* ══════════════════════════════
+   ROOM MAP
+══════════════════════════════ */
+.room-map {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.room-cell {
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+.room-cell.occupied {
+  background: rgba(0,255,148,0.06);
+  border-color: rgba(0,255,148,0.2);
+}
+.room-cell.booked {
+  background: rgba(255,179,71,0.06);
+  border-color: rgba(255,179,71,0.2);
+}
+.room-cell.free {
+  background: var(--layer2);
+  border-color: var(--rim);
+}
+.room-cell.maintenance {
+  background: rgba(255,77,109,0.06);
+  border-color: rgba(255,77,109,0.2);
+}
+.room-cell:hover { transform: scale(1.02); }
+
+.room-name {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--t1);
+  margin-bottom: 4px;
+}
+.room-cap {
+  font-size: 11px;
+  color: var(--t3);
+  margin-bottom: 10px;
+}
+.room-class {
+  font-size: 12px;
+  color: var(--t2);
+  font-weight: 500;
+}
+.room-time { font-size: 11px; color: var(--t3); margin-top: 2px; }
+
+.room-status-dot {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+.room-cell.occupied .room-status-dot { background: var(--mint); box-shadow: 0 0 8px var(--mint); animation: pulse-dot 2s infinite; }
+.room-cell.booked .room-status-dot { background: var(--amber); }
+.room-cell.free .room-status-dot { background: var(--t4); }
+.room-cell.maintenance .room-status-dot { background: var(--rose); }
+
+/* ══════════════════════════════
+   COCKPIT DASHBOARD
+══════════════════════════════ */
+.cockpit-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.cockpit-widget {
+  background: var(--layer1);
+  border: 1px solid var(--rim);
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+}
+.cockpit-widget::before {
+  content: '⠿';
+  position: absolute;
+  top: 10px; right: 12px;
+  color: var(--t4);
+  font-size: 16px;
+  cursor: move;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.cockpit-widget:hover::before { opacity: 1; }
+
+/* Donut */
+.donut-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.donut-svg-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 110px; height: 110px;
+}
+.donut-svg-wrap svg { transform: rotate(-90deg); }
+.donut-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+.dc-val {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--t1);
+  line-height: 1;
+}
+.dc-lbl { font-size: 10px; color: var(--t4); }
+
+.donut-legend { flex: 1; }
+.dleg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+.dleg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.dleg-name { flex: 1; color: var(--t3); }
+.dleg-val { font-weight: 700; color: var(--t1); font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+
+/* Bar chart */
+.bar-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 90px;
+}
+.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.bar-fill {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, var(--cyan), rgba(0,212,255,0.25));
+  min-height: 4px;
+  transition: height 0.5s cubic-bezier(0.22,1,0.36,1);
+  position: relative;
+}
+.bar-fill:hover {
+  background: linear-gradient(180deg, var(--cyan2), rgba(0,212,255,0.5));
+}
+.bar-fill::after {
+  content: attr(data-v);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: var(--t3);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.15s;
+  margin-bottom: 4px;
+}
+.bar-fill:hover::after { opacity: 1; }
+.bar-lbl { font-size: 9px; color: var(--t4); }
+
+/* Timeline */
+.timeline { position: relative; padding-left: 22px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px; top: 4px; bottom: 4px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--cyan), var(--violet));
+  opacity: 0.2;
+}
+.tl-item { position: relative; margin-bottom: 14px; }
+.tl-dot {
+  position: absolute;
+  left: -19px; top: 3px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 6px var(--cyan);
+  border: 2px solid var(--layer1);
+}
+.tl-time { font-size: 10px; color: var(--t4); margin-bottom: 2px; font-family: 'JetBrains Mono', monospace; }
+.tl-txt { font-size: 12.5px; color: var(--t2); line-height: 1.4; }
+.tl-txt strong { color: var(--t1); }
+
+/* Activity feed items */
+.af-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--rim);
+  transition: background 0.1s;
+  cursor: pointer;
+}
+.af-item:last-child { border-bottom: none; }
+.af-item:hover { background: var(--glass); }
+.af-item.unread { background: rgba(0,212,255,0.03); }
+
+.af-icon {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.af-text { flex: 1; }
+.af-title { font-size: 13px; font-weight: 600; color: var(--t1); margin-bottom: 2px; }
+.af-desc { font-size: 12px; color: var(--t3); line-height: 1.4; }
+.af-time { font-size: 10px; color: var(--t4); margin-top: 3px; font-family: 'JetBrains Mono', monospace; }
+
+/* Commission chart */
+.commission-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+.cb-name { width: 100px; color: var(--t2); font-size: 12px; flex-shrink: 0; }
+.cb-bar-wrap { flex: 1; height: 6px; background: var(--layer3); border-radius: 3px; overflow: hidden; }
+.cb-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--cyan), var(--mint)); }
+.cb-val { width: 70px; text-align: right; font-weight: 700; color: var(--t1); font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+
+/* 2FA Security */
+.tfa-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.tfa-method {
+  background: var(--layer2);
+  border: 1px solid var(--rim);
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.tfa-method:hover { border-color: rgba(0,212,255,0.2); }
+.tfa-method.enabled {
+  border-color: rgba(0,255,148,0.25);
+  background: rgba(0,255,148,0.04);
+}
+.tfa-icon { font-size: 24px; margin-bottom: 8px; }
+.tfa-name { font-size: 13px; font-weight: 600; color: var(--t1); margin-bottom: 3px; }
+.tfa-desc { font-size: 11px; color: var(--t3); }
+
+/* Permission matrix */
+.perm-matrix { overflow-x: auto; }
+.perm-matrix table th:first-child { position: sticky; left: 0; background: rgba(0,0,0,0.4); z-index: 1; }
+.perm-matrix table td:first-child { position: sticky; left: 0; background: var(--layer1); z-index: 1; }
+.perm-yes { color: var(--mint2); font-size: 15px; }
+.perm-no { color: var(--t4); font-size: 15px; }
+
+/* Inventory table */
+.inv-low { color: var(--rose2); }
+.inv-ok { color: var(--mint2); }
+.inv-med { color: var(--amber2); }
+
+.stock-indicator {
+  display: inline-flex;
+  width: 60px;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--layer3);
+  overflow: hidden;
+}
+.stock-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+.sf-high { background: var(--mint); }
+.sf-med { background: var(--amber); }
+.sf-low { background: var(--rose); }
+
+/* ══════════════════════════════
+   MISC UTILITIES
+══════════════════════════════ */
+.row { display: flex; align-items: center; gap: 10px; }
+.row-sb { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.section-head { font-family: 'Clash Display', sans-serif; font-size: 12px; font-weight: 600; color: var(--t3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+
+/* Glassmorphism overlay */
+.glass-overlay {
+  background: rgba(14,22,40,0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--rim2);
+  border-radius: 12px;
+}
+
+/* Banner */
+.info-banner {
+  background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(155,109,255,0.06));
+  border: 1px solid rgba(0,212,255,0.15);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.ib-icon { font-size: 22px; flex-shrink: 0; }
+.ib-title { font-size: 13.5px; font-weight: 600; color: var(--t1); }
+.ib-sub { font-size: 12px; color: var(--t3); margin-top: 2px; }
+
+/* Scrollbar global */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--rim2); border-radius: 3px; }
+
+/* Batch card grid */
+.batch-deck {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.bc {
+  background: var(--layer2);
+  border: 1px solid var(--rim);
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.22,1,0.36,1);
+  position: relative;
+  overflow: hidden;
+}
+.bc::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--bc-c1, var(--cyan)), var(--bc-c2, var(--violet)));
+}
+.bc.c-mint { --bc-c1: var(--mint); --bc-c2: var(--cyan); }
+.bc.c-amber { --bc-c1: var(--amber); --bc-c2: var(--rose); }
+.bc:hover { transform: translateY(-3px); border-color: var(--rim2); box-shadow: 0 8px 28px rgba(0,0,0,0.3); }
+
+.bc-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+.bc-name { font-family: 'Clash Display', sans-serif; font-size: 14.5px; font-weight: 700; color: var(--t1); }
+.bc-code { font-size: 10px; color: var(--t4); margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
+.bc-stats { display: flex; gap: 14px; margin-bottom: 12px; }
+.bc-stat-val { font-family: 'Clash Display', sans-serif; font-size: 18px; font-weight: 700; color: var(--t1); }
+.bc-stat-lbl { font-size: 10px; color: var(--t4); margin-top: 1px; }
+.bc-sched { font-size: 11px; color: var(--t3); margin-bottom: 10px; }
+.bc-sched span { color: var(--cyan2); font-weight: 500; }
+
+/* Fee summary */
+.fee-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rim);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.fee-cell {
+  background: var(--layer2);
+  padding: 16px 18px;
+}
+.fee-cell-lbl { font-size: 11px; color: var(--t4); margin-bottom: 5px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+.fee-cell-val { font-family: 'Clash Display', sans-serif; font-size: 22px; font-weight: 700; }
+
+/* Staff grid */
+.staff-deck {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.staff-tile {
+  background: var(--layer2);
+  border: 1px solid var(--rim);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.staff-tile:hover { border-color: rgba(0,212,255,0.2); transform: translateY(-2px); }
+.staff-av {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700; color: #fff;
+  box-shadow: 0 0 16px rgba(0,0,0,0.3);
+}
+.staff-name { font-size: 13px; font-weight: 600; color: var(--t1); margin-bottom: 2px; }
+.staff-role { font-size: 11px; color: var(--t4); margin-bottom: 8px; }
+
+/* Calendar mini */
+.mini-cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cal-h { font-size: 10px; font-weight: 700; color: var(--t4); text-align: center; padding: 4px 0; letter-spacing: 0.5px; }
+.cal-d {
+  aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  border-radius: 5px;
+  color: var(--t3);
+  cursor: pointer;
+  transition: all 0.1s;
+}
+.cal-d:hover { background: var(--glass2); color: var(--t2); }
+.cal-d.today { background: linear-gradient(135deg, var(--cyan), var(--violet)); color: #fff; font-weight: 700; box-shadow: 0 0 10px rgba(0,212,255,0.3); }
+.cal-d.event::after { content: ''; display: block; width: 4px; height: 4px; border-radius: 50%; background: var(--amber); margin: 0 auto; }
+
+/* Attendance grid */
+.att-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+.att-cell {
+  aspect-ratio: 1;
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+}
+.att-p { background: rgba(0,255,148,0.15); color: var(--mint2); }
+.att-a { background: rgba(255,77,109,0.15); color: var(--rose2); }
+.att-l { background: rgba(255,179,71,0.12); color: var(--amber2); }
+.att-f { background: var(--glass); color: var(--t4); }
+
+/* P&L card */
+.pl-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-radius: 9px;
+  margin-bottom: 8px;
+}
+
+/* Guardian timeline */
+.guardian-tl { position: relative; padding-left: 26px; }
+.guardian-tl::before { content: ''; position: absolute; left: 9px; top: 4px; bottom: 4px; width: 1px; background: linear-gradient(180deg, var(--cyan), var(--violet)); opacity: 0.2; }
+.gtl-item { position: relative; margin-bottom: 16px; }
+.gtl-dot { position: absolute; left: -22px; top: 4px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--layer1); }
+.gtl-time { font-size: 10px; color: var(--t4); margin-bottom: 3px; font-family: 'JetBrains Mono', monospace; }
+.gtl-card {
+  background: var(--layer2);
+  border: 1px solid var(--rim);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.gtl-title { font-size: 13px; font-weight: 600; color: var(--t1); margin-bottom: 3px; }
+.gtl-body { font-size: 12px; color: var(--t3); }
+
+</style>
+</head>
+<body>
+
+<!-- ════ SIDEBAR ════ -->
+<aside class="sidebar">
+  <div class="logo-zone">
+    <div class="logo-row">
+      <div class="logo-gem">RT</div>
+      <div>
+        <div class="logo-name">RENETECH</div>
+        <div class="logo-tag">Language Academy · Dhaka</div>
+      </div>
+    </div>
+    <div class="status-pill"><div class="status-dot"></div>All systems live</div>
+  </div>
+
+  <div class="nav-scroll">
+    <div class="nav-group">
+      <div class="nav-group-label">Overview</div>
+      <div class="ni active" onclick="go('dash',this)"><div class="ni-icon">⬡</div><div class="ni-label">Cockpit</div></div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">Admissions</div>
+      <div class="ni" onclick="go('crm',this)"><div class="ni-icon">◈</div><div class="ni-label">CRM & Pipeline</div><span class="ni-badge c">12</span></div>
+      <div class="ni" onclick="go('enroll',this)"><div class="ni-icon">⬙</div><div class="ni-label">Enrollment</div></div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">Learning</div>
+      <div class="ni" onclick="go('lms',this)"><div class="ni-icon">◉</div><div class="ni-label">LMS & Batches</div></div>
+      <div class="ni" onclick="go('pte',this)"><div class="ni-icon">◎</div><div class="ni-label">PTE Engine</div><span class="ni-badge live">Live</span></div>
+      <div class="ni" onclick="go('attend',this)"><div class="ni-icon">☷</div><div class="ni-label">Attendance</div></div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">Finance</div>
+      <div class="ni" onclick="go('pos',this)"><div class="ni-icon">◇</div><div class="ni-label">POS & Fees</div><span class="ni-badge a">৳</span></div>
+      <div class="ni" onclick="go('accounts',this)"><div class="ni-icon">◑</div><div class="ni-label">Accounts</div></div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">Operations</div>
+      <div class="ni" onclick="go('hrm',this)"><div class="ni-icon">◐</div><div class="ni-label">HRM & Payroll</div></div>
+      <div class="ni" onclick="go('erp',this)"><div class="ni-icon">⬡</div><div class="ni-label">ERP & Rooms</div></div>
+      <div class="ni" onclick="go('docs',this)"><div class="ni-icon">◫</div><div class="ni-label">Document Vault</div></div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">Connect</div>
+      <div class="ni" onclick="go('auto',this)"><div class="ni-icon">⚡</div><div class="ni-label">Automation</div><span class="ni-badge g">12</span></div>
+      <div class="ni" onclick="go('parents',this)"><div class="ni-icon">◌</div><div class="ni-label">Guardian Portal</div></div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">System</div>
+      <div class="ni" onclick="go('security',this)"><div class="ni-icon">⬘</div><div class="ni-label">Security & 2FA</div><span class="ni-badge v">!</span></div>
+    </div>
+  </div>
+
+  <div class="sb-footer">
+    <div class="user-tile">
+      <div class="user-av">AK</div>
+      <div><div class="user-name">Admin Kamal</div><div class="user-role">Super Administrator</div></div>
+      <div class="user-more">⋯</div>
+    </div>
+  </div>
+</aside>
+
+<!-- ════ TOPBAR ════ -->
+<header class="topbar">
+  <div class="breadcrumb" id="bc">Cockpit</div>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-sub" id="bc-sub">Dashboard Overview</span>
+  <div class="tb-search">
+    <span class="tb-search-icon">⌕</span>
+    <input type="text" placeholder="Search students, batches, leads…">
+  </div>
+  <div class="tb-actions">
+    <div class="icon-btn">📅</div>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+    <button class="btn-stitch" onclick="openDrawer('quick-add')">＋ Quick Add</button>
+  </div>
+</header>
+
+<!-- ════ CANVAS ════ -->
+<div class="canvas">
+
+<!-- ══ COCKPIT DASHBOARD ══ -->
+<div id="v-dash" class="view active">
+  <div class="view-head">
+    <div>
+      <div class="view-title">Good morning, Kamal 👋</div>
+      <div class="view-sub">Language Academy Dhaka · Thursday, 12 June 2025 · 3 batches in session now</div>
+    </div>
+    <div class="view-actions">
+      <button class="btn-ghost">📊 Export</button>
+      <button class="btn-stitch" onclick="openDrawer('add-student')">＋ New Student</button>
+    </div>
+  </div>
+
+  <!-- Pulse Cards -->
+  <div class="pulse-grid pg-4 mb24">
+    <div class="pulse-card c-cyan">
+      <div class="pc-icon">👤</div>
+      <div class="pc-label">Active Students</div>
+      <div class="pc-value">1,284</div>
+      <div class="pc-meta"><span class="pc-change up">↑ 12%</span> vs last month</div>
+      <div class="sparkline">
+        <div class="sl-bar" style="height:35%"></div><div class="sl-bar" style="height:50%"></div>
+        <div class="sl-bar" style="height:45%"></div><div class="sl-bar" style="height:65%"></div>
+        <div class="sl-bar" style="height:55%"></div><div class="sl-bar" style="height:80%"></div>
+        <div class="sl-bar" style="height:100%"></div>
+      </div>
+    </div>
+    <div class="pulse-card c-mint">
+      <div class="pc-icon">💰</div>
+      <div class="pc-label">Revenue · June</div>
+      <div class="pc-value">৳4.7L</div>
+      <div class="pc-meta"><span class="pc-change up">↑ 8.4%</span> vs May</div>
+      <div class="sparkline">
+        <div class="sl-bar" style="height:50%;--sl-c:var(--mint)"></div><div class="sl-bar" style="height:60%;--sl-c:var(--mint)"></div>
+        <div class="sl-bar" style="height:55%;--sl-c:var(--mint)"></div><div class="sl-bar" style="height:70%;--sl-c:var(--mint)"></div>
+        <div class="sl-bar" style="height:65%;--sl-c:var(--mint)"></div><div class="sl-bar" style="height:85%;--sl-c:var(--mint)"></div>
+        <div class="sl-bar" style="height:100%;--sl-c:var(--mint)"></div>
+      </div>
+    </div>
+    <div class="pulse-card c-amber">
+      <div class="pc-icon">📋</div>
+      <div class="pc-label">New Leads · Week</div>
+      <div class="pc-value">87</div>
+      <div class="pc-meta"><span class="pc-change up">↑ 23%</span> conversion: 27.6%</div>
+      <div class="sparkline">
+        <div class="sl-bar" style="height:40%;--sl-c:var(--amber)"></div><div class="sl-bar" style="height:55%;--sl-c:var(--amber)"></div>
+        <div class="sl-bar" style="height:45%;--sl-c:var(--amber)"></div><div class="sl-bar" style="height:70%;--sl-c:var(--amber)"></div>
+        <div class="sl-bar" style="height:60%;--sl-c:var(--amber)"></div><div class="sl-bar" style="height:75%;--sl-c:var(--amber)"></div>
+        <div class="sl-bar" style="height:100%;--sl-c:var(--amber)"></div>
+      </div>
+    </div>
+    <div class="pulse-card c-violet">
+      <div class="pc-icon">✦</div>
+      <div class="pc-label">Avg PTE Score</div>
+      <div class="pc-value">74.2</div>
+      <div class="pc-meta"><span class="pc-change up">↑ 3.1 pts</span> this batch cycle</div>
+      <div class="sparkline">
+        <div class="sl-bar" style="height:60%;--sl-c:var(--violet)"></div><div class="sl-bar" style="height:65%;--sl-c:var(--violet)"></div>
+        <div class="sl-bar" style="height:70%;--sl-c:var(--violet)"></div><div class="sl-bar" style="height:68%;--sl-c:var(--violet)"></div>
+        <div class="sl-bar" style="height:75%;--sl-c:var(--violet)"></div><div class="sl-bar" style="height:82%;--sl-c:var(--violet)"></div>
+        <div class="sl-bar" style="height:100%;--sl-c:var(--violet)"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cockpit widgets -->
+  <div class="cockpit-grid mb16">
+    <div class="cockpit-widget sc">
+      <div class="sc-head">
+        <div class="sc-title">Monthly Revenue</div>
+        <div class="row" style="gap:8px"><span class="sb2 sb2-mint">৳ BDT</span><button class="btn-ghost" style="font-size:11px;padding:5px 10px">6M ▾</button></div>
+      </div>
+      <div class="sc-body">
+        <div class="row mb16" style="gap:20px">
+          <div><div style="font-size:11px;color:var(--t4);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px">Collected</div><div style="font-family:'Clash Display';font-size:20px;font-weight:700;color:var(--mint2)">৳28.4L</div></div>
+          <div><div style="font-size:11px;color:var(--t4);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px">Pending</div><div style="font-family:'Clash Display';font-size:20px;font-weight:700;color:var(--amber2)">৳3.2L</div></div>
+          <div><div style="font-size:11px;color:var(--t4);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px">Overdue</div><div style="font-family:'Clash Display';font-size:20px;font-weight:700;color:var(--rose2)">৳0.8L</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-col"><div class="bar-fill" style="height:55%" data-v="৳3.8L"></div><div class="bar-lbl">Oct</div></div>
+          <div class="bar-col"><div class="bar-fill" style="height:63%" data-v="৳4.1L"></div><div class="bar-lbl">Nov</div></div>
+          <div class="bar-col"><div class="bar-fill" style="height:70%" data-v="৳4.4L"></div><div class="bar-lbl">Dec</div></div>
+          <div class="bar-col"><div class="bar-fill" style="height:59%" data-v="৳3.9L"></div><div class="bar-lbl">Jan</div></div>
+          <div class="bar-col"><div class="bar-fill" style="height:67%" data-v="৳4.3L"></div><div class="bar-lbl">Feb</div></div>
+          <div class="bar-col"><div class="bar-fill" style="height:80%;background:linear-gradient(180deg,var(--amber),rgba(255,179,71,0.3));" data-v="৳4.7L"></div><div class="bar-lbl" style="color:var(--amber2);font-weight:700">Mar</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cockpit-widget sc">
+      <div class="sc-head">
+        <div class="sc-title">Lead Funnel</div>
+        <span class="sb2 sb2-cyan">This Week</span>
+      </div>
+      <div class="sc-body">
+        <div class="donut-wrap">
+          <div class="donut-svg-wrap">
+            <svg width="110" height="110" viewBox="0 0 110 110">
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#1A2640" stroke-width="14"/>
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#00D4FF" stroke-width="14" stroke-dasharray="80 184" stroke-linecap="round"/>
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#00FF94" stroke-width="14" stroke-dasharray="52 184" stroke-dashoffset="-80" stroke-linecap="round"/>
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#FFB347" stroke-width="14" stroke-dasharray="30 184" stroke-dashoffset="-132" stroke-linecap="round"/>
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#9B6DFF" stroke-width="14" stroke-dasharray="22 184" stroke-dashoffset="-162" stroke-linecap="round"/>
+            </svg>
+            <div class="donut-center"><div class="dc-val">27.6%</div><div class="dc-lbl">Convert</div></div>
+          </div>
+          <div class="donut-legend">
+            <div class="dleg"><div class="dleg-dot" style="background:var(--cyan)"></div><div class="dleg-name">New</div><div class="dleg-val">87</div></div>
+            <div class="dleg"><div class="dleg-dot" style="background:var(--mint)"></div><div class="dleg-name">Interested</div><div class="dleg-val">56</div></div>
+            <div class="dleg"><div class="dleg-dot" style="background:var(--amber)"></div><div class="dleg-name">Trial Booked</div><div class="dleg-val">32</div></div>
+            <div class="dleg"><div class="dleg-dot" style="background:var(--violet)"></div><div class="dleg-name">Enrolled</div><div class="dleg-val">24</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="sc">
+      <div class="sc-head">
+        <div class="sc-title">Today's Live Classes</div>
+        <span class="sb2 sb2-mint">● 3 Active</span>
+      </div>
+      <div class="st-wrap">
+        <table class="stitch">
+          <thead><tr><th>Batch</th><th>Time</th><th>Room</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><div class="td-name">PTE Intensive A3</div><div style="font-size:10px;color:var(--t4)">24 students</div></td><td class="td-mono">09:00</td><td><span class="sb2 sb2-dim">R-201</span></td><td><span class="sb2 sb2-mint">● Ongoing</span></td></tr>
+            <tr><td><div class="td-name">Speaking Masterclass</div><div style="font-size:10px;color:var(--t4)">18 students</div></td><td class="td-mono">10:30</td><td><span class="sb2 sb2-dim">R-104</span></td><td><span class="sb2 sb2-amber">⏳ Starting</span></td></tr>
+            <tr><td><div class="td-name">Writing Workshop B1</div><div style="font-size:10px;color:var(--t4)">22 students</div></td><td class="td-mono">12:00</td><td><span class="sb2 sb2-dim">R-301</span></td><td><span class="sb2 sb2-dim">Scheduled</span></td></tr>
+            <tr><td><div class="td-name">PTE Foundation C2</div><div style="font-size:10px;color:var(--t4)">30 students</div></td><td class="td-mono">14:00</td><td><span class="sb2 sb2-dim">Hall A</span></td><td><span class="sb2 sb2-dim">Scheduled</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="sc">
+      <div class="sc-head"><div class="sc-title">Live Activity Feed</div><span class="sb2 sb2-cyan">● Real-time</span></div>
+      <div>
+        <div class="af-item unread"><div class="af-icon" style="background:var(--mint3)">💰</div><div class="af-text"><div class="af-title">Fee Received — Rafiq Uddin</div><div class="af-desc">৳12,000 via bKash · PTE Intensive A3</div><div class="af-time">2 min ago</div></div></div>
+        <div class="af-item unread"><div class="af-icon" style="background:var(--cyan3)">👤</div><div class="af-text"><div class="af-title">New Lead — Sumaiya Rahman</div><div class="af-desc">Facebook Ads · Speaking & Writing</div><div class="af-time">8 min ago</div></div></div>
+        <div class="af-item"><div class="af-icon" style="background:var(--violet3)">📝</div><div class="af-text"><div class="af-title">Mock Test Completed — Batch A3</div><div class="af-desc">24 students · Avg: 76.4 · Top: Mehedi (86)</div><div class="af-time">45 min ago</div></div></div>
+        <div class="af-item"><div class="af-icon" style="background:var(--amber3)">⚠️</div><div class="af-text"><div class="af-title">Fee Overdue — 3 Students</div><div class="af-desc">WhatsApp reminders sent automatically</div><div class="af-time">1 hr ago</div></div></div>
+        <div class="af-item"><div class="af-icon" style="background:var(--mint3)">✅</div><div class="af-text"><div class="af-title">3 Students Enrolled — Batch C2</div><div class="af-desc">Starting Monday · POS invoice generated</div><div class="af-time">2 hr ago</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CRM PIPELINE ══ -->
+<div id="v-crm" class="view">
+  <div class="view-head">
+    <div><div class="view-title">CRM & Lead Pipeline</div><div class="view-sub">87 active leads · 27.6% conversion · Counselor-owned workflow</div></div>
+    <div class="view-actions">
+      <button class="btn-ghost">📤 Export</button>
+      <button class="btn-stitch" onclick="openDrawer('add-lead')">＋ Add Lead</button>
+    </div>
+  </div>
+
+  <div class="pulse-grid pg-5 mb24" style="grid-template-columns:repeat(5,1fr)">
+    <div class="pulse-card c-cyan"><div class="pc-label">New</div><div class="pc-value" style="font-size:26px">87</div></div>
+    <div class="pulse-card"><div class="pc-label">Contacted</div><div class="pc-value" style="font-size:26px">64</div></div>
+    <div class="pulse-card c-mint"><div class="pc-label">Interested</div><div class="pc-value" style="font-size:26px">56</div></div>
+    <div class="pulse-card c-amber"><div class="pc-label">Trial Booked</div><div class="pc-value" style="font-size:26px">32</div></div>
+    <div class="pulse-card c-violet"><div class="pc-label">Enrolled</div><div class="pc-value" style="font-size:26px">24</div></div>
+  </div>
+
+  <div class="pipeline">
+    <!-- New -->
+    <div class="k-col">
+      <div class="k-col-head" style="background:rgba(0,212,255,0.06);border-color:rgba(0,212,255,0.2)">
+        <div class="k-col-title" style="color:var(--cyan2)">🆕 New</div>
+        <span class="k-col-count" style="background:var(--cyan)">87</span>
+      </div>
+      <div class="k-cards">
+        <div class="lead-card" style="--lc-accent:var(--cyan)" onclick="openDrawer('lead-detail')">
+          <div class="lc-name">Sumaiya Rahman</div>
+          <div class="lc-meta">📱 Facebook · 10 min ago</div>
+          <div class="lc-tags"><span class="lc-tag">Speaking</span><span class="lc-tag">PTE Core</span></div>
+          <div class="lc-footer"><span style="font-size:10px;color:var(--t4)">Counselor: Rana M.</span><span class="sb2 sb2-cyan" style="font-size:9px;padding:2px 6px">New</span></div>
+        </div>
+        <div class="lead-card" style="--lc-accent:var(--cyan)">
+          <div class="lc-name">Tariq Mahmud</div>
+          <div class="lc-meta">🌐 Website · 2 hr ago</div>
+          <div class="lc-tags"><span class="lc-tag">Full PTE</span></div>
+          <div class="lc-footer"><span style="font-size:10px;color:var(--t4)">Counselor: Anika K.</span><span class="sb2 sb2-cyan" style="font-size:9px;padding:2px 6px">New</span></div>
+        </div>
+        <div class="lead-card" style="--lc-accent:var(--cyan)">
+          <div class="lc-name">Fariha Akter</div>
+          <div class="lc-meta">👤 Referral · Today</div>
+          <div class="lc-tags"><span class="lc-tag">Writing</span><span class="lc-tag">Reading</span></div>
+          <div class="lc-footer"><span style="font-size:10px;color:var(--t4)">Counselor: Unassigned</span><span class="sb2 sb2-rose" style="font-size:9px;padding:2px 6px">Assign!</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Contacted -->
+    <div class="k-col">
+      <div class="k-col-head" style="background:var(--glass2);border-color:var(--rim2)">
+        <div class="k-col-title" style="color:var(--t2)">📞 Contacted</div>
+        <span class="k-col-count" style="background:var(--t3);color:#000">64</span>
+      </div>
+      <div class="k-cards">
+        <div class="lead-card" style="--lc-accent:var(--t3)">
+          <div class="lc-name">Arafat Hossain</div>
+          <div class="lc-meta">Called · 3 hr ago · 2nd follow-up</div>
+          <div class="lc-tags"><span class="lc-tag">Full PTE</span><span class="lc-tag">Urgent</span></div>
+          <div class="lc-footer"><span style="font-size:10px;color:var(--t4)">Rana M.</span><span class="sb2 sb2-dim" style="font-size:9px;padding:2px 6px">Follow up</span></div>
+        </div>
+        <div class="lead-card" style="--lc-accent:var(--t3)">
+          <div class="lc-name">Nusrat Jahan</div>
+          <div class="lc-meta">WhatsApp · Yesterday</div>
+          <div class="lc-tags"><span class="lc-tag">Speaking</span></div>
+          <div class="lc-footer"><span style="font-size:10px;color:var(--t4)">Anika K.</span><span class="sb2 sb2-amber" style="font-size:9px;padding:2px 6px">Due today</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Interested -->
+    <div class="k-col">
+      <div class="k-col-head" style="background:var(--mint3);border-color:rgba(0,255,148,0.2)">
+        <div class="k-col-title" style="color:var(--mint2)">✅ Interested</div>
+        <span class="k-col-count" style="background:var(--mint);color:#000">56</span>
+      </div>
+      <div class="k-cards">
+        <div class="lead-card" style="--lc-accent:var(--mint)">
+          <div class="lc-name">Mehedi Hassan</div>
+          <div class="lc-meta">Wants morning batch · Target 65</div>
+          <div class="lc-tags"><span class="lc-tag">Batch A</span><span class="lc-tag">Weekend</span></div>
+          <div class="lc-footer"><span style="font-size:10px;color:var(--t4)">Rana M.</span><span class="sb2 sb2-mint" style="font-size:9px;padding:2px 6px">Hot</span></div>
+        </div>
+        <div class="lead-card" style="--lc-accent:var(--mint)">
+          <div class="lc-name">Ripa Begum</div>
+          <div class="lc-meta">Needs scholarship info</div>
+          <div class="lc-tags"><span class="lc-tag">Scholarship</span></div>
+          <div class="lc-footer"><span style="font-size:10px;color:var(--t4)">Anika K.</span><span class="sb2 sb2-amber" style="font-size:9px;padding:2px 6px">Pending</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Trial Booked -->
+    <div class="k-col">
+      <div class="k-col-head" style="background:var(--amber3);border-color:rgba(255,179,71,0.2)">
+        <div class="k-col-title" style="color:var(--amber2)">📅 Trial</div>
+        <span class="k-col-count" style="background:var(--amber);color:#000">32</span>
+      </div>
+      <div class="k-cards">
+        <div class="lead-card" style="--lc-accent:var(--amber)">
+          <div class="lc-name">Hasina Khatun</div>
+          <div class="lc-meta">Trial: Tomorrow 10 AM · R-201</div>
+          <div class="lc-tags"><span class="lc-tag">Speaking</span></div>
+          <div class="lc-footer"><span style="font-size:10px;color:var(--t4)">Rana M.</span><span class="sb2 sb2-amber" style="font-size:9px;padding:2px 6px">Tomorrow</span></div>
+        </div>
+        <div class="lead-card" style="--lc-accent:var(--amber)">
+          <div class="lc-name">Rubel Ahmed</div>
+          <div class="lc-meta">Trial: Today 2 PM · Online</div>
+          <div class="lc-tags"><span class="lc-tag">Online</span></div>
+          <div class="lc-footer"><span style="font-size:10px;color:var(--t4)">Anika K.</span><span class="sb2 sb2-rose" style="font-size:9px;padding:2px 6px">2PM today</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Enrolled -->
+    <div class="k-col">
+      <div class="k-col-head" style="background:var(--violet3);border-color:rgba(155,109,255,0.2)">
+        <div class="k-col-title" style="color:var(--violet2)">🎉 Enrolled</div>
+        <span class="k-col-count" style="background:var(--violet)">24</span>
+      </div>
+      <div class="k-cards">
+        <div class="lead-card" style="--lc-accent:var(--violet)">
+          <div class="lc-name">Rakib Hossain</div>
+          <div class="lc-meta">Batch A3 · Paid ৳12,000</div>
+          <div class="lc-tags"><span class="lc-tag" style="color:var(--mint2)">Paid ✓</span></div>
+          <div class="lc-footer"><span style="font-size:10px;color:var(--t4)">Rana M.</span><span class="sb2 sb2-mint" style="font-size:9px;padding:2px 6px">Active</span></div>
+        </div>
+        <div class="lead-card" style="--lc-accent:var(--violet)">
+          <div class="lc-name">Tasnim Akter</div>
+          <div class="lc-meta">Weekend · Installment plan</div>
+          <div class="lc-tags"><span class="lc-tag">2 Installs.</span></div>
+          <div class="lc-footer"><span style="font-size:10px;color:var(--t4)">Anika K.</span><span class="sb2 sb2-amber" style="font-size:9px;padding:2px 6px">Partial</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PTE ENGINE ══ -->
+<div id="v-pte" class="view">
+  <div class="view-head">
+    <div><div class="view-title">PTE Practice & Mock Test Engine</div><div class="view-sub">20 attempts per sub-module · AI-scored · Live mock test window</div></div>
+    <div class="view-actions">
+      <button class="btn-ghost">📊 Analytics</button>
+      <button class="btn-stitch">＋ Schedule Mock</button>
+    </div>
+  </div>
+
+  <div class="tabs mb24">
+    <div class="tab on" onclick="pteMode('practice',this)">🎯 Practice Mode</div>
+    <div class="tab" onclick="pteMode('mock',this)">📝 Mock Test</div>
+    <div class="tab" onclick="pteMode('results',this)">📈 Results</div>
+  </div>
+
+  <!-- Practice Mode -->
+  <div id="pte-practice">
+    <div class="pte-layout">
+      <!-- PTE Sidebar -->
+      <div class="pte-sidebar">
+        <!-- SPEAKING -->
+        <div class="pte-section">
+          <div class="pte-section-head expanded" onclick="togglePteSection(this)">
+            <div class="pte-section-icon" style="background:rgba(0,212,255,0.1)">🗣️</div>
+            <div class="pte-section-name">Speaking</div>
+            <div class="pte-section-arrow">▶</div>
+          </div>
+          <div class="pte-subtasks open">
+            <div class="pte-task active-task" onclick="loadTask(this,'Read Aloud','speaking')">Read Aloud<span class="pte-task-attempts">18/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'Repeat Sentence','speaking')">Repeat Sentence<span class="pte-task-attempts">15/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'Describe Image','speaking')">Describe Image<span class="pte-task-attempts">12/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'Retell Lecture','speaking')">Retell Lecture<span class="pte-task-attempts">10/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'Answer Short Q','speaking')">Answer Short Q<span class="pte-task-attempts">20/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'Summarize Group Discussion','speaking')">Summarize Group Disc.<span class="pte-task-attempts">8/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'Respond to Situation','speaking')">Respond to Situation<span class="pte-task-attempts">14/20</span></div>
+          </div>
+        </div>
+        <!-- WRITING -->
+        <div class="pte-section">
+          <div class="pte-section-head" onclick="togglePteSection(this)">
+            <div class="pte-section-icon" style="background:rgba(0,255,148,0.1)">✍️</div>
+            <div class="pte-section-name">Writing</div>
+            <div class="pte-section-arrow">▶</div>
+          </div>
+          <div class="pte-subtasks">
+            <div class="pte-task" onclick="loadTask(this,'Summarize Written Text','writing')">Summarize Written Text<span class="pte-task-attempts">16/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'Write Essay','writing')">Write Essay<span class="pte-task-attempts">11/20</span></div>
+          </div>
+        </div>
+        <!-- READING -->
+        <div class="pte-section">
+          <div class="pte-section-head" onclick="togglePteSection(this)">
+            <div class="pte-section-icon" style="background:rgba(255,179,71,0.1)">📖</div>
+            <div class="pte-section-name">Reading</div>
+            <div class="pte-section-arrow">▶</div>
+          </div>
+          <div class="pte-subtasks">
+            <div class="pte-task" onclick="loadTask(this,'Fill Blanks (Dropdown)','reading')">Fill Blanks (Dropdown)<span class="pte-task-attempts">17/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'MCQ Multiple','reading')">MCQ Multiple<span class="pte-task-attempts">13/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'Reorder Paragraph','reading')">Reorder Paragraph<span class="pte-task-attempts">9/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'Fill Blanks (DnD)','reading')">Fill Blanks (DnD)<span class="pte-task-attempts">15/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'MCQ Single','reading')">MCQ Single<span class="pte-task-attempts">20/20</span></div>
+          </div>
+        </div>
+        <!-- LISTENING -->
+        <div class="pte-section">
+          <div class="pte-section-head" onclick="togglePteSection(this)">
+            <div class="pte-section-icon" style="background:rgba(155,109,255,0.1)">🎧</div>
+            <div class="pte-section-name">Listening</div>
+            <div class="pte-section-arrow">▶</div>
+          </div>
+          <div class="pte-subtasks">
+            <div class="pte-task" onclick="loadTask(this,'Summarize Spoken Text','listening')">Summarize Spoken Text<span class="pte-task-attempts">14/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'MCQ Multiple Listening','listening')">MCQ Multiple<span class="pte-task-attempts">18/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'Fill Blanks Listening','listening')">Fill Blanks<span class="pte-task-attempts">12/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'Highlight Correct Summary','listening')">Highlight Correct Sum.<span class="pte-task-attempts">10/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'MCQ Single Listening','listening')">MCQ Single<span class="pte-task-attempts">19/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'Select Missing Word','listening')">Select Missing Word<span class="pte-task-attempts">16/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'Highlight Incorrect Words','listening')">Highlight Incorrect Words<span class="pte-task-attempts">8/20</span></div>
+            <div class="pte-task" onclick="loadTask(this,'Write from Dictation','listening')">Write from Dictation<span class="pte-task-attempts">20/20</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PTE Main Content -->
+      <div class="pte-main">
+        <div class="pte-top-bar">
+          <div>
+            <div class="pte-task-title" id="pte-current-task">Read Aloud</div>
+            <div style="font-size:11px;color:var(--t4);margin-top:2px">Speaking · 18 of 20 attempts used</div>
+          </div>
+          <div class="row" style="gap:10px">
+            <div class="attempt-counter">
+              <div class="att-pip remaining"></div><div class="att-pip remaining"></div>
+              <div class="att-pip used"></div><div class="att-pip used"></div><div class="att-pip used"></div>
+              <div class="att-pip used"></div><div class="att-pip used"></div>
+              <span style="font-size:11px;color:var(--t3);margin-left:4px">2 left</span>
+            </div>
+            <div class="mode-pills">
+              <div class="mode-pill on">Practice</div>
+              <div class="mode-pill" onclick="switchMode(this)">Timed</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pte-content-zone" id="pte-zone">
+          <!-- Timer bar -->
+          <div class="timer-bar-wrap">
+            <div class="timer-bar-fill" style="width:75%"></div>
+          </div>
+
+          <!-- Reading Passage -->
+          <div class="pq-card">
+            <div class="pq-label">Reading passage — Read aloud the following text</div>
+            <div class="pq-text" id="pte-passage">
+              The <em>Industrial Revolution</em> was a pivotal period in human history, transforming economies from primarily agricultural systems to manufacturing powerhouses. Beginning in Britain during the late 18th century, this transformation spread rapidly across Europe and North America. The <em>mechanization of production</em> and the development of steam power were central to this profound shift, fundamentally altering the social and economic fabric of societies worldwide.
+            </div>
+          </div>
+
+          <!-- Recording UI -->
+          <div class="record-ui">
+            <div class="record-time" id="rec-timer">00:00</div>
+            <div class="waveform" id="waveform" style="opacity:0.3">
+              <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+              <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+              <div class="wave-bar"></div><div class="wave-bar"></div>
+            </div>
+            <button class="record-btn" onclick="toggleRecord(this)" id="rec-btn">🎙️</button>
+            <div class="record-hint" id="rec-hint">Press to start recording · Max 40 seconds</div>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="row" style="gap:10px;justify-content:flex-end">
+            <button class="btn-ghost">← Previous</button>
+            <button class="btn-ghost">Skip</button>
+            <button class="btn-stitch" onclick="submitPractice()">Submit Answer →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mock Test View (hidden by default) -->
+  <div id="pte-mock" style="display:none">
+    <div class="g65 mb16">
+      <div class="sc">
+        <div class="sc-head"><div class="sc-title">Student Rankings — Mock Test #3</div><span class="sb2 sb2-cyan">Batch A3</span></div>
+        <div class="st-wrap">
+          <table class="stitch">
+            <thead><tr><th>#</th><th>Student</th><th>Speak</th><th>Write</th><th>Read</th><th>Listen</th><th>Total</th><th>Trend</th></tr></thead>
+            <tbody>
+              <tr><td><span class="sb2 sb2-amber">🥇 1</span></td><td class="td-name">Mehedi Hassan</td><td>88</td><td>84</td><td>90</td><td>82</td><td><strong style="color:var(--mint2)">86</strong></td><td><span class="sparkline" style="height:16px"><div class="sl-bar" style="height:50%;--sl-c:var(--mint)"></div><div class="sl-bar" style="height:70%;--sl-c:var(--mint)"></div><div class="sl-bar" style="height:90%;--sl-c:var(--mint)"></div><div class="sl-bar" style="height:100%;--sl-c:var(--mint)"></div></span></td></tr>
+              <tr><td><span class="sb2 sb2-dim">🥈 2</span></td><td class="td-name">Tasnim Akter</td><td>82</td><td>80</td><td>85</td><td>78</td><td><strong style="color:var(--cyan2)">81</strong></td><td><span class="sparkline" style="height:16px"><div class="sl-bar" style="height:60%"></div><div class="sl-bar" style="height:75%"></div><div class="sl-bar" style="height:80%"></div><div class="sl-bar" style="height:100%"></div></span></td></tr>
+              <tr><td><span class="sb2 sb2-dim">🥉 3</span></td><td class="td-name">Rakib Hossain</td><td>76</td><td>74</td><td>80</td><td>74</td><td><strong style="color:var(--cyan2)">76</strong></td><td><span class="sparkline" style="height:16px"><div class="sl-bar" style="height:55%"></div><div class="sl-bar" style="height:65%"></div><div class="sl-bar" style="height:75%"></div><div class="sl-bar" style="height:100%"></div></span></td></tr>
+              <tr><td>4</td><td class="td-name">Fariha Islam</td><td>72</td><td>70</td><td>74</td><td>68</td><td><strong style="color:var(--t2)">71</strong></td><td><span class="sparkline" style="height:16px"><div class="sl-bar" style="height:80%;--sl-c:var(--amber)"></div><div class="sl-bar" style="height:70%;--sl-c:var(--amber)"></div><div class="sl-bar" style="height:75%;--sl-c:var(--amber)"></div><div class="sl-bar" style="height:100%;--sl-c:var(--amber)"></div></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="sc">
+        <div class="sc-head"><div class="sc-title">Overall Score</div></div>
+        <div class="sc-body" style="text-align:center">
+          <div style="position:relative;width:150px;height:150px;margin:0 auto 16px">
+            <svg class="score-ring-svg" width="150" height="150" viewBox="0 0 150 150">
+              <circle cx="75" cy="75" r="62" fill="none" stroke="var(--layer3)" stroke-width="12"/>
+              <circle cx="75" cy="75" r="62" fill="none" stroke="url(#sg)" stroke-width="12" stroke-dasharray="293" stroke-dashoffset="75" stroke-linecap="round"/>
+              <defs><linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:var(--cyan)"/><stop offset="100%" style="stop-color:var(--violet)"/></linearGradient></defs>
+            </svg>
+            <div class="score-ring-center"><div class="score-num">74.2</div><div class="score-lbl">PTE Score</div></div>
+          </div>
+          <div class="score-grid">
+            <div class="score-cell"><div class="score-cell-name">Speaking</div><div class="score-cell-val" style="color:var(--cyan2)">78</div></div>
+            <div class="score-cell"><div class="score-cell-name">Writing</div><div class="score-cell-val" style="color:var(--mint2)">72</div></div>
+            <div class="score-cell"><div class="score-cell-name">Reading</div><div class="score-cell-val" style="color:var(--amber2)">76</div></div>
+            <div class="score-cell"><div class="score-cell-name">Listening</div><div class="score-cell-val" style="color:var(--violet2)">70</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Weakness analysis -->
+    <div class="sc">
+      <div class="sc-head"><div class="sc-title">Weakness Map — Batch A3</div><span class="sb2 sb2-rose">Action Required</span></div>
+      <div class="sc-body">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div><div class="row-sb mb16" style="margin-bottom:6px"><span style="font-size:13px;color:var(--t2)">Retell Lecture</span><span style="font-weight:700;color:var(--rose2)">45% struggling</span></div><div class="pbar"><div class="pbar-fill pf-rose" style="width:45%"></div></div></div>
+          <div><div class="row-sb mb16" style="margin-bottom:6px"><span style="font-size:13px;color:var(--t2)">Write Essay</span><span style="font-weight:700;color:var(--amber2)">32% struggling</span></div><div class="pbar"><div class="pbar-fill pf-amber" style="width:32%"></div></div></div>
+          <div><div class="row-sb mb16" style="margin-bottom:6px"><span style="font-size:13px;color:var(--t2)">Summarize Spoken Text</span><span style="font-weight:700;color:var(--amber2)">28% struggling</span></div><div class="pbar"><div class="pbar-fill pf-amber" style="width:28%"></div></div></div>
+          <div><div class="row-sb mb16" style="margin-bottom:6px"><span style="font-size:13px;color:var(--t2)">Describe Image</span><span style="font-weight:700;color:var(--cyan2)">15% struggling</span></div><div class="pbar"><div class="pbar-fill pf-cyan" style="width:15%"></div></div></div>
+          <div><div class="row-sb mb16" style="margin-bottom:6px"><span style="font-size:13px;color:var(--t2)">Multiple Choice Reading</span><span style="font-weight:700;color:var(--mint2)">8% struggling</span></div><div class="pbar"><div class="pbar-fill pf-mint" style="width:8%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results View (hidden) -->
+  <div id="pte-results" style="display:none">
+    <div class="info-banner"><div class="ib-icon">✅</div><div><div class="ib-title">Answer Submitted Successfully</div><div class="ib-sub">Your response has been evaluated. Review your scores below.</div></div></div>
+    <div class="sc"><div class="sc-head"><div class="sc-title">Recent Practice Results</div></div>
+      <div class="st-wrap"><table class="stitch">
+        <thead><tr><th>Task</th><th>Section</th><th>Score</th><th>Feedback</th><th>Date</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name">Read Aloud #18</td><td><span class="sb2 sb2-cyan">Speaking</span></td><td><strong style="color:var(--mint2)">82/90</strong></td><td style="color:var(--t3)">Good fluency, minor pronunciation issues</td><td class="td-mono">Jun 12</td></tr>
+          <tr><td class="td-name">Write Essay #11</td><td><span class="sb2 sb2-mint">Writing</span></td><td><strong style="color:var(--amber2)">68/90</strong></td><td style="color:var(--t3)">Vocabulary needs improvement</td><td class="td-mono">Jun 11</td></tr>
+          <tr><td class="td-name">Describe Image #12</td><td><span class="sb2 sb2-cyan">Speaking</span></td><td><strong style="color:var(--mint2)">78/90</strong></td><td style="color:var(--t3)">Excellent structure and vocabulary</td><td class="td-mono">Jun 11</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ LMS BATCHES ══ -->
+<div id="v-lms" class="view">
+  <div class="view-head">
+    <div><div class="view-title">LMS & Batch Management</div><div class="view-sub">14 active batches · 312 enrolled students · Course-linked fee access</div></div>
+    <div class="view-actions"><button class="btn-ghost">📋 Schedule</button><button class="btn-stitch">＋ New Batch</button></div>
+  </div>
+  <div class="batch-deck mb24">
+    <div class="bc">
+      <div class="bc-top"><div><div class="bc-name">PTE Intensive A3</div><div class="bc-code">BATCH-2025-A3</div></div><span class="sb2 sb2-mint">Active</span></div>
+      <div class="bc-stats"><div><div class="bc-stat-val">24</div><div class="bc-stat-lbl">Students</div></div><div><div class="bc-stat-val">30</div><div class="bc-stat-lbl">Capacity</div></div><div><div class="bc-stat-val">8</div><div class="bc-stat-lbl">Weeks</div></div></div>
+      <div class="bc-sched">📅 <span>Mon, Wed, Fri</span> · 9:00 AM</div>
+      <div class="pbar mb16" style="margin-bottom:6px"><div class="pbar-fill pf-mint" style="width:80%"></div></div>
+      <div class="row-sb"><span style="font-size:11px;color:var(--t4)">80% full</span><span style="font-size:11px;color:var(--t3)">👩‍🏫 Sarah Ahmed</span></div>
+    </div>
+    <div class="bc c-mint">
+      <div class="bc-top"><div><div class="bc-name">Speaking Masterclass</div><div class="bc-code">BATCH-2025-SP2</div></div><span class="sb2 sb2-mint">Active</span></div>
+      <div class="bc-stats"><div><div class="bc-stat-val">18</div><div class="bc-stat-lbl">Students</div></div><div><div class="bc-stat-val">20</div><div class="bc-stat-lbl">Capacity</div></div><div><div class="bc-stat-val">6</div><div class="bc-stat-lbl">Weeks</div></div></div>
+      <div class="bc-sched">📅 <span>Tue, Thu, Sat</span> · 10:30 AM</div>
+      <div class="pbar mb16" style="margin-bottom:6px"><div class="pbar-fill pf-mint" style="width:90%"></div></div>
+      <div class="row-sb"><span style="font-size:11px;color:var(--rose2)">90% · Almost full</span><span style="font-size:11px;color:var(--t3)">👨‍🏫 David Roy</span></div>
+    </div>
+    <div class="bc c-amber">
+      <div class="bc-top"><div><div class="bc-name">Writing Workshop B1</div><div class="bc-code">BATCH-2025-WB1</div></div><span class="sb2 sb2-cyan">Enrolling</span></div>
+      <div class="bc-stats"><div><div class="bc-stat-val">22</div><div class="bc-stat-lbl">Students</div></div><div><div class="bc-stat-val">35</div><div class="bc-stat-lbl">Capacity</div></div><div><div class="bc-stat-val">4</div><div class="bc-stat-lbl">Weeks</div></div></div>
+      <div class="bc-sched">📅 <span>Wed, Fri</span> · 12:00 PM</div>
+      <div class="pbar mb16" style="margin-bottom:6px"><div class="pbar-fill pf-amber" style="width:63%"></div></div>
+      <div class="row-sb"><span style="font-size:11px;color:var(--t4)">63% full</span><span style="font-size:11px;color:var(--t3)">👩‍🏫 Nadia Islam</span></div>
+    </div>
+    <div class="bc">
+      <div class="bc-top"><div><div class="bc-name">PTE Foundation C2</div><div class="bc-code">BATCH-2025-FC2</div></div><span class="sb2 sb2-amber">Starting Mon</span></div>
+      <div class="bc-stats"><div><div class="bc-stat-val">30</div><div class="bc-stat-lbl">Students</div></div><div><div class="bc-stat-val">40</div><div class="bc-stat-lbl">Capacity</div></div><div><div class="bc-stat-val">10</div><div class="bc-stat-lbl">Weeks</div></div></div>
+      <div class="bc-sched">📅 <span>Daily</span> · 2:00 PM</div>
+      <div class="pbar mb16" style="margin-bottom:6px"><div class="pbar-fill pf-cyan" style="width:75%"></div></div>
+      <div class="row-sb"><span style="font-size:11px;color:var(--t4)">75% full</span><span style="font-size:11px;color:var(--t3)">👨‍🏫 Karim H.</span></div>
+    </div>
+    <div class="bc c-mint">
+      <div class="bc-top"><div><div class="bc-name">Weekend Warriors</div><div class="bc-code">BATCH-2025-WW3</div></div><span class="sb2 sb2-mint">Active</span></div>
+      <div class="bc-stats"><div><div class="bc-stat-val">15</div><div class="bc-stat-lbl">Students</div></div><div><div class="bc-stat-val">25</div><div class="bc-stat-lbl">Capacity</div></div><div><div class="bc-stat-val">12</div><div class="bc-stat-lbl">Weeks</div></div></div>
+      <div class="bc-sched">📅 <span>Sat & Sun</span> · 8:00 AM</div>
+      <div class="pbar mb16" style="margin-bottom:6px"><div class="pbar-fill pf-mint" style="width:60%"></div></div>
+      <div class="row-sb"><span style="font-size:11px;color:var(--t4)">60% full</span><span style="font-size:11px;color:var(--t3)">👨‍🏫 Rana M.</span></div>
+    </div>
+    <div class="bc" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;min-height:180px;border-style:dashed;cursor:pointer;opacity:0.5">
+      <div style="font-size:28px">＋</div>
+      <div style="font-size:12px;color:var(--t3)">Create New Batch</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ATTENDANCE ══ -->
+<div id="v-attend" class="view">
+  <div class="view-head">
+    <div><div class="view-title">Attendance Tracking</div><div class="view-sub">Today: 89% present · QR & manual both supported</div></div>
+    <div class="view-actions"><button class="btn-stitch">📱 QR Attendance</button></div>
+  </div>
+  <div class="pulse-grid pg-4 mb24">
+    <div class="pulse-card c-mint"><div class="pc-label">Present Today</div><div class="pc-value">284</div><div class="pc-meta"><span class="pc-change up">89%</span> rate</div></div>
+    <div class="pulse-card c-rose"><div class="pc-label">Absent Today</div><div class="pc-value">35</div><div class="pc-meta"><span class="pc-change dn">11%</span> rate</div></div>
+    <div class="pulse-card c-amber"><div class="pc-label">On Leave</div><div class="pc-value">12</div><div class="pc-meta">approved</div></div>
+    <div class="pulse-card c-cyan"><div class="pc-label">Monthly Avg</div><div class="pc-value">87%</div><div class="pc-meta"><span class="pc-change up">↑ 2%</span> vs last month</div></div>
+  </div>
+  <div class="g2">
+    <div class="sc">
+      <div class="sc-head"><div class="sc-title">Mehedi Hassan — June 2025</div><span class="sb2 sb2-mint">92% Present</span></div>
+      <div class="sc-body">
+        <div class="att-grid" style="margin-bottom:6px">
+          <div style="font-size:10px;text-align:center;color:var(--t4);padding:3px">S</div><div style="font-size:10px;text-align:center;color:var(--t4);padding:3px">M</div><div style="font-size:10px;text-align:center;color:var(--t4);padding:3px">T</div><div style="font-size:10px;text-align:center;color:var(--t4);padding:3px">W</div><div style="font-size:10px;text-align:center;color:var(--t4);padding:3px">T</div><div style="font-size:10px;text-align:center;color:var(--t4);padding:3px">F</div><div style="font-size:10px;text-align:center;color:var(--t4);padding:3px">S</div>
+        </div>
+        <div class="att-grid">
+          <div class="att-cell att-f">1</div><div class="att-cell att-p">2</div><div class="att-cell att-p">3</div><div class="att-cell att-p">4</div><div class="att-cell att-p">5</div><div class="att-cell att-p">6</div><div class="att-cell att-f">7</div>
+          <div class="att-cell att-f">8</div><div class="att-cell att-p">9</div><div class="att-cell att-a">10</div><div class="att-cell att-p">11</div><div class="att-cell att-p">12</div><div class="att-cell att-p">13</div><div class="att-cell att-f">14</div>
+          <div class="att-cell att-f">15</div><div class="att-cell att-p">16</div><div class="att-cell att-p">17</div><div class="att-cell att-l">18</div><div class="att-cell att-p">19</div><div class="att-cell att-p">20</div><div class="att-cell att-f">21</div>
+          <div class="att-cell att-f">22</div><div class="att-cell att-p">23</div><div class="att-cell att-p">24</div><div class="att-cell att-p">25</div><div class="att-cell att-p">26</div><div class="att-cell att-p">27</div><div class="att-cell att-f">28</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row" style="gap:16px">
+          <span class="row" style="gap:5px"><div class="dot" style="background:var(--mint)"></div><span style="font-size:12px;color:var(--t2)">Present: 22</span></span>
+          <span class="row" style="gap:5px"><div class="dot" style="background:var(--rose)"></div><span style="font-size:12px;color:var(--t2)">Absent: 1</span></span>
+          <span class="row" style="gap:5px"><div class="dot" style="background:var(--amber)"></div><span style="font-size:12px;color:var(--t2)">Leave: 1</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="sc">
+      <div class="sc-head"><div class="sc-title">Batch-wise Today</div></div>
+      <div class="sc-body" style="display:flex;flex-direction:column;gap:14px">
+        <div><div class="row-sb" style="margin-bottom:5px"><span style="font-size:13px;color:var(--t1)">PTE Intensive A3</span><span style="font-size:12px;font-weight:700;color:var(--mint2)">22/24 · 92%</span></div><div class="pbar"><div class="pbar-fill pf-mint" style="width:92%"></div></div></div>
+        <div><div class="row-sb" style="margin-bottom:5px"><span style="font-size:13px;color:var(--t1)">Speaking Masterclass</span><span style="font-size:12px;font-weight:700;color:var(--mint2)">16/18 · 89%</span></div><div class="pbar"><div class="pbar-fill pf-mint" style="width:89%"></div></div></div>
+        <div><div class="row-sb" style="margin-bottom:5px"><span style="font-size:13px;color:var(--t1)">Writing Workshop B1</span><span style="font-size:12px;font-weight:700;color:var(--amber2)">18/22 · 82%</span></div><div class="pbar"><div class="pbar-fill pf-amber" style="width:82%"></div></div></div>
+        <div><div class="row-sb" style="margin-bottom:5px"><span style="font-size:13px;color:var(--t1)">PTE Foundation C2</span><span style="font-size:12px;font-weight:700;color:var(--rose2)">24/30 · 80%</span></div><div class="pbar"><div class="pbar-fill pf-rose" style="width:80%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ POS ══ -->
+<div id="v-pos" class="view">
+  <div class="view-head">
+    <div><div class="view-title">POS & Fee Management</div><div class="view-sub">Dynamic invoicing · Auto-unlock course access on payment</div></div>
+    <div class="view-actions"><button class="btn-ghost">🧾 Generate Receipt</button><button class="btn-stitch" onclick="openDrawer('collect-fee')">＋ Collect Fee</button></div>
+  </div>
+  <div class="fee-trio">
+    <div class="fee-cell"><div class="fee-cell-lbl">Total Collected</div><div class="fee-cell-val" style="color:var(--mint2)">৳4,72,000</div></div>
+    <div class="fee-cell"><div class="fee-cell-lbl">Pending</div><div class="fee-cell-val" style="color:var(--amber2)">৳3,20,000</div></div>
+    <div class="fee-cell"><div class="fee-cell-lbl">Overdue 30d+</div><div class="fee-cell-val" style="color:var(--rose2)">৳82,000</div></div>
+  </div>
+  <div class="g65">
+    <div class="sc">
+      <div class="sc-head"><div class="sc-title">Recent Transactions</div><select class="fselect" style="width:auto;font-size:12px;padding:5px 10px"><option>All Methods</option><option>bKash</option><option>Nagad</option><option>Card</option><option>Cash</option></select></div>
+      <div class="st-wrap"><table class="stitch">
+        <thead><tr><th>Receipt</th><th>Student</th><th>Amount</th><th>Method</th><th>Course Access</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="td-mono">RCP-3401</td><td class="td-name">Mehedi Hassan</td><td><strong style="color:var(--mint2)">৳12,000</strong></td><td><span class="sb2 sb2-mint">bKash</span></td><td><span class="sb2 sb2-mint">✓ Unlocked</span></td><td><span class="sb2 sb2-mint">Paid</span></td></tr>
+          <tr><td class="td-mono">RCP-3400</td><td class="td-name">Tasnim Akter</td><td><strong style="color:var(--amber2)">৳6,000</strong></td><td><span class="sb2 sb2-cyan">Nagad</span></td><td><span class="sb2 sb2-amber">Partial Access</span></td><td><span class="sb2 sb2-amber">Partial</span></td></tr>
+          <tr><td class="td-mono">RCP-3399</td><td class="td-name">Rakib Hossain</td><td><strong style="color:var(--mint2)">৳15,000</strong></td><td><span class="sb2 sb2-violet">Card</span></td><td><span class="sb2 sb2-mint">✓ Unlocked</span></td><td><span class="sb2 sb2-mint">Paid</span></td></tr>
+          <tr><td class="td-mono">RCP-3398</td><td class="td-name">Fariha Begum</td><td><strong style="color:var(--rose2)">৳10,000</strong></td><td><span class="sb2 sb2-dim">Cash</span></td><td><span class="sb2 sb2-rose">🔒 Locked</span></td><td><span class="sb2 sb2-rose">Overdue</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="sc">
+      <div class="sc-head"><div class="sc-title">Payment Channels</div></div>
+      <div class="sc-body">
+        <div class="donut-wrap" style="margin-bottom:16px">
+          <div class="donut-svg-wrap">
+            <svg width="110" height="110" viewBox="0 0 110 110">
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#1A2640" stroke-width="14"/>
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#00FF94" stroke-width="14" stroke-dasharray="105 184" stroke-linecap="round"/>
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#00D4FF" stroke-width="14" stroke-dasharray="50 184" stroke-dashoffset="-105" stroke-linecap="round"/>
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#9B6DFF" stroke-width="14" stroke-dasharray="22 184" stroke-dashoffset="-155" stroke-linecap="round"/>
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#FFB347" stroke-width="14" stroke-dasharray="7 184" stroke-dashoffset="-177" stroke-linecap="round"/>
+            </svg>
+            <div class="donut-center"><div class="dc-val">4</div><div class="dc-lbl">Methods</div></div>
+          </div>
+          <div class="donut-legend">
+            <div class="dleg"><div class="dleg-dot" style="background:var(--mint)"></div><div class="dleg-name">bKash</div><div class="dleg-val">57%</div></div>
+            <div class="dleg"><div class="dleg-dot" style="background:var(--cyan)"></div><div class="dleg-name">Nagad</div><div class="dleg-val">27%</div></div>
+            <div class="dleg"><div class="dleg-dot" style="background:var(--violet)"></div><div class="dleg-name">Card</div><div class="dleg-val">12%</div></div>
+            <div class="dleg"><div class="dleg-dot" style="background:var(--amber)"></div><div class="dleg-name">Cash</div><div class="dleg-val">4%</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HRM ══ -->
+<div id="v-hrm" class="view">
+  <div class="view-head">
+    <div><div class="view-title">HRM & Payroll</div><div class="view-sub">28 staff · Commission dashboard linked to CRM conversions</div></div>
+    <div class="view-actions"><button class="btn-ghost">📄 Payslips</button><button class="btn-stitch">＋ Add Staff</button></div>
+  </div>
+  <div class="pulse-grid pg-4 mb24">
+    <div class="pulse-card c-cyan"><div class="pc-label">Total Staff</div><div class="pc-value">28</div></div>
+    <div class="pulse-card c-mint"><div class="pc-label">Payroll · June</div><div class="pc-value">৳2.8L</div></div>
+    <div class="pulse-card c-amber"><div class="pc-label">On Leave</div><div class="pc-value">3</div></div>
+    <div class="pulse-card c-rose"><div class="pc-label">Pending Approvals</div><div class="pc-value">5</div></div>
+  </div>
+  <div class="g65 mb16">
+    <!-- Commission Dashboard -->
+    <div class="sc">
+      <div class="sc-head"><div class="sc-title">Commission Dashboard — June</div><span class="sb2 sb2-cyan">CRM Linked</span></div>
+      <div class="sc-body">
+        <div style="margin-bottom:16px;font-size:12px;color:var(--t3)">Commissions are auto-calculated based on CRM enrollments</div>
+        <div class="commission-bar"><div class="cb-name">Rana Mia</div><div class="cb-bar-wrap"><div class="cb-bar-fill" style="width:84%"></div></div><div class="cb-val">৳8,400</div></div>
+        <div class="commission-bar"><div class="cb-name">Anika Khan</div><div class="cb-bar-wrap"><div class="cb-bar-fill" style="width:60%"></div></div><div class="cb-val">৳6,000</div></div>
+        <div class="commission-bar"><div class="cb-name">Rajib Biswas</div><div class="cb-bar-wrap"><div class="cb-bar-fill" style="width:30%"></div></div><div class="cb-val">৳3,000</div></div>
+        <div class="divider"></div>
+        <div class="row-sb"><span style="font-size:12px;color:var(--t3)">Total commission payout</span><span style="font-family:'Clash Display';font-size:18px;font-weight:700;color:var(--mint2)">৳17,400</span></div>
+      </div>
+    </div>
+    <div class="sc">
+      <div class="sc-head"><div class="sc-title">Leave Requests</div><span class="sb2 sb2-amber">5 pending</span></div>
+      <div class="sc-body" style="display:flex;flex-direction:column;gap:10px">
+        <div style="background:var(--layer2);border:1px solid var(--rim);border-radius:10px;padding:12px">
+          <div class="row-sb"><div><div style="font-size:13px;font-weight:600;color:var(--t1)">Nadia Islam</div><div style="font-size:11px;color:var(--t3)">Medical Leave · Jun 15–17</div></div><div class="row" style="gap:6px"><button class="btn-ghost" style="font-size:11px;padding:4px 10px;color:var(--rose2);border-color:rgba(255,77,109,0.2)">Deny</button><button class="btn-stitch" style="font-size:11px;padding:4px 10px">Approve</button></div></div>
+        </div>
+        <div style="background:var(--layer2);border:1px solid var(--rim);border-radius:10px;padding:12px">
+          <div class="row-sb"><div><div style="font-size:13px;font-weight:600;color:var(--t1)">David Roy</div><div style="font-size:11px;color:var(--t3)">Casual Leave · Jun 20</div></div><div class="row" style="gap:6px"><button class="btn-ghost" style="font-size:11px;padding:4px 10px;color:var(--rose2);border-color:rgba(255,77,109,0.2)">Deny</button><button class="btn-stitch" style="font-size:11px;padding:4px 10px">Approve</button></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="staff-deck">
+    <div class="staff-tile"><div class="staff-av" style="background:linear-gradient(135deg,var(--cyan),var(--violet))">SA</div><div class="staff-name">Sarah Ahmed</div><div class="staff-role">Senior PTE Trainer</div><span class="sb2 sb2-mint">● Active</span></div>
+    <div class="staff-tile"><div class="staff-av" style="background:linear-gradient(135deg,var(--mint),var(--cyan))">DR</div><div class="staff-name">David Roy</div><div class="staff-role">Speaking Specialist</div><span class="sb2 sb2-mint">● Active</span></div>
+    <div class="staff-tile"><div class="staff-av" style="background:linear-gradient(135deg,var(--amber),var(--rose))">NI</div><div class="staff-name">Nadia Islam</div><div class="staff-role">Writing Instructor</div><span class="sb2 sb2-amber">On Leave</span></div>
+    <div class="staff-tile"><div class="staff-av" style="background:linear-gradient(135deg,var(--violet),var(--rose))">KH</div><div class="staff-name">Karim Hossain</div><div class="staff-role">Head Trainer</div><span class="sb2 sb2-mint">● Active</span></div>
+    <div class="staff-tile"><div class="staff-av" style="background:linear-gradient(135deg,var(--rose),var(--violet))">RM</div><div class="staff-name">Rana Mia</div><div class="staff-role">Counselor</div><span class="sb2 sb2-mint">● Active</span></div>
+    <div class="staff-tile"><div class="staff-av" style="background:linear-gradient(135deg,var(--mint),var(--cyan))">AK</div><div class="staff-name">Anika Khan</div><div class="staff-role">Admin Executive</div><span class="sb2 sb2-mint">● Active</span></div>
+    <div class="staff-tile"><div class="staff-av" style="background:linear-gradient(135deg,var(--cyan),var(--violet))">RB</div><div class="staff-name">Rajib Biswas</div><div class="staff-role">Accounts Officer</div><span class="sb2 sb2-mint">● Active</span></div>
+    <div class="staff-tile" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;border-style:dashed;opacity:0.4"><div style="font-size:22px">＋</div><div style="font-size:12px;color:var(--t3)">Add Staff</div></div>
+  </div>
+</div>
+
+<!-- ══ ERP ROOMS ══ -->
+<div id="v-erp" class="view">
+  <div class="view-head">
+    <div><div class="view-title">ERP & Room Management</div><div class="view-sub">Visual floor plan · Asset tracking · Procurement</div></div>
+    <div class="view-actions"><button class="btn-stitch">＋ New Request</button></div>
+  </div>
+  <div class="pulse-grid pg-4 mb24">
+    <div class="pulse-card c-cyan"><div class="pc-label">Total Assets</div><div class="pc-value">142</div></div>
+    <div class="pulse-card c-mint"><div class="pc-label">Rooms Available</div><div class="pc-value">4/8</div></div>
+    <div class="pulse-card c-amber"><div class="pc-label">Pending Orders</div><div class="pc-value">7</div></div>
+    <div class="pulse-card c-rose"><div class="pc-label">Maintenance</div><div class="pc-value">3</div></div>
+  </div>
+  <div class="section-head" style="margin-bottom:14px">🏫 Floor Plan — Live Room Status</div>
+  <div class="room-map mb24">
+    <div class="room-cell occupied"><div class="room-status-dot"></div><div class="room-name">R-201</div><div class="room-cap">Capacity: 30</div><div class="room-class">PTE Intensive A3</div><div class="room-time">09:00 – 11:00</div></div>
+    <div class="room-cell occupied"><div class="room-status-dot"></div><div class="room-name">R-104</div><div class="room-cap">Capacity: 20</div><div class="room-class">Speaking Masterclass</div><div class="room-time">10:30 – 12:00</div></div>
+    <div class="room-cell booked"><div class="room-status-dot"></div><div class="room-name">R-301</div><div class="room-cap">Capacity: 25</div><div class="room-class">Writing B1</div><div class="room-time">Next: 12:00 PM</div></div>
+    <div class="room-cell free"><div class="room-status-dot"></div><div class="room-name">Hall A</div><div class="room-cap">Capacity: 60</div><div class="room-class">—</div><div class="room-time">Free until 2:00 PM</div></div>
+    <div class="room-cell free"><div class="room-status-dot"></div><div class="room-name">Lab B</div><div class="room-cap">Capacity: 24</div><div class="room-class">—</div><div class="room-time">Free</div></div>
+    <div class="room-cell maintenance"><div class="room-status-dot"></div><div class="room-name">R-102</div><div class="room-cap">Capacity: 20</div><div class="room-class" style="color:var(--rose2)">⚠ Under Maintenance</div><div class="room-time">AC repair</div></div>
+    <div class="room-cell booked"><div class="room-status-dot"></div><div class="room-name">R-403</div><div class="room-cap">Capacity: 15</div><div class="room-class">Foundation C2</div><div class="room-time">Next: 2:00 PM</div></div>
+    <div class="room-cell free"><div class="room-status-dot"></div><div class="room-name">Conf. Room</div><div class="room-cap">Capacity: 12</div><div class="room-class">—</div><div class="room-time">Free</div></div>
+  </div>
+
+  <div class="sc">
+    <div class="sc-head"><div class="sc-title">Inventory — Low Stock Alerts</div></div>
+    <div class="st-wrap"><table class="stitch">
+      <thead><tr><th>Item</th><th>Category</th><th>Stock</th><th>Level</th><th>Vendor</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td class="td-name">Whiteboard Markers</td><td>Supplies</td><td class="inv-low">8 pcs</td><td><span class="stock-indicator"><div class="stock-fill sf-low" style="width:20%"></div></span></td><td>ABC Supplies</td><td><button class="btn-ghost" style="font-size:11px;padding:4px 10px">Reorder</button></td></tr>
+        <tr><td class="td-name">PTE Practice Books</td><td>Materials</td><td class="inv-med">24 pcs</td><td><span class="stock-indicator"><div class="stock-fill sf-med" style="width:40%"></div></span></td><td>Edu Books Ltd.</td><td><button class="btn-ghost" style="font-size:11px;padding:4px 10px">Order</button></td></tr>
+        <tr><td class="td-name">A4 Paper Reams</td><td>Supplies</td><td class="inv-ok">80 pcs</td><td><span class="stock-indicator"><div class="stock-fill sf-high" style="width:80%"></div></span></td><td>Paper World</td><td><span style="font-size:11px;color:var(--t4)">—</span></td></tr>
+        <tr><td class="td-name">Projector Bulbs</td><td>Equipment</td><td class="inv-low">2 pcs</td><td><span class="stock-indicator"><div class="stock-fill sf-low" style="width:10%"></div></span></td><td>Tech World</td><td><button class="btn-stitch" style="font-size:11px;padding:4px 10px">Urgent!</button></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- ══ AUTOMATION ══ -->
+<div id="v-auto" class="view">
+  <div class="view-head">
+    <div><div class="view-title">Automation — IFTTT Rule Builder</div><div class="view-sub">12 active rules · If-This-Then-That logic for all notifications</div></div>
+    <div class="view-actions"><button class="btn-ghost">📋 Templates</button><button class="btn-stitch" onclick="openDrawer('new-rule')">＋ New Rule</button></div>
+  </div>
+
+  <div class="info-banner">
+    <div class="ib-icon">⚡</div>
+    <div><div class="ib-title">12 Automation Rules Active</div><div class="ib-sub">Last trigger: "Fee Due Reminder" fired 4 minutes ago → 48 WhatsApp messages sent</div></div>
+    <span class="sb2 sb2-mint">All Systems Go</span>
+  </div>
+
+  <div class="g65">
+    <div>
+      <div class="section-head" style="margin-bottom:14px">Active Rules</div>
+
+      <div class="rule-card" style="--r-color:var(--cyan)">
+        <div class="rule-head">
+          <div class="rule-name">📅 Class Reminder<span class="sb2 sb2-mint" style="font-size:10px">Auto</span></div>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="rule-body">
+          <div class="rule-chip rc-trigger">🕐 1 hour before class</div>
+          <div class="rc-arrow">→</div>
+          <div class="rule-chip rc-action">Send Reminder</div>
+          <div class="rc-arrow">via</div>
+          <div class="rule-chip rc-channel">📱 WhatsApp</div>
+        </div>
+      </div>
+
+      <div class="rule-card" style="--r-color:var(--amber)">
+        <div class="rule-head">
+          <div class="rule-name">💰 Fee Due Reminder<span class="sb2 sb2-mint" style="font-size:10px">Auto</span></div>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="rule-body">
+          <div class="rule-chip rc-trigger">📆 3 days before due</div>
+          <div class="rc-arrow">→</div>
+          <div class="rule-chip rc-action">Send Reminder</div>
+          <div class="rc-arrow">via</div>
+          <div class="rule-chip rc-channel">📱 WhatsApp + SMS</div>
+        </div>
+      </div>
+
+      <div class="rule-card" style="--r-color:var(--mint)">
+        <div class="rule-head">
+          <div class="rule-name">✅ Enrollment Confirmation<span class="sb2 sb2-mint" style="font-size:10px">Auto</span></div>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="rule-body">
+          <div class="rule-chip rc-trigger">🎯 On enrollment</div>
+          <div class="rc-arrow">→</div>
+          <div class="rule-chip rc-action">Send Confirmation + Invoice</div>
+          <div class="rc-arrow">via</div>
+          <div class="rule-chip rc-channel">📱 WhatsApp</div>
+        </div>
+      </div>
+
+      <div class="rule-card" style="--r-color:var(--rose)">
+        <div class="rule-head">
+          <div class="rule-name">⚠️ Inactive Student Alert<span class="sb2 sb2-amber" style="font-size:10px">Manager CC</span></div>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="rule-body">
+          <div class="rule-chip rc-trigger">📊 No login for 7 days</div>
+          <div class="rc-arrow">→</div>
+          <div class="rule-chip rc-action">Alert + Escalate</div>
+          <div class="rc-arrow">via</div>
+          <div class="rule-chip rc-channel">📧 Email + Manager</div>
+        </div>
+      </div>
+
+      <div class="rule-card" style="--r-color:var(--violet)">
+        <div class="rule-head">
+          <div class="rule-name">🎂 Birthday Greeting<span class="sb2 sb2-mint" style="font-size:10px">Auto</span></div>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="rule-body">
+          <div class="rule-chip rc-trigger">🎉 On birthday morning</div>
+          <div class="rc-arrow">→</div>
+          <div class="rule-chip rc-action">Send Template #BG-01</div>
+          <div class="rc-arrow">via</div>
+          <div class="rule-chip rc-channel">📱 WhatsApp</div>
+        </div>
+      </div>
+
+      <div class="rule-card" style="--r-color:var(--t4)">
+        <div class="rule-head">
+          <div class="rule-name">🔁 Re-enrollment Nudge<span class="sb2 sb2-dim" style="font-size:10px">Disabled</span></div>
+          <div class="toggle" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="rule-body">
+          <div class="rule-chip rc-trigger" style="opacity:0.5">📅 7 days before batch end</div>
+          <div class="rc-arrow">→</div>
+          <div class="rule-chip rc-action" style="opacity:0.5">Send Offer</div>
+          <div class="rc-arrow">via</div>
+          <div class="rule-chip rc-channel" style="opacity:0.5">📱 WhatsApp</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-head" style="margin-bottom:14px">Recent Triggers</div>
+      <div class="sc">
+        <div>
+          <div class="af-item unread"><div class="af-icon" style="background:var(--mint3)">📱</div><div class="af-text"><div class="af-title">Fee Due — 48 students</div><div class="af-desc">WhatsApp · June installment</div><div class="af-time">09:00 AM today</div></div></div>
+          <div class="af-item"><div class="af-icon" style="background:var(--cyan3)">📚</div><div class="af-text"><div class="af-title">Class Reminder — Batch A3</div><div class="af-desc">24 students · 9AM class</div><div class="af-time">08:00 AM today</div></div></div>
+          <div class="af-item"><div class="af-icon" style="background:var(--amber3)">🎂</div><div class="af-text"><div class="af-title">Birthday — Tasnim Akter</div><div class="af-desc">Auto greeting sent</div><div class="af-time">07:00 AM today</div></div></div>
+          <div class="af-item"><div class="af-icon" style="background:var(--violet3)">✅</div><div class="af-text"><div class="af-title">Enrollment — Rakib Hossain</div><div class="af-desc">Confirmation + invoice sent</div><div class="af-time">Yesterday 3PM</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GUARDIAN PORTAL ══ -->
+<div id="v-parents" class="view">
+  <div class="view-head">
+    <div><div class="view-title">Guardian Portal</div><div class="view-sub">Timeline view of all guardian communication and performance flags</div></div>
+    <div class="view-actions"><button class="btn-stitch">📨 Broadcast</button></div>
+  </div>
+  <div class="g35">
+    <div class="sc">
+      <div class="sc-head"><div class="sc-title">Select Guardian</div></div>
+      <div class="sc-body">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="padding:10px 12px;background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:9px;cursor:pointer">
+            <div style="font-size:13px;font-weight:600;color:var(--t1)">Mr. Hassan</div>
+            <div style="font-size:11px;color:var(--t3)">Parent of Mehedi Hassan · Batch A3</div>
+          </div>
+          <div style="padding:10px 12px;background:var(--glass);border:1px solid var(--rim);border-radius:9px;cursor:pointer">
+            <div style="font-size:13px;font-weight:600;color:var(--t1)">Mrs. Akter</div>
+            <div style="font-size:11px;color:var(--t3)">Parent of Tasnim Akter · Weekend</div>
+          </div>
+          <div style="padding:10px 12px;background:var(--glass);border:1px solid var(--rim);border-radius:9px;cursor:pointer">
+            <div style="font-size:13px;font-weight:600;color:var(--t1)">Mr. Islam</div>
+            <div style="font-size:11px;color:var(--t3)">Parent of Fariha Islam · B1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sc">
+      <div class="sc-head"><div class="sc-title">Guardian Timeline — Mr. Hassan</div><span class="sb2 sb2-cyan">re: Mehedi Hassan</span></div>
+      <div class="sc-body">
+        <div class="guardian-tl">
+          <div class="gtl-item">
+            <div class="gtl-dot" style="background:var(--cyan)"></div>
+            <div class="gtl-time">Jun 12 · 09:00 AM</div>
+            <div class="gtl-card">
+              <div class="gtl-title">📊 Monthly Summary Sent</div>
+              <div class="gtl-body">Attendance 92% · Avg Score 86 · Fee paid ✓</div>
+            </div>
+          </div>
+          <div class="gtl-item">
+            <div class="gtl-dot" style="background:var(--mint)"></div>
+            <div class="gtl-time">Jun 10 · 08:00 AM</div>
+            <div class="gtl-card">
+              <div class="gtl-title">✅ Mock Test Result</div>
+              <div class="gtl-body">Mock Test #3 — Score: 86/90 · Ranked #1 in batch</div>
+            </div>
+          </div>
+          <div class="gtl-item">
+            <div class="gtl-dot" style="background:var(--amber)"></div>
+            <div class="gtl-time">Jun 05 · 12:00 PM</div>
+            <div class="gtl-card">
+              <div class="gtl-title">📞 Parent Called In</div>
+              <div class="gtl-body">Asked about next mock test schedule — followed up by Counselor</div>
+            </div>
+          </div>
+          <div class="gtl-item">
+            <div class="gtl-dot" style="background:var(--violet)"></div>
+            <div class="gtl-time">Jun 01 · 10:00 AM</div>
+            <div class="gtl-card">
+              <div class="gtl-title">💰 Fee Reminder Sent</div>
+              <div class="gtl-body">June installment reminder · WhatsApp · Paid same day ✓</div>
+            </div>
+          </div>
+          <div class="gtl-item">
+            <div class="gtl-dot" style="background:var(--mint)"></div>
+            <div class="gtl-time">May 28 · 08:00 AM</div>
+            <div class="gtl-card">
+              <div class="gtl-title">⚠️ Attendance Flag</div>
+              <div class="gtl-body">1 absence noted on May 25 — guardian notified</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECURITY & 2FA ══ -->
+<div id="v-security" class="view">
+  <div class="view-head">
+    <div><div class="view-title">Security & Access Control</div><div class="view-sub">RBAC · 2FA · IP monitoring · Activity logs</div></div>
+    <div class="view-actions"><button class="btn-ghost">📋 Audit Log</button><button class="btn-stitch">＋ Add Role</button></div>
+  </div>
+
+  <div class="pulse-grid pg-4 mb24">
+    <div class="pulse-card c-mint"><div class="pc-label">Active Users</div><div class="pc-value">28</div></div>
+    <div class="pulse-card c-cyan"><div class="pc-label">Roles</div><div class="pc-value">6</div></div>
+    <div class="pulse-card c-amber"><div class="pc-label">Logins Today</div><div class="pc-value">41</div></div>
+    <div class="pulse-card c-rose"><div class="pc-label">Failed Attempts</div><div class="pc-value">2</div></div>
+  </div>
+
+  <!-- 2FA Section -->
+  <div class="section-head" style="margin-bottom:14px">🔐 Two-Factor Authentication</div>
+  <div class="tfa-grid mb24">
+    <div class="tfa-method enabled">
+      <div class="tfa-icon">📱</div>
+      <div class="tfa-name">Authenticator App</div>
+      <div class="tfa-desc">Google/Microsoft Authenticator · Enabled for Admin</div>
+      <div class="row" style="margin-top:10px;justify-content:space-between"><span class="sb2 sb2-mint">✓ Enabled</span><button class="btn-ghost" style="font-size:11px;padding:4px 10px">Manage</button></div>
+    </div>
+    <div class="tfa-method">
+      <div class="tfa-icon">💬</div>
+      <div class="tfa-name">SMS OTP</div>
+      <div class="tfa-desc">One-time password via SMS to registered number</div>
+      <div class="row" style="margin-top:10px;justify-content:space-between"><span class="sb2 sb2-dim">Disabled</span><button class="btn-stitch" style="font-size:11px;padding:4px 10px">Enable</button></div>
+    </div>
+    <div class="tfa-method">
+      <div class="tfa-icon">🔑</div>
+      <div class="tfa-name">Hardware Key</div>
+      <div class="tfa-desc">FIDO2 / YubiKey physical security key</div>
+      <div class="row" style="margin-top:10px;justify-content:space-between"><span class="sb2 sb2-dim">Disabled</span><button class="btn-ghost" style="font-size:11px;padding:4px 10px">Setup</button></div>
+    </div>
+    <div class="tfa-method">
+      <div class="tfa-icon">📧</div>
+      <div class="tfa-name">Email OTP</div>
+      <div class="tfa-desc">Verification code sent to admin email</div>
+      <div class="row" style="margin-top:10px;justify-content:space-between"><span class="sb2 sb2-dim">Disabled</span><button class="btn-ghost" style="font-size:11px;padding:4px 10px">Setup</button></div>
+    </div>
+  </div>
+
+  <div class="g65">
+    <!-- Permission Matrix -->
+    <div class="sc">
+      <div class="sc-head"><div class="sc-title">Role Permission Matrix — Stitch Toggles</div></div>
+      <div class="perm-matrix">
+        <table class="stitch">
+          <thead><tr><th>Permission</th><th style="text-align:center">Super Admin</th><th style="text-align:center">Manager</th><th style="text-align:center">Trainer</th><th style="text-align:center">Counselor</th><th style="text-align:center">Accountant</th></tr></thead>
+          <tbody>
+            <tr><td class="td-name">View Students</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-no">—</td></tr>
+            <tr><td class="td-name">Edit Students</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-no">—</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-no">—</td></tr>
+            <tr><td class="td-name">Financial Data</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-no">—</td><td style="text-align:center" class="perm-no">—</td><td style="text-align:center" class="perm-yes">✓</td></tr>
+            <tr><td class="td-name">Process Payroll</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-no">—</td><td style="text-align:center" class="perm-no">—</td><td style="text-align:center" class="perm-no">—</td><td style="text-align:center" class="perm-yes">✓</td></tr>
+            <tr><td class="td-name">Manage Batches</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-no">—</td><td style="text-align:center" class="perm-no">—</td></tr>
+            <tr><td class="td-name">System Settings</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-no">—</td><td style="text-align:center" class="perm-no">—</td><td style="text-align:center" class="perm-no">—</td><td style="text-align:center" class="perm-no">—</td></tr>
+            <tr><td class="td-name">Export Data</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-yes">✓</td><td style="text-align:center" class="perm-no">—</td><td style="text-align:center" class="perm-no">—</td><td style="text-align:center" class="perm-yes">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Login History -->
+    <div class="sc">
+      <div class="sc-head"><div class="sc-title">Login History</div><span class="sb2 sb2-amber">2 suspicious</span></div>
+      <div>
+        <div class="af-item unread" style="background:rgba(0,255,148,0.03)"><div class="af-icon" style="background:var(--mint3)">👤</div><div class="af-text"><div class="af-title">Admin Kamal</div><div class="af-desc">Chrome · Dhaka, BD · IP: 103.x.x.x</div><div class="af-time">09:12 AM · <span class="sb2 sb2-mint" style="font-size:9px">Active</span></div></div></div>
+        <div class="af-item"><div class="af-icon" style="background:var(--cyan3)">👩</div><div class="af-text"><div class="af-title">Sarah Ahmed</div><div class="af-desc">Mobile App · Dhaka, BD</div><div class="af-time">08:55 AM · <span class="sb2 sb2-mint" style="font-size:9px">Active</span></div></div></div>
+        <div class="af-item"><div class="af-icon" style="background:var(--glass2)">👨</div><div class="af-text"><div class="af-title">Rana Mia</div><div class="af-desc">Chrome · Dhaka, BD</div><div class="af-time">08:30 AM · <span class="sb2 sb2-dim" style="font-size:9px">Offline</span></div></div></div>
+        <div class="af-item" style="background:rgba(255,77,109,0.04)"><div class="af-icon" style="background:var(--rose3)">⚠️</div><div class="af-text"><div class="af-title" style="color:var(--rose2)">Unknown Device</div><div class="af-desc">Firefox · Mumbai, IN · IP: 139.x.x.x</div><div class="af-time">07:44 AM · <span class="sb2 sb2-rose" style="font-size:9px">Failed · Blocked</span></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Stub pages -->
+<div id="v-accounts" class="view">
+  <div class="view-head"><div><div class="view-title">Accounts & Reporting</div><div class="view-sub">P&L · Expense tracking · Cockpit widgets</div></div><div class="view-actions"><button class="btn-stitch">Export PDF</button></div></div>
+  <div class="pulse-grid pg-4 mb24">
+    <div class="pulse-card c-mint"><div class="pc-label">Revenue YTD</div><div class="pc-value">৳28.4L</div><div class="pc-meta"><span class="pc-change up">↑ 18%</span> vs LY</div></div>
+    <div class="pulse-card c-rose"><div class="pc-label">Expenses</div><div class="pc-value">৳14.2L</div><div class="pc-meta"><span class="pc-change dn">↑ 6%</span></div></div>
+    <div class="pulse-card c-amber"><div class="pc-label">Net Profit</div><div class="pc-value">৳14.2L</div><div class="pc-meta"><span class="pc-change up">↑ 31%</span></div></div>
+    <div class="pulse-card c-violet"><div class="pc-label">Margin</div><div class="pc-value">50%</div><div class="pc-meta"><span class="pc-change up">↑ 5pts</span></div></div>
+  </div>
+  <div class="sc"><div class="sc-head"><div class="sc-title">P&L — June 2025</div></div><div class="sc-body" style="display:flex;flex-direction:column;gap:10px">
+    <div class="pl-row" style="background:var(--mint3);border:1px solid rgba(0,255,148,0.1)"><span style="color:var(--t2)">Total Revenue</span><span style="font-family:'Clash Display';font-size:20px;font-weight:700;color:var(--mint2)">৳4,72,000</span></div>
+    <div class="pl-row" style="background:var(--rose3);border:1px solid rgba(255,77,109,0.1)"><span style="color:var(--t2)">Total Expenses</span><span style="font-family:'Clash Display';font-size:20px;font-weight:700;color:var(--rose2)">— ৳2,45,000</span></div>
+    <div class="pl-row" style="background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.15)"><span style="color:var(--t1);font-weight:600">Net Profit</span><span style="font-family:'Clash Display';font-size:24px;font-weight:700;color:var(--cyan2)">৳2,27,000</span></div>
+  </div></div>
+</div>
+<div id="v-enroll" class="view"><div class="view-head"><div><div class="view-title">Enrollment</div><div class="view-sub">Admission form · Document checklist · Onboarding</div></div><div class="view-actions"><button class="btn-stitch" onclick="openDrawer('add-student')">＋ Enroll Student</button></div></div><div class="info-banner"><div class="ib-icon">💡</div><div><div class="ib-title">Winning a lead automatically connects to this enrollment form</div><div class="ib-sub">CRM → Enrollment → POS invoice → LMS access — fully stitched</div></div></div><div class="sc"><div class="sc-head"><div class="sc-title">Recent Enrollments</div></div><div class="st-wrap"><table class="stitch"><thead><tr><th>Student</th><th>Batch</th><th>Source</th><th>Fee Plan</th><th>Portal Access</th><th>Status</th></tr></thead><tbody><tr><td class="td-name">Mehedi Hassan</td><td>PTE A3</td><td>Facebook</td><td>Full</td><td><span class="sb2 sb2-mint">✓ Unlocked</span></td><td><span class="sb2 sb2-mint">Active</span></td></tr><tr><td class="td-name">Tasnim Akter</td><td>PTE A3</td><td>Referral</td><td>2 Inst.</td><td><span class="sb2 sb2-amber">Partial</span></td><td><span class="sb2 sb2-amber">Partial Pay</span></td></tr><tr><td class="td-name">Rakib Hossain</td><td>Speaking</td><td>Website</td><td>Full</td><td><span class="sb2 sb2-mint">✓ Unlocked</span></td><td><span class="sb2 sb2-mint">Active</span></td></tr></tbody></table></div></div></div>
+<div id="v-docs" class="view"><div class="view-head"><div><div class="view-title">Document Vault</div><div class="view-sub">Secure digital filing · Expiry alerts · Version history</div></div><div class="view-actions"><button class="btn-stitch">＋ Upload</button></div></div><div class="sc"><div class="sc-head"><div class="sc-title">Student Documents</div></div><div class="st-wrap"><table class="stitch"><thead><tr><th>Student</th><th>Document</th><th>Verified</th><th>Expiry</th><th>Version</th></tr></thead><tbody><tr><td class="td-name">Mehedi Hassan</td><td>National ID</td><td><span class="sb2 sb2-mint">✓ Verified</span></td><td class="td-mono">—</td><td class="td-mono">v1</td></tr><tr><td class="td-name">Tasnim Akter</td><td>Passport</td><td><span class="sb2 sb2-mint">✓ Verified</span></td><td class="td-mono" style="color:var(--amber2)">Dec 2026</td><td class="td-mono">v2</td></tr><tr><td class="td-name">Rakib Hossain</td><td>SSC Certificate</td><td><span class="sb2 sb2-amber">Pending</span></td><td class="td-mono">—</td><td class="td-mono">v1</td></tr><tr><td class="td-name">Fariha Islam</td><td>Passport</td><td><span class="sb2 sb2-rose">Expired</span></td><td class="td-mono" style="color:var(--rose2)">Jan 2024</td><td class="td-mono">v1</td></tr></tbody></table></div></div></div>
+
+</div><!-- /canvas -->
+
+<!-- ════ ACTION DRAWER ════ -->
+<div class="drawer-overlay" id="d-overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <div class="drawer-title" id="d-title">Quick Add</div>
+    <div class="drawer-close" onclick="closeDrawer()">✕</div>
+  </div>
+  <div class="drawer-body" id="d-body"><!-- Dynamic content --></div>
+  <div class="drawer-foot">
+    <button class="btn-stitch" onclick="closeDrawer()">Save Changes</button>
+    <button class="btn-ghost" onclick="closeDrawer()">Cancel</button>
+  </div>
+</div>
+
+<script>
+// ═══ NAVIGATION ═══
+const views = document.querySelectorAll('.view');
+const labels = {
+  dash: ['Cockpit','Dashboard Overview'],
+  crm: ['CRM','Lead Pipeline'],
+  enroll: ['Admissions','Enrollment'],
+  lms: ['LMS','Batch Management'],
+  pte: ['PTE Engine','Practice & Mock Tests'],
+  attend: ['Attendance','Tracking'],
+  pos: ['Finance','POS & Fees'],
+  accounts: ['Finance','Accounts & Reports'],
+  hrm: ['HRM','Staff & Payroll'],
+  erp: ['Operations','ERP & Rooms'],
+  docs: ['Vault','Document Management'],
+  auto: ['Automation','IFTTT Rule Builder'],
+  parents: ['Guardians','Parent Portal'],
+  security: ['Security','2FA & Access Control']
+};
+
+function go(id, el) {
+  views.forEach(v => v.classList.remove('active'));
+  document.getElementById('v-' + id).classList.add('active');
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  const [bc, bcs] = labels[id] || ['—','—'];
+  document.getElementById('bc').textContent = bc;
+  document.getElementById('bc-sub').textContent = bcs;
+}
+
+// ═══ DRAWER ═══
+const drawerContents = {
+  'quick-add': {
+    title: '＋ Quick Add',
+    body: `<div class="fgrid2">
+      <div class="fgroup"><label class="flabel">Type</label><select class="fselect"><option>Student</option><option>Lead</option><option>Batch</option><option>Fee Entry</option></select></div>
+      <div class="fgroup"><label class="flabel">Full Name</label><input class="finput" type="text" placeholder="Full name…"></div>
+      <div class="fgroup"><label class="flabel">Phone</label><input class="finput" type="text" placeholder="+880…"></div>
+      <div class="fgroup"><label class="flabel">Email</label><input class="finput" type="email" placeholder="email@…"></div>
+    </div>
+    <div class="fgroup"><label class="flabel">Notes</label><textarea class="ftextarea" placeholder="Any notes…"></textarea></div>`
+  },
+  'add-student': {
+    title: 'Enroll New Student',
+    body: `<div class="fgrid2">
+      <div class="fgroup"><label class="flabel">Full Name</label><input class="finput" type="text" placeholder="Student name"></div>
+      <div class="fgroup"><label class="flabel">Phone</label><input class="finput" placeholder="+880…"></div>
+      <div class="fgroup"><label class="flabel">Email</label><input class="finput" type="email" placeholder="email@…"></div>
+      <div class="fgroup"><label class="flabel">Course / Batch</label><select class="fselect"><option>PTE Intensive A3</option><option>Speaking Masterclass</option><option>Writing Workshop B1</option><option>PTE Foundation C2</option><option>Weekend Warriors</option></select></div>
+      <div class="fgroup"><label class="flabel">Lead Source</label><select class="fselect"><option>Facebook Ads</option><option>WhatsApp</option><option>Referral</option><option>Walk-in</option><option>Website</option></select></div>
+      <div class="fgroup"><label class="flabel">Counselor</label><select class="fselect"><option>Rana Mia</option><option>Anika Khan</option></select></div>
+      <div class="fgroup"><label class="flabel">Fee Plan</label><select class="fselect"><option>Full Payment</option><option>2 Installments</option><option>3 Installments</option></select></div>
+      <div class="fgroup"><label class="flabel">Scholarship</label><select class="fselect"><option>None</option><option>10%</option><option>20%</option><option>Merit</option></select></div>
+    </div>
+    <div class="fgroup" style="margin-top:4px"><label class="flabel">Notes</label><textarea class="ftextarea" placeholder="Additional info…"></textarea></div>`
+  },
+  'add-lead': {
+    title: 'Add New Lead',
+    body: `<div class="fgrid2">
+      <div class="fgroup"><label class="flabel">Name</label><input class="finput" placeholder="Lead name"></div>
+      <div class="fgroup"><label class="flabel">Phone</label><input class="finput" placeholder="+880…"></div>
+      <div class="fgroup"><label class="flabel">Source</label><select class="fselect"><option>Facebook Ads</option><option>WhatsApp</option><option>Walk-in</option><option>Referral</option><option>Website</option></select></div>
+      <div class="fgroup"><label class="flabel">Counselor</label><select class="fselect"><option>Rana Mia</option><option>Anika Khan</option></select></div>
+      <div class="fgroup"><label class="flabel">Interest</label><select class="fselect"><option>Full PTE</option><option>Speaking</option><option>Writing</option><option>Reading + Listening</option></select></div>
+      <div class="fgroup"><label class="flabel">Follow-up Date</label><input class="finput" type="date"></div>
+    </div>`
+  },
+  'lead-detail': {
+    title: 'Lead — Sumaiya Rahman',
+    body: `<div style="background:var(--layer2);border:1px solid var(--rim);border-radius:10px;padding:14px;margin-bottom:16px">
+      <div style="font-size:11px;color:var(--t4);margin-bottom:6px">LEAD INFO</div>
+      <div class="row-sb" style="margin-bottom:6px"><span style="color:var(--t3)">Source</span><span class="sb2 sb2-violet">📱 Facebook Ads</span></div>
+      <div class="row-sb" style="margin-bottom:6px"><span style="color:var(--t3)">Counselor</span><span style="color:var(--t1);font-weight:500">Rana Mia</span></div>
+      <div class="row-sb"><span style="color:var(--t3)">Status</span><span class="sb2 sb2-cyan">New</span></div>
+    </div>
+    <div class="fgroup"><label class="flabel">Call Note</label><textarea class="ftextarea" placeholder="Add a call note or update…"></textarea></div>
+    <div class="fgrid2">
+      <div class="fgroup"><label class="flabel">Move to Stage</label><select class="fselect"><option>New</option><option>Contacted</option><option>Interested</option><option>Trial Booked</option><option>Enrolled</option><option>Lost</option></select></div>
+      <div class="fgroup"><label class="flabel">Follow-up Date</label><input class="finput" type="date"></div>
+    </div>
+    <div class="section-head" style="margin-bottom:10px">History</div>
+    <div class="timeline"><div class="tl-item"><div class="tl-dot"></div><div class="tl-time">Jun 12 · 10:08 AM</div><div class="tl-txt"><strong>Lead created</strong> from Facebook Ads auto-capture</div></div></div>`
+  },
+  'collect-fee': {
+    title: 'Collect Fee — POS',
+    body: `<div class="fgrid2">
+      <div class="fgroup"><label class="flabel">Student</label><input class="finput" placeholder="Search student…"></div>
+      <div class="fgroup"><label class="flabel">Course</label><select class="fselect"><option>PTE Intensive A3 — ৳12,000</option><option>Speaking Masterclass — ৳8,000</option><option>Writing B1 — ৳6,500</option></select></div>
+      <div class="fgroup"><label class="flabel">Amount (৳)</label><input class="finput" type="number" placeholder="0.00"></div>
+      <div class="fgroup"><label class="flabel">Payment Method</label><select class="fselect"><option>bKash</option><option>Nagad</option><option>Debit Card</option><option>Cash</option><option>Bank Transfer</option></select></div>
+      <div class="fgroup"><label class="flabel">Transaction ID</label><input class="finput" placeholder="TXN ID…"></div>
+      <div class="fgroup"><label class="flabel">Date</label><input class="finput" type="date"></div>
+    </div>
+    <div style="background:rgba(0,255,148,0.06);border:1px solid rgba(0,255,148,0.15);border-radius:10px;padding:12px;margin-top:8px">
+      <div style="font-size:12px;color:var(--mint2);font-weight:600">✓ Course access will unlock automatically on save</div>
+    </div>`
+  },
+  'new-rule': {
+    title: '⚡ New Automation Rule',
+    body: `<div class="fgroup"><label class="flabel">Rule Name</label><input class="finput" placeholder="e.g. Exam Result Notification"></div>
+    <div class="section-head" style="margin:16px 0 10px">TRIGGER (IF THIS…)</div>
+    <div class="fgrid2">
+      <div class="fgroup"><label class="flabel">Event</label><select class="fselect"><option>Fee overdue by</option><option>New lead created</option><option>Enrollment confirmed</option><option>Attendance absent</option><option>Exam completed</option><option>Birthday</option><option>Class starting</option></select></div>
+      <div class="fgroup"><label class="flabel">Condition</label><input class="finput" placeholder="e.g. 3 days"></div>
+    </div>
+    <div class="section-head" style="margin:16px 0 10px">ACTION (THEN THAT…)</div>
+    <div class="fgrid2">
+      <div class="fgroup"><label class="flabel">Action</label><select class="fselect"><option>Send message</option><option>Escalate to manager</option><option>Update lead status</option><option>Generate report</option></select></div>
+      <div class="fgroup"><label class="flabel">Channel</label><select class="fselect"><option>WhatsApp</option><option>SMS</option><option>Email</option><option>In-app notification</option></select></div>
+    </div>
+    <div class="fgroup"><label class="flabel">Message Template</label><textarea class="ftextarea" placeholder="Hello {{student_name}}, your fee of ৳{{amount}} is due on {{date}}…"></textarea></div>`
+  }
+};
+
+function openDrawer(type) {
+  const content = drawerContents[type] || { title: 'Action', body: '<p style="color:var(--t3)">Loading…</p>' };
+  document.getElementById('d-title').textContent = content.title;
+  document.getElementById('d-body').innerHTML = content.body;
+  document.getElementById('d-overlay').classList.add('open');
+  document.getElementById('drawer').classList.add('open');
+}
+
+function closeDrawer() {
+  document.getElementById('d-overlay').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+}
+
+// ═══ PTE ENGINE ═══
+function togglePteSection(head) {
+  head.classList.toggle('expanded');
+  head.nextElementSibling.classList.toggle('open');
+}
+
+let currentSection = 'speaking';
+
+function loadTask(el, taskName, section) {
+  document.querySelectorAll('.pte-task').forEach(t => t.classList.remove('active-task'));
+  el.classList.add('active-task');
+  currentSection = section;
+  document.getElementById('pte-current-task').textContent = taskName;
+
+  const zone = document.getElementById('pte-zone');
+  const passages = {
+    'speaking': 'The <em>Industrial Revolution</em> was a pivotal period in human history, transforming economies from primarily agricultural systems to manufacturing powerhouses. Beginning in Britain during the late 18th century, this transformation spread rapidly across Europe and North America.',
+    'writing': 'Academic texts often employ complex sentence structures and specialized vocabulary. Summarize the following text in <em>one sentence</em> of no more than 75 words.',
+    'reading': 'Choose the correct word for each blank from the dropdown list. The <em>Amazon rainforest</em> produces more than 20% of the world\'s oxygen and is home to approximately <em>10% of all species</em> on Earth.',
+    'listening': 'You will hear a recording. Answer the question by selecting the correct response.'
+  };
+
+  const recordUI = section === 'speaking' ? `<div class="record-ui"><div class="record-time">00:00</div><div class="waveform" style="opacity:0.3"><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div></div><button class="record-btn" onclick="toggleRecord(this)">🎙️</button><div class="record-hint">Press to start recording · Max 40 seconds</div></div>` : '';
+
+  const answerUI = section === 'writing' ? `<textarea class="answer-box" placeholder="Write your response here (max 75 words)…"></textarea>` : '';
+
+  const mcqUI = (section === 'reading' || section === 'listening') ? `<div class="mcq-options">
+    <div class="mcq-opt" onclick="selectOpt(this)"><div class="mcq-circle"></div><div class="mcq-label">A. The Amazon basin covers 5.5 million square kilometers</div></div>
+    <div class="mcq-opt" onclick="selectOpt(this)"><div class="mcq-circle"></div><div class="mcq-label">B. Deforestation threatens 20% of remaining species yearly</div></div>
+    <div class="mcq-opt" onclick="selectOpt(this)"><div class="mcq-circle"></div><div class="mcq-label">C. The forest produces oxygen and hosts diverse wildlife</div></div>
+    <div class="mcq-opt" onclick="selectOpt(this)"><div class="mcq-circle"></div><div class="mcq-label">D. Climate change reduces biodiversity across South America</div></div>
+  </div>` : '';
+
+  zone.innerHTML = `
+    <div class="timer-bar-wrap"><div class="timer-bar-fill" style="width:75%"></div></div>
+    <div class="pq-card"><div class="pq-label">Question — ${taskName}</div><div class="pq-text">${passages[section] || passages.speaking}</div></div>
+    ${recordUI}${answerUI}${mcqUI}
+    <div class="row" style="gap:10px;justify-content:flex-end;margin-top:14px">
+      <button class="btn-ghost">← Previous</button>
+      <button class="btn-ghost">Skip</button>
+      <button class="btn-stitch" onclick="submitPractice()">Submit Answer →</button>
+    </div>`;
+}
+
+function selectOpt(el) {
+  document.querySelectorAll('.mcq-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+let recording = false;
+let recInterval;
+let recSecs = 0;
+
+function toggleRecord(btn) {
+  recording = !recording;
+  const waveform = document.getElementById('waveform') || btn.closest('.record-ui').querySelector('.waveform');
+  const hint = btn.closest('.record-ui').querySelector('.record-hint') || document.getElementById('rec-hint');
+  const timer = btn.closest('.record-ui').querySelector('.record-time') || document.getElementById('rec-timer');
+
+  if (recording) {
+    btn.textContent = '⏹️';
+    if (waveform) waveform.style.opacity = '1';
+    if (hint) hint.textContent = 'Recording… Speak clearly';
+    btn.style.background = 'linear-gradient(135deg, #FF4D6D, #FF7088)';
+    recSecs = 0;
+    recInterval = setInterval(() => {
+      recSecs++;
+      if (timer) {
+        const m = String(Math.floor(recSecs/60)).padStart(2,'0');
+        const s = String(recSecs%60).padStart(2,'0');
+        timer.textContent = `${m}:${s}`;
+      }
+      if (recSecs >= 40) toggleRecord(btn);
+    }, 1000);
+  } else {
+    btn.textContent = '🎙️';
+    if (waveform) waveform.style.opacity = '0.3';
+    if (hint) hint.textContent = 'Recording complete. Submit or re-record.';
+    btn.style.background = 'linear-gradient(135deg, var(--rose), var(--violet))';
+    clearInterval(recInterval);
+  }
+}
+
+function submitPractice() {
+  const zone = document.getElementById('pte-zone');
+  zone.innerHTML = `
+    <div class="info-banner" style="margin-bottom:20px"><div class="ib-icon">✅</div><div><div class="ib-title">Answer Submitted!</div><div class="ib-sub">Your response is being evaluated. Results will appear shortly.</div></div></div>
+    <div class="sc" style="border-radius:12px"><div class="sc-head"><div class="sc-title">Score Breakdown</div><span class="sb2 sb2-mint">AI Evaluated</span></div><div class="sc-body">
+      <div style="display:flex;align-items:center;gap:20px">
+        <div style="position:relative;width:100px;height:100px;flex-shrink:0">
+          <svg width="100" height="100" viewBox="0 0 100 100" style="transform:rotate(-90deg);filter:drop-shadow(0 0 8px rgba(0,212,255,0.3))">
+            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--layer3)" stroke-width="10"/>
+            <circle cx="50" cy="50" r="42" fill="none" stroke="url(#sg2)" stroke-width="10" stroke-dasharray="220" stroke-dashoffset="44" stroke-linecap="round"/>
+            <defs><linearGradient id="sg2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:var(--cyan)"/><stop offset="100%" style="stop-color:var(--mint)"/></linearGradient></defs>
+          </svg>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column"><div style="font-family:'Clash Display';font-size:22px;font-weight:700;line-height:1">82</div><div style="font-size:10px;color:var(--t4)">/ 90</div></div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:10px">
+          <div><div class="row-sb" style="margin-bottom:4px"><span style="font-size:12px;color:var(--t3)">Oral Fluency</span><span style="font-weight:700;color:var(--mint2)">85</span></div><div class="pbar"><div class="pbar-fill pf-mint" style="width:85%"></div></div></div>
+          <div><div class="row-sb" style="margin-bottom:4px"><span style="font-size:12px;color:var(--t3)">Pronunciation</span><span style="font-weight:700;color:var(--cyan2)">78</span></div><div class="pbar"><div class="pbar-fill pf-cyan" style="width:78%"></div></div></div>
+          <div><div class="row-sb" style="margin-bottom:4px"><span style="font-size:12px;color:var(--t3)">Content</span><span style="font-weight:700;color:var(--amber2)">82</span></div><div class="pbar"><div class="pbar-fill pf-amber" style="width:82%"></div></div></div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div style="font-size:13px;color:var(--t2);line-height:1.6"><strong style="color:var(--cyan2)">Feedback:</strong> Good fluency and appropriate pacing. Minor pronunciation variation on "industrialization". Strong content coverage. Work on reducing filler pauses.</div>
+    </div></div>
+    <div class="row" style="gap:10px;justify-content:flex-end;margin-top:14px">
+      <button class="btn-ghost" onclick="loadTask(document.querySelector('.active-task'),'Read Aloud','speaking')">← Try Again</button>
+      <button class="btn-stitch">Next Question →</button>
+    </div>`;
+}
+
+function pteMode(mode, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('pte-practice').style.display = mode === 'practice' ? 'block' : 'none';
+  document.getElementById('pte-mock').style.display = mode === 'mock' ? 'block' : 'none';
+  document.getElementById('pte-results').style.display = mode === 'results' ? 'block' : 'none';
+}
+
+function switchMode(el) {
+  document.querySelectorAll('.mode-pill').forEach(p => p.classList.remove('on'));
+  el.classList.add('on');
+}
+
+// ═══ KEYBOARD SHORTCUTS ═══
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeDrawer();
+});
+</script>
+</body>
+</html>

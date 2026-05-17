@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    Options -Indexes
+    RewriteEngine On
+
+    # Hostinger may deploy the Laravel project root as public_html. Route web traffic into public/.
+    RewriteRule ^(\.env|composer\.(json|lock)|package(-lock)?\.json)$ - [F,L]
+    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)(/|$) - [F,L]
+
+    RewriteCond %{DOCUMENT_ROOT}/public/$1 -f [OR]
+    RewriteCond %{DOCUMENT_ROOT}/public/$1 -d
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    RewriteRule ^ public/index.php [L]
+</IfModule>

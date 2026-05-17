@@ -7,8 +7,8 @@ import api from '../services/api';
 import logo from '../assets/logo.png';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('admin@renetech.com');
-  const [password, setPassword] = useState('Redowan173123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [hovered, setHovered] = useState(false);

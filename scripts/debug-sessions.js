@@ -10,7 +10,10 @@ const request = (method, path, body, token) => new Promise((resolve, reject) => 
 });
 
 (async () => {
-  const loginRes = await request('POST', '/api/auth/login', { email: 'admin@renetech.com', password: 'Redowan173123' });
+  const email = process.env.TEST_ADMIN_EMAIL;
+  const password = process.env.TEST_ADMIN_PASSWORD;
+  if (!email || !password) throw new Error('Set TEST_ADMIN_EMAIL and TEST_ADMIN_PASSWORD before running this script');
+  const loginRes = await request('POST', '/api/auth/login', { email, password });
   const { token } = JSON.parse(loginRes.data);
   console.log('Token:', token ? 'OK' : 'FAIL');
 

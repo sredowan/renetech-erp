@@ -77,7 +77,10 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
   // ═══ AUTH ═══
   console.log('── Authentication ──');
   await test('Login as admin', async () => {
-    const r = await request('POST', '/api/auth/login', { email: 'admin@renetech.com', password: 'Redowan173123' });
+    const email = process.env.TEST_ADMIN_EMAIL;
+    const password = process.env.TEST_ADMIN_PASSWORD;
+    assert(email && password, 'Set TEST_ADMIN_EMAIL and TEST_ADMIN_PASSWORD before running this script');
+    const r = await request('POST', '/api/auth/login', { email, password });
     assert(r.status === 200 || r.status === 201, `Login failed: ${r.status} ${JSON.stringify(r.data)}`);
     TOKEN = r.data.token || r.data.accessToken;
     assert(TOKEN, 'No token received');

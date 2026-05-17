@@ -35,7 +35,7 @@ use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\StudentController;
 use App\Http\Controllers\Api\V1\WebsiteController;
 
-Route::prefix('v1')->group(function () {
+Route::prefix('v1')->middleware('throttle:api')->group(function () {
     Route::get('/health', function () {
         return ApiResponse::success([
             'status' => 'ok',
@@ -50,7 +50,7 @@ Route::prefix('v1')->group(function () {
     })->middleware('auth:sanctum');
 
     Route::prefix('auth')->group(function () {
-        Route::post('/login', [AuthController::class, 'login']);
+        Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:login');
         Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
         Route::get('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
         Route::post('/register', [AuthController::class, 'register'])->middleware(['auth:sanctum', 'role:super_admin,branch_admin']);
@@ -318,7 +318,7 @@ Route::prefix('v1')->group(function () {
         Route::patch('/leads/{id}/status', [CrmController::class, 'updateLeadStatus']);
         Route::delete('/leads/{id}', [CrmController::class, 'deleteLead']);
         Route::post('/leads/{id}/convert', [CrmController::class, 'convertLead']);
-        Route::post('/leads/{id}/enroll', [CrmController::class, 'enrollLead']);
+        Route::post('/leads/{id}/enroll', [CrmController::class, 'enrollLead'])->middleware('throttle:critical');
         Route::post('/leads/{id}/successful', [CrmController::class, 'markSuccessful']);
         Route::get('/contacts', [CrmController::class, 'getContacts']);
         Route::post('/contacts', [CrmController::class, 'createContact']);
@@ -362,7 +362,7 @@ Route::prefix('v1')->group(function () {
         Route::post('/', [NotificationController::class, 'store'])->middleware('role:super_admin,branch_admin,staff');
     });
 
-    Route::prefix('public')->group(function () {
+    Route::prefix('public')->middleware('throttle:public-api')->group(function () {
         Route::get('/tracking-config', [PublicController::class, 'trackingConfig']);
         Route::get('/branches', [PublicController::class, 'branches']);
         Route::get('/branches/{slug}', [PublicController::class, 'branchDetails']);
@@ -375,9 +375,9 @@ Route::prefix('v1')->group(function () {
         Route::get('/blog/{slug}', [PublicController::class, 'blogDetails']);
         Route::get('/resources', [PublicController::class, 'resources']);
         Route::get('/resources/{slug}', [PublicController::class, 'resourceDetails']);
-        Route::post('/contact', [PublicController::class, 'submitContactForm']);
-        Route::post('/enquiries', [PublicController::class, 'submitCourseEnquiry']);
-        Route::post('/student-bookings', [PublicController::class, 'submitStudentBooking']);
+        Route::post('/contact', [PublicController::class, 'submitContactForm'])->middleware('throttle:critical');
+        Route::post('/enquiries', [PublicController::class, 'submitCourseEnquiry'])->middleware('throttle:critical');
+        Route::post('/student-bookings', [PublicController::class, 'submitStudentBooking'])->middleware('throttle:critical');
     });
 
     Route::prefix('website')->middleware(['auth:sanctum', 'role:super_admin,branch_admin,hr'])->group(function () {

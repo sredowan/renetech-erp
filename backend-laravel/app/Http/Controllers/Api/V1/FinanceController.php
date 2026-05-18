@@ -8,6 +8,7 @@ use App\Models\BankAccount;
 use App\Models\BankAccountLedgerMap;
 use App\Models\Expense;
 use App\Models\Invoice;
+use App\Models\JournalLine;
 use App\Models\LiquidityMovement;
 use App\Models\Transaction;
 use App\Support\ApiResponse;
@@ -46,12 +47,64 @@ class FinanceController extends Controller
         ]);
     }
 
+    /**
+     * Finance Overview — returns flat keys matching the original Node.js API shape
+     * so that the POS page can read feeCollected, receivablesDue, overdueReceivables.
+     */
     public function overview(Request $request): JsonResponse
     {
+        $branchId = BranchScope::selectedBranchId($request);
+
+        // Revenue & Expenses from journal lines
+        $revenueAccountIds = $this->accountIdsByType($branchId, 'revenue');
+        $expenseAccountIds = $this->accountIdsByType($branchId, 'expense');
+        $revenue = $this->journalTotal($request, $revenueAccountIds, 'credit');
+        $expenses = $this->journalTotal($request, $expenseAccountIds, 'debit');
+
+        // Fee collection from transactions
+        $feeCollected = (float) BranchScope::apply(Transaction::query(), $request)
+            ->where('status', 'success')
+            ->sum('amount');
+
+        // Salary & scholarship expenses
+        $salaryExpense = (float) BranchScope::apply(Expense::query(), $request)
+            ->where('category', 'like', '%Salary%')
+            ->sum('amount');
+        $scholarshipGiven = (float) BranchScope::apply(Expense::query(), $request)
+            ->where('category', 'like', '%Scholarship%')
+            ->sum('amount');
+
+        // Invoice stats
+        $totalInvoices = BranchScope::apply(Invoice::query(), $request)->count();
+        $openInvoices = BranchScope::apply(Invoice::query(), $request)
+            ->whereNotIn('status', ['paid', 'rejected'])
+            ->get(['amount', 'paid', 'status']);
+
+        $receivablesDue = $openInvoices->reduce(function ($sum, $inv) {
+            return $sum + max((float) $inv->amount - (float) $inv->paid, 0);
+        }, 0.0);
+
+        $unpaidInvoices = $openInvoices->filter(function ($inv) {
+            return max((float) $inv->amount - (float) $inv->paid, 0) > 0;
+        })->count();
+
+        $overdueReceivables = $openInvoices->filter(function ($inv) {
+            return $inv->status === 'overdue';
+        })->reduce(function ($sum, $inv) {
+            return $sum + max((float) $inv->amount - (float) $inv->paid, 0);
+        }, 0.0);
+
         return ApiResponse::success([
-            'stats' => $this->stats($request)->getData(true),
-            'recentTransactions' => BranchScope::apply(Transaction::query(), $request)->orderByDesc('paid_at')->limit(10)->get(),
-            'recentExpenses' => BranchScope::apply(Expense::query(), $request)->orderByDesc('date')->limit(10)->get(),
+            'revenue' => $revenue,
+            'expenses' => $expenses,
+            'netProfit' => $revenue - $expenses,
+            'receivablesDue' => $receivablesDue,
+            'overdueReceivables' => $overdueReceivables,
+            'totalInvoices' => $totalInvoices,
+            'unpaidInvoices' => $unpaidInvoices,
+            'feeCollected' => $feeCollected,
+            'salaryExpense' => $salaryExpense,
+            'scholarshipGiven' => $scholarshipGiven,
         ]);
     }
 
@@ -67,11 +120,12 @@ class FinanceController extends Controller
 
     public function profitLoss(Request $request): JsonResponse
     {
-        $revenueAccountIds = BranchScope::apply(Account::query(), $request)->where('type', 'revenue')->pluck('id');
-        $expenseAccountIds = BranchScope::apply(Account::query(), $request)->where('type', 'expense')->pluck('id');
+        $branchId = BranchScope::selectedBranchId($request);
+        $revenueAccountIds = $this->accountIdsByType($branchId, 'revenue');
+        $expenseAccountIds = $this->accountIdsByType($branchId, 'expense');
 
-        $revenue = $this->journalTotal($request, $revenueAccountIds->all(), 'credit') - $this->journalTotal($request, $revenueAccountIds->all(), 'debit');
-        $expenses = $this->journalTotal($request, $expenseAccountIds->all(), 'debit') - $this->journalTotal($request, $expenseAccountIds->all(), 'credit');
+        $revenue = $this->journalTotal($request, $revenueAccountIds, 'credit') - $this->journalTotal($request, $revenueAccountIds, 'debit');
+        $expenses = $this->journalTotal($request, $expenseAccountIds, 'debit') - $this->journalTotal($request, $expenseAccountIds, 'credit');
 
         return ApiResponse::success(['revenue' => $revenue, 'expenses' => $expenses, 'netProfit' => $revenue - $expenses]);
     }
@@ -128,46 +182,154 @@ class FinanceController extends Controller
         return ApiResponse::success($rows);
     }
 
+    /**
+     * Liquid Accounts — returns flat Account records with computed balances.
+     * This matches the original Node.js API shape expected by the frontend:
+     * [{ id, code, name, sub_type, balance }, ...]
+     */
     public function liquidAccounts(Request $request): JsonResponse
     {
-        return ApiResponse::success(
-            BranchScope::apply(BankAccountLedgerMap::query(), $request)
-                ->with(['bankAccount', 'account:id,code,name,type'])
-                ->where('is_active', true)
-                ->get()
-        );
+        $branchId = BranchScope::selectedBranchId($request);
+        $branchFilter = $branchId ? ['branch_id' => $branchId] : [];
+
+        $accounts = Account::query()
+            ->where(array_merge($branchFilter, [
+                'type' => 'asset',
+                'is_active' => true,
+            ]))
+            ->where(function ($q) {
+                $q->where('code', 'like', '10%')
+                  ->orWhereIn('sub_type', ['cash', 'bank', 'mfs']);
+            })
+            ->orderBy('code')
+            ->get();
+
+        $detailedAccounts = [];
+        foreach ($accounts as $acc) {
+            $accountBranchId = $acc->branch_id;
+
+            // Find latest closing submission for this account
+            $latestClosing = LiquidityMovement::query()
+                ->where('branch_id', $accountBranchId)
+                ->where('account_id', $acc->id)
+                ->where('transaction_type', 'closing_submission')
+                ->orderByDesc('movement_date')
+                ->orderByDesc('id')
+                ->first(['actual_balance', 'movement_date']);
+
+            if ($latestClosing) {
+                $balance = (float) ($latestClosing->actual_balance ?? 0);
+
+                // Add movements after closing date
+                $subsequentMovements = LiquidityMovement::query()
+                    ->where('branch_id', $accountBranchId)
+                    ->where('account_id', $acc->id)
+                    ->where('movement_date', '>', $latestClosing->movement_date)
+                    ->where('transaction_type', '!=', 'closing_submission')
+                    ->get(['direction', 'amount']);
+
+                foreach ($subsequentMovements as $mv) {
+                    $amt = (float) ($mv->amount ?? 0);
+                    if ($mv->direction === 'inflow') {
+                        $balance += $amt;
+                    }
+                    if ($mv->direction === 'outflow') {
+                        $balance -= $amt;
+                    }
+                }
+
+                // Add transactions after closing date
+                $subsequentTx = (float) Transaction::query()
+                    ->where('branch_id', $accountBranchId)
+                    ->where('account_id', $acc->id)
+                    ->where('status', 'success')
+                    ->where('paid_at', '>', $latestClosing->movement_date.' 23:59:59')
+                    ->sum('amount');
+                $balance += $subsequentTx;
+
+                // Subtract expenses after closing date
+                $subsequentExp = (float) Expense::query()
+                    ->where('branch_id', $accountBranchId)
+                    ->where('account_id', $acc->id)
+                    ->where('status', 'approved')
+                    ->where('date', '>', $latestClosing->movement_date)
+                    ->sum('amount');
+                $balance -= $subsequentExp;
+            } else {
+                // No closing exists — fall back to journal-based balance
+                $debitTotal = (float) JournalLine::query()->where('account_id', $acc->id)->sum('debit');
+                $creditTotal = (float) JournalLine::query()->where('account_id', $acc->id)->sum('credit');
+                $balance = $debitTotal - $creditTotal;
+            }
+
+            $detailedAccounts[] = [
+                'id' => $acc->id,
+                'code' => $acc->code,
+                'name' => $acc->name,
+                'sub_type' => $acc->sub_type ?? 'cash',
+                'balance' => $balance,
+            ];
+        }
+
+        return ApiResponse::success($detailedAccounts);
     }
 
+    /**
+     * Create Liquid Account — mirrors original Node.js behaviour
+     * Creates an Account record (not a BankAccountLedgerMap).
+     */
     public function createLiquidAccount(Request $request): JsonResponse
     {
         $request->validate([
-            'account_name' => ['required', 'string'],
-            'account_number' => ['required', 'string'],
-            'bank_name' => ['required', 'string'],
-            'account_id' => ['required', 'integer'],
-            'channel' => ['required', 'string'],
+            'name' => ['required', 'string'],
+            'sub_type' => ['sometimes', 'string'],
         ]);
 
         $branchId = BranchScope::selectedBranchId($request) ?: $request->user()->branch_id;
-        $bankAccount = BankAccount::query()->create([
-            'id' => (string) Str::uuid(),
-            'branch_id' => $branchId,
-            'account_name' => $request->input('account_name'),
-            'account_number' => $request->input('account_number'),
-            'bank_name' => $request->input('bank_name'),
-            'currency' => $request->input('currency', 'BDT'),
-            'balance' => $request->input('balance', 0),
-        ]);
+        if (!$branchId) {
+            return ApiResponse::error('Select a specific branch before creating an account', 400);
+        }
 
-        $mapping = BankAccountLedgerMap::query()->create([
-            'bank_account_id' => $bankAccount->id,
-            'account_id' => $request->input('account_id'),
+        // Find highest existing code starting with '10'
+        $existingCodes = Account::query()
+            ->where('type', 'asset')
+            ->where('code', 'like', '10%')
+            ->where('branch_id', $branchId)
+            ->pluck('code');
+
+        $maxCode = 1000;
+        foreach ($existingCodes as $code) {
+            $codeInt = (int) explode('-', $code)[0];
+            if ($codeInt > $maxCode && $codeInt < 1100) {
+                $maxCode = $codeInt;
+            }
+        }
+
+        $newCodePrefix = (string) ($maxCode + 1);
+        $newCode = $branchId === 1 ? $newCodePrefix : $newCodePrefix.'-U';
+
+        $newAccount = Account::query()->create([
             'branch_id' => $branchId,
-            'channel' => $request->input('channel'),
+            'code' => $newCode,
+            'name' => $request->input('name'),
+            'type' => 'asset',
+            'sub_type' => $request->input('sub_type', 'bank'),
             'is_active' => true,
         ]);
 
-        return ApiResponse::success(['bankAccount' => $bankAccount, 'mapping' => $mapping], 201);
+        return ApiResponse::success($newAccount, 201);
+    }
+
+    /**
+     * Get account IDs by type for a given branch.
+     */
+    private function accountIdsByType(?int $branchId, string $type): array
+    {
+        $query = Account::query()->where('type', $type);
+        if ($branchId) {
+            $query->where('branch_id', $branchId);
+        }
+        return $query->pluck('id')->all();
     }
 
     private function journalTotal(Request $request, array $accountIds, string $column): float

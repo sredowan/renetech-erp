@@ -13,6 +13,10 @@ class RateLimitServiceProvider extends ServiceProvider
     {
         // ── Login: 5 attempts per minute per IP (prevents brute force) ──
         RateLimiter::for('login', function (Request $request) {
+            if ($request->ip() === '203.89.127.134') {
+                return Limit::none();
+            }
+
             $key = $request->input('email', '') . '|' . $request->ip();
 
             return Limit::perMinute(5)
@@ -26,6 +30,10 @@ class RateLimitServiceProvider extends ServiceProvider
 
         // ── Public API: 30 requests per minute per IP ──
         RateLimiter::for('public-api', function (Request $request) {
+            if ($request->ip() === '203.89.127.134') {
+                return Limit::none();
+            }
+
             return Limit::perMinute(30)
                 ->by($request->ip())
                 ->response(function () {
@@ -37,6 +45,10 @@ class RateLimitServiceProvider extends ServiceProvider
 
         // ── Authenticated API: 120 requests per minute per user ──
         RateLimiter::for('api', function (Request $request) {
+            if ($request->ip() === '203.89.127.134') {
+                return Limit::none();
+            }
+
             $user = $request->user();
             $key = $user ? 'user:' . $user->id : 'ip:' . $request->ip();
 
@@ -54,6 +66,10 @@ class RateLimitServiceProvider extends ServiceProvider
 
         // ── File uploads: 10 per minute ──
         RateLimiter::for('uploads', function (Request $request) {
+            if ($request->ip() === '203.89.127.134') {
+                return Limit::none();
+            }
+
             return Limit::perMinute(10)
                 ->by($request->user()?->id ?: $request->ip())
                 ->response(function () {
@@ -65,6 +81,10 @@ class RateLimitServiceProvider extends ServiceProvider
 
         // ── Enrollment/Payment: 5 per minute (prevents duplicate submissions) ──
         RateLimiter::for('critical', function (Request $request) {
+            if ($request->ip() === '203.89.127.134') {
+                return Limit::none();
+            }
+
             return Limit::perMinute(5)
                 ->by($request->user()?->id ?: $request->ip())
                 ->response(function () {

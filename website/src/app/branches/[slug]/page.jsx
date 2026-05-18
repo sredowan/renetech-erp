@@ -5,6 +5,9 @@ import { ArrowRight, BookOpen, Calendar, Clock3, MapPin, Phone, Star, Users } fr
 import JsonLd, { breadcrumbSchema } from "@/components/JsonLd";
 import { getPublicImageUrl } from "@/lib/imageUrl";
 import { fetchPublicJson } from "@/lib/serverApi";
+import { STATIC_BRANCHES, getStaticBranch } from "@/lib/staticFallbacks";
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   try {
@@ -16,7 +19,7 @@ export async function generateStaticParams() {
       }
     }
   } catch {}
-  return [];
+  return STATIC_BRANCHES.map((branch) => ({ slug: branch.slug }));
 }
 
 async function fetchJson(path, fallback) {
@@ -24,7 +27,7 @@ async function fetchJson(path, fallback) {
 }
 
 async function getBranch(slug) {
-  return fetchJson(`/api/public/branches/${slug}`, null);
+  return fetchJson(`/api/public/branches/${slug}`, getStaticBranch(slug));
 }
 
 async function getBranchCourses(slug) {

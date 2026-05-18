@@ -19,6 +19,7 @@ class DashboardController extends Controller
 {
     public function stats(Request $request): JsonResponse
     {
+        $role = $request->query('role', $request->user()?->role);
         $activeLeadStatuses = ['new', 'contacted', 'interested', 'trial', 'fees_pending', 'payment_rejected'];
         $activeBatchStatuses = ['enrolling', 'active', 'starting_soon'];
         $leadQuery = BranchScope::apply(Lead::query(), $request);
@@ -29,61 +30,85 @@ class DashboardController extends Controller
         $expenses = $this->journalTotalByType($request, 'expense', 'debit');
         $today = now()->toDateString();
 
-        return ApiResponse::success([
+        $payload = [
             'totalLeads' => (clone $leadQuery)->count(),
             'totalBatches' => (clone $batchQuery)->whereIn('status', $activeBatchStatuses)->count(),
             'totalStudents' => (clone $studentQuery)->count(),
             'revenue' => $revenue,
             'expenses' => $expenses,
             'netProfit' => $revenue - $expenses,
-            'pipelineValue' => (float) (clone $leadQuery)->whereIn('status', $activeLeadStatuses)->sum('deal_value'),
-            'leadsByStatus' => (clone $leadQuery)->selectRaw('status, COUNT(*) as count')->groupBy('status')->get(),
-            'leadsBySource' => (clone $leadQuery)
+        ];
+
+        // Admin / Branch admin — full dashboard
+        if (in_array($role, ['super_admin', 'branch_admin'])) {
+            $payload['pipelineValue'] = (float) (clone $leadQuery)->whereIn('status', $activeLeadStatuses)->sum('deal_value');
+            $payload['leadsByStatus'] = (clone $leadQuery)->selectRaw('status, COUNT(*) as count')->groupBy('status')->get();
+            $payload['leadsBySource'] = (clone $leadQuery)
                 ->selectRaw("COALESCE(NULLIF(source, ''), 'Direct / Unknown') as name, COUNT(*) as value")
-                ->groupBy('source')
-                ->get(),
-            'activeBatches' => (clone $batchQuery)
+                ->groupBy('source')->get();
+            $payload['batchByStatus'] = (clone $batchQuery)->selectRaw('status, COUNT(*) as count')->groupBy('status')->get();
+            $payload['activeBatches'] = (clone $batchQuery)
                 ->with('course:id,title,category')
                 ->whereIn('status', $activeBatchStatuses)
-                ->orderBy('start_date')
-                ->orderByDesc('id')
-                ->limit(8)
-                ->get()
-                ->map(fn (Batch $batch) => $this->formatBatch($batch)),
-            'hotLeadCount' => (clone $leadQuery)
-                ->whereIn('status', $activeLeadStatuses)
-                ->whereIn('priority', ['high', 'hot'])
-                ->count(),
-            'hotLeads' => (clone $leadQuery)
-                ->whereIn('status', $activeLeadStatuses)
-                ->whereIn('priority', ['high', 'hot'])
-                ->orderByRaw("FIELD(priority, 'hot', 'high')")
-                ->orderByDesc('score')
-                ->orderByDesc('created_at')
-                ->limit(6)
-                ->get(['id', 'name', 'phone', 'email', 'source', 'status', 'priority', 'score', 'deal_value', 'last_activity_at', 'created_at']),
-            'recentLeads' => (clone $leadQuery)
-                ->orderByDesc('created_at')
-                ->limit(6)
-                ->get(['id', 'name', 'phone', 'email', 'source', 'status', 'priority', 'score', 'deal_value', 'last_activity_at', 'created_at']),
-            'newLeadsToday' => (clone $leadQuery)->whereDate('created_at', $today)->count(),
-            'unpaidInvoices' => (float) (clone $invoiceQuery)
-                ->where('status', '!=', 'paid')
-                ->get(['amount', 'paid'])
-                ->sum(fn (Invoice $invoice) => max((float) $invoice->amount - (float) $invoice->paid, 0)),
-            'overdueInvoiceCount' => (clone $invoiceQuery)
-                ->whereIn('status', ['overdue', 'partial', 'pending'])
-                ->whereDate('due_date', '<', $today)
-                ->count(),
-            'liquidAccounts' => BranchScope::apply(Account::query(), $request)
-                ->where('type', 'asset')
-                ->whereIn('sub_type', ['bank', 'cash'])
-                ->where('is_active', true)
-                ->orderBy('name')
-                ->limit(6)
-                ->get(['id', 'name', 'sub_type']),
-            'financialTrend' => $this->financialTrend($request),
-        ]);
+                ->orderBy('start_date')->orderByDesc('id')->limit(8)
+                ->get()->map(fn (Batch $batch) => $this->formatBatch($batch));
+            $payload['hotLeadCount'] = (clone $leadQuery)
+                ->whereIn('status', $activeLeadStatuses)->whereIn('priority', ['high', 'hot'])->count();
+            $payload['hotLeads'] = (clone $leadQuery)
+                ->whereIn('status', $activeLeadStatuses)->whereIn('priority', ['high', 'hot'])
+                ->orderByRaw("CASE WHEN priority = 'hot' THEN 0 WHEN priority = 'high' THEN 1 ELSE 2 END")
+                ->orderByDesc('score')->orderByDesc('created_at')->limit(6)
+                ->get(['id', 'name', 'phone', 'email', 'source', 'status', 'priority', 'score', 'deal_value', 'last_activity_at', 'created_at']);
+            $payload['recentLeads'] = (clone $leadQuery)
+                ->orderByDesc('created_at')->limit(6)
+                ->get(['id', 'name', 'phone', 'email', 'source', 'status', 'priority', 'score', 'deal_value', 'last_activity_at', 'created_at']);
+            $payload['newLeadsToday'] = (clone $leadQuery)->whereDate('created_at', $today)->count();
+            $payload['unpaidInvoices'] = (float) (clone $invoiceQuery)
+                ->where('status', '!=', 'paid')->get(['amount', 'paid'])
+                ->sum(fn (Invoice $invoice) => max((float) $invoice->amount - (float) $invoice->paid, 0));
+            $payload['overdueInvoiceCount'] = (clone $invoiceQuery)
+                ->whereIn('status', ['overdue', 'partial', 'pending'])->whereDate('due_date', '<', $today)->count();
+            $payload['liquidAccounts'] = BranchScope::apply(Account::query(), $request)
+                ->where('type', 'asset')->whereIn('sub_type', ['bank', 'cash'])
+                ->where('is_active', true)->orderBy('name')->limit(6)
+                ->get(['id', 'name', 'sub_type']);
+            $payload['financialTrend'] = $this->financialTrend($request);
+        }
+
+        // Accounting role
+        if (in_array($role, ['accounting', 'accounts'])) {
+            $payload['liquidAccounts'] = BranchScope::apply(Account::query(), $request)
+                ->where('type', 'asset')->whereIn('sub_type', ['bank', 'cash'])
+                ->get(['id', 'name', 'balance', 'sub_type']);
+            $payload['unpaidInvoices'] = (float) (clone $invoiceQuery)
+                ->where('status', '!=', 'paid')->get(['amount', 'paid'])
+                ->sum(fn (Invoice $invoice) => max((float) $invoice->amount - (float) $invoice->paid, 0));
+            $payload['financialTrend'] = $this->financialTrend($request);
+        }
+
+        // CRM / Counselor role
+        if (in_array($role, ['crm', 'counselor'])) {
+            $payload['leadsByStatus'] = (clone $leadQuery)->selectRaw('status, COUNT(*) as count')->groupBy('status')->get();
+            $payload['recentLeads'] = (clone $leadQuery)->orderByDesc('created_at')->limit(5)->get();
+            $payload['newLeadsToday'] = (clone $leadQuery)->whereDate('created_at', $today)->count();
+        }
+
+        // Teacher / Trainer role
+        if (in_array($role, ['teacher', 'trainer'])) {
+            $payload['teacherBatches'] = (clone $batchQuery)->orderByDesc('start_date')->limit(3)->get();
+        }
+
+        // Brand Manager role
+        if ($role === 'brandmanager') {
+            $sourceMap = ['fb' => 'Facebook', 'org' => 'Organic', 'ref' => 'Referral', 'walk_in' => 'Walk In'];
+            $payload['leadsBySource'] = (clone $leadQuery)
+                ->selectRaw('source, COUNT(*) as count')->groupBy('source')->get()
+                ->map(fn ($row) => ['name' => $sourceMap[$row->source] ?? $row->source ?? 'Direct', 'value' => (int) $row->count]);
+            $payload['marketingSpend'] = 0;
+            $payload['costPerLead'] = 0;
+        }
+
+        return ApiResponse::success($payload);
     }
 
     private function formatBatch(Batch $batch): array

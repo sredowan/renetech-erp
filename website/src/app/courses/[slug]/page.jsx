@@ -10,6 +10,8 @@ import { fetchPublicJson } from "@/lib/serverApi";
 
 import { COURSE_FALLBACKS } from "@/lib/courseFallbacks";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   try {
     const res = await fetch(`${process.env.INTERNAL_API_URL || 'http://127.0.0.1:8000'}/api/public/courses`);

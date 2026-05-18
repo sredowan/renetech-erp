@@ -81,24 +81,70 @@ class HrmController extends Controller
 
     public function getStaffAttendance(Request $request): JsonResponse
     {
-        return ApiResponse::success(
-            BranchScope::apply(StaffAttendance::query(), $request)
-                ->with('user:id,name,email,role')
-                ->when($request->query('date'), fn ($query, $date) => $query->whereDate('date', $date))
-                ->when($request->query('user_id'), fn ($query, $id) => $query->where('user_id', $id))
-                ->orderByDesc('date')
-                ->get()
-        );
+        $branchId = BranchScope::selectedBranchId($request) ?: $request->user()?->branch_id;
+        $date = $request->query('date', now('Asia/Dhaka')->toDateString());
+
+        // Frontend expects {staff: [...]} where each item is a User with StaffProfile + StaffAttendances
+        $staffUsers = User::query()
+            ->where('branch_id', $branchId)
+            ->whereNotIn('role', ['student', 'guardian'])
+            ->with([
+                'staffProfile',
+                'staffAttendances' => fn($q) => $q->whereDate('date', $date),
+            ])
+            ->orderBy('name')
+            ->get();
+
+        return ApiResponse::success(['staff' => $staffUsers]);
     }
 
     public function getStaffAttendanceSummary(Request $request): JsonResponse
     {
-        $rows = BranchScope::apply(StaffAttendance::query(), $request)
-            ->selectRaw('status, COUNT(*) as count')
-            ->groupBy('status')
+        $branchId = BranchScope::selectedBranchId($request) ?: $request->user()?->branch_id;
+        $month = (int) $request->query('month', now()->month);
+        $year = (int) $request->query('year', now()->year);
+
+        // Get all staff users for this branch
+        $staffUsers = User::query()
+            ->where('branch_id', $branchId)
+            ->whereNotIn('role', ['student', 'guardian'])
+            ->select('id', 'name', 'email')
+            ->orderBy('name')
             ->get();
 
-        return ApiResponse::success($rows);
+        // Get all attendance records for this month
+        $records = StaffAttendance::query()
+            ->where('branch_id', $branchId)
+            ->whereMonth('date', $month)
+            ->whereYear('date', $year)
+            ->get()
+            ->groupBy('user_id');
+
+        // Build per-user summary: {user: {name}, entries: {day: {status}}, present: count}
+        $summary = $staffUsers->map(function ($user) use ($records) {
+            $userRecords = $records->get($user->id, collect());
+            $entries = [];
+            $presentCount = 0;
+            foreach ($userRecords as $rec) {
+                $day = (int) date('j', strtotime($rec->date));
+                $entries[$day] = [
+                    'status' => $rec->status,
+                    'check_in' => $rec->check_in,
+                    'check_out' => $rec->check_out,
+                    'notes' => $rec->notes,
+                ];
+                if (in_array($rec->status, ['present', 'late'])) {
+                    $presentCount++;
+                }
+            }
+            return [
+                'user' => ['id' => $user->id, 'name' => $user->name, 'email' => $user->email],
+                'entries' => $entries,
+                'present' => $presentCount,
+            ];
+        });
+
+        return ApiResponse::success($summary->values());
     }
 
     public function getMyStaffAttendance(Request $request): JsonResponse

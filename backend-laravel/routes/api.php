@@ -59,8 +59,21 @@ Route::prefix('v1')->middleware('throttle:api')->group(function () {
         Route::patch('/staff-password', [AuthController::class, 'setStaffPassword'])->middleware(['auth:sanctum', 'role:super_admin,branch_admin']);
     });
 
-    Route::get('/branches', [BranchController::class, 'index'])
-        ->middleware(['auth:sanctum', 'role:super_admin,branch_admin']);
+    Route::prefix('branches')->middleware(['auth:sanctum', 'role:super_admin,branch_admin'])->group(function () {
+        Route::get('/', [BranchController::class, 'index']);
+        Route::post('/', [BranchController::class, 'store']);
+        Route::put('/{id}', [BranchController::class, 'update']);
+        Route::post('/{id}/image', [BranchController::class, 'uploadImage']);
+        Route::patch('/{id}/deactivate', [BranchController::class, 'deactivate']);
+        Route::patch('/{id}/toggle-status', [BranchController::class, 'toggleStatus']);
+        Route::get('/{id}/summary', [BranchController::class, 'summary']);
+        Route::get('/{id}/students', [BranchController::class, 'students']);
+        Route::get('/{id}/staff', [BranchController::class, 'staff']);
+        Route::get('/{id}/courses', [BranchController::class, 'courses']);
+        Route::get('/{id}/contacts', [BranchController::class, 'contacts']);
+        Route::get('/{id}/assets', [BranchController::class, 'assets']);
+        Route::get('/{id}/accounting', [BranchController::class, 'accounting']);
+    });
 
     Route::get('/rbac/config', [RbacController::class, 'show'])->middleware('auth:sanctum');
     Route::put('/rbac/config', [RbacController::class, 'update'])->middleware(['auth:sanctum', 'role:super_admin,branch_admin']);
@@ -84,15 +97,15 @@ Route::prefix('v1')->middleware('throttle:api')->group(function () {
 
     Route::prefix('students')->middleware('auth:sanctum')->group(function () {
         Route::put('/me', [StudentController::class, 'updateMe']);
-        Route::post('/enroll', [StudentController::class, 'enroll'])->middleware('role:super_admin,branch_admin,counselor,trainer,staff');
+        Route::post('/enroll', [StudentController::class, 'enrollInBatch'])->middleware('role:super_admin,branch_admin,counselor,trainer,staff');
         Route::get('/', [StudentController::class, 'index'])->middleware('role:super_admin,branch_admin,counselor,trainer,staff,accounts');
         Route::post('/', [StudentController::class, 'store'])->middleware('role:super_admin,branch_admin,counselor,trainer,staff');
         Route::get('/{id}', [StudentController::class, 'show'])->middleware('role:super_admin,branch_admin,counselor,trainer,staff,accounts');
         Route::get('/{id}/activities', [StudentController::class, 'activities'])->middleware('role:super_admin,branch_admin,counselor,trainer,staff,accounts');
         Route::put('/{id}', [StudentController::class, 'update'])->middleware('role:super_admin,branch_admin,counselor,trainer,staff');
         Route::put('/{id}/photo', [StudentController::class, 'uploadPhoto'])->middleware('role:super_admin,branch_admin,counselor,trainer,staff');
-        Route::patch('/{id}/management', [StudentController::class, 'update'])->middleware('role:super_admin,branch_admin,counselor,trainer,staff');
-        Route::patch('/{id}/success-record', [StudentController::class, 'update'])->middleware('role:super_admin,branch_admin,counselor,trainer,staff');
+        Route::patch('/{id}/management', [StudentController::class, 'updateManagement'])->middleware('role:super_admin,branch_admin,counselor,trainer,staff');
+        Route::patch('/{id}/success-record', [StudentController::class, 'updateSuccessRecord'])->middleware('role:super_admin,branch_admin,counselor,trainer,staff');
         Route::post('/{id}/activities', [StudentController::class, 'createActivity'])->middleware('role:super_admin,branch_admin,counselor,trainer,staff');
         Route::post('/{id}/request-partner-access', [StudentController::class, 'requestPartnerAccess'])->middleware('role:super_admin,branch_admin,counselor,trainer,staff');
     });

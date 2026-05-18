@@ -77,15 +77,78 @@ class PayrollController extends Controller
 
     public function getPayrollHistory(Request $request): JsonResponse
     {
-        return ApiResponse::success(
-            BranchScope::apply(Payroll::query(), $request)
-                ->with('staff:id,name,email')
-                ->when($request->query('month'), fn ($query, $month) => $query->where('month', $month))
-                ->when($request->query('year'), fn ($query, $year) => $query->where('year', $year))
-                ->orderByDesc('year')
-                ->orderByDesc('month')
-                ->get()
-        );
+        $month = $request->query('month');
+        $year = $request->query('year');
+        $branchId = BranchScope::selectedBranchId($request) ?: $request->user()?->branch_id;
+
+        $payrolls = BranchScope::apply(Payroll::query(), $request)
+            ->with('staff:id,name,email')
+            ->when($month, fn ($q) => $q->where('month', $month))
+            ->when($year, fn ($q) => $q->where('year', $year))
+            ->orderByDesc('year')->orderByDesc('month')
+            ->get();
+
+        $enriched = $payrolls->map(function ($payroll) use ($branchId, $month, $year) {
+            $item = $payroll->toArray();
+            $staffId = $item['staff_id'];
+            $m = $item['month'] ?? $month;
+            $y = $item['year'] ?? $year;
+
+            // Pay rule
+            $payRule = StaffPayRule::query()->where('user_id', $staffId)->where('branch_id', $branchId)->first();
+            $item['pay_rule'] = $payRule;
+
+            // Accounting expense
+            $expense = $payroll->expense_id
+                ? Expense::query()->where('id', $payroll->expense_id)->where('branch_id', $branchId)->first()
+                : Expense::query()->where('payroll_id', $payroll->id)->where('branch_id', $branchId)->first();
+            $item['accounting_expense'] = $expense;
+
+            // Teacher sessions
+            $sessions = $m && $y ? TeacherSession::query()
+                ->where('teacher_id', $staffId)->where('branch_id', $branchId)
+                ->where('status', 'approved')
+                ->whereBetween('session_date', [
+                    sprintf('%d-%02d-01', $y, $m),
+                    date('Y-m-t', mktime(0, 0, 0, $m, 1, $y)),
+                ])->get() : collect();
+
+            $item['session_summary'] = [
+                'session_count' => $sessions->count(),
+                'total_hours' => $sessions->sum('duration_hours'),
+                'student_count' => $sessions->sum('student_count'),
+                'amount' => $sessions->sum('amount'),
+            ];
+
+            // Deductions
+            $deductions = $m && $y ? PayrollDeduction::query()
+                ->where('staff_id', $staffId)->where('branch_id', $branchId)
+                ->where('month', $m)->where('year', $y)->get() : collect();
+            $item['deductions_detail'] = $deductions;
+            $item['deductions_summary'] = $this->summarizeAdjustments($deductions);
+
+            // Bonuses
+            $bonuses = $m && $y ? PayrollBonus::query()
+                ->where('staff_id', $staffId)->where('branch_id', $branchId)
+                ->where('month', $m)->where('year', $y)->get() : collect();
+            $item['bonuses_detail'] = $bonuses;
+            $item['bonuses_summary'] = $this->summarizeAdjustments($bonuses);
+
+            return $item;
+        });
+
+        return ApiResponse::success($enriched);
+    }
+
+    private function summarizeAdjustments($items): array
+    {
+        $summary = ['total_count' => 0, 'approved' => 0, 'pending' => 0, 'applied' => 0, 'rejected' => 0];
+        foreach ($items as $item) {
+            $status = $item->status ?? 'pending';
+            $summary['total_count']++;
+            $summary[$status] = ($summary[$status] ?? 0) + (float) ($item->amount ?? 0);
+        }
+        return $summary;
     }
 
     public function getDeductions(Request $request): JsonResponse

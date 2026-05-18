@@ -13,7 +13,6 @@ class LiquidityMovement extends Model
     protected function casts(): array
     {
         return [
-            'movement_date' => 'date',
             'amount' => 'decimal:2',
             'previous_balance' => 'decimal:2',
             'new_balance' => 'decimal:2',
@@ -31,4 +30,15 @@ class LiquidityMovement extends Model
     {
         return $this->belongsTo(Account::class, 'account_id');
     }
+
+    public function relatedAccount(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'related_account_id');
+    }
+
+    public function creator(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }
+

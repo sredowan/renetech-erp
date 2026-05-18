@@ -15,14 +15,21 @@ class ExpenseController extends Controller
     public function index(Request $request): JsonResponse
     {
         $expenses = BranchScope::apply(Expense::query(), $request)
-            ->with('account:id,code,name,type')
+            ->with(['account:id,code,name,type,sub_type'])
             ->when($request->query('status'), fn ($query, $value) => $query->where('status', $value))
             ->when($request->query('category'), fn ($query, $value) => $query->where('category', $value))
-            ->when($request->query('start'), fn ($query, $value) => $query->whereDate('date', '>=', $value))
-            ->when($request->query('end'), fn ($query, $value) => $query->whereDate('date', '<=', $value))
+            ->when($request->query('from') ?: $request->query('start'), fn ($query, $value) => $query->whereDate('date', '>=', $value))
+            ->when($request->query('to') ?: $request->query('end'), fn ($query, $value) => $query->whereDate('date', '<=', $value))
             ->orderByDesc('date')
             ->orderByDesc('id')
             ->get();
+
+        // The frontend reads expense.Account.name — alias the 'account' relation key
+        $expenses->each(function ($exp) {
+            if ($exp->relationLoaded('account') && $exp->account) {
+                $exp->setAttribute('Account', $exp->account);
+            }
+        });
 
         return ApiResponse::success($expenses);
     }
@@ -30,12 +37,30 @@ class ExpenseController extends Controller
     public function split(Request $request): JsonResponse
     {
         $query = BranchScope::apply(Expense::query(), $request)->where('status', '!=', 'deleted');
-        $rows = $query->selectRaw('COALESCE(category, "Uncategorized") as category, SUM(amount) as amount')
+
+        $from = $request->query('from');
+        $to = $request->query('to');
+        if ($from) $query->whereDate('date', '>=', $from);
+        if ($to) $query->whereDate('date', '<=', $to);
+
+        $rows = $query->selectRaw('COALESCE(category, "Uncategorized") as category, SUM(amount) as total')
             ->groupBy('category')
-            ->orderByDesc('amount')
+            ->orderByDesc('total')
             ->get();
 
-        return ApiResponse::success($rows);
+        $grandTotal = $rows->sum('total');
+        $split = $rows->map(function ($row) use ($grandTotal) {
+            return [
+                'category' => $row->category,
+                'total' => (float) $row->total,
+                'percentage' => $grandTotal > 0 ? round(((float) $row->total / $grandTotal) * 100, 1) : 0,
+            ];
+        });
+
+        return ApiResponse::success([
+            'split' => $split,
+            'grandTotal' => $grandTotal,
+        ]);
     }
 
     public function store(Request $request): JsonResponse
@@ -123,12 +148,37 @@ class ExpenseController extends Controller
 
     public function categories(Request $request): JsonResponse
     {
-        return ApiResponse::success(BranchScope::apply(ExpenseCategory::query(), $request)->with('children')->whereNull('parent_id')->orderBy('name')->get());
+        $categories = BranchScope::apply(ExpenseCategory::query(), $request)
+            ->with('children')
+            ->whereNull('parent_id')
+            ->orderBy('name')
+            ->get();
+
+        // Frontend expects PascalCase 'Children' key (Sequelize convention)
+        $categories->each(function ($cat) {
+            if ($cat->relationLoaded('children')) {
+                $cat->setAttribute('Children', $cat->children);
+            }
+        });
+
+        return ApiResponse::success($categories);
     }
 
     public function categoriesFlat(Request $request): JsonResponse
     {
-        return ApiResponse::success(BranchScope::apply(ExpenseCategory::query(), $request)->orderBy('name')->get());
+        $flat = BranchScope::apply(ExpenseCategory::query(), $request)
+            ->with('parent')
+            ->orderBy('name')
+            ->get();
+
+        // Frontend expects PascalCase 'Parent' key (Sequelize convention)
+        $flat->each(function ($cat) {
+            if ($cat->relationLoaded('parent') && $cat->parent) {
+                $cat->setAttribute('Parent', $cat->parent);
+            }
+        });
+
+        return ApiResponse::success($flat);
     }
 
     public function createCategory(Request $request): JsonResponse

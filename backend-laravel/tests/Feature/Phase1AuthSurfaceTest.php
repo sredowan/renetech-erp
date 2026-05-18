@@ -22,6 +22,17 @@ class Phase1AuthSurfaceTest extends TestCase
         $this->getJson('/api/v1/auth/me')->assertUnauthorized();
     }
 
+    public function test_plain_api_auth_request_returns_json_401_without_login_redirect(): void
+    {
+        $response = $this->get('/api/v1/auth/me');
+
+        $response
+            ->assertUnauthorized()
+            ->assertJson([
+                'error' => 'Unauthenticated.',
+            ]);
+    }
+
     public function test_phase_1_routes_are_registered(): void
     {
         $routes = collect(app('router')->getRoutes())->map(fn ($route) => implode('|', $route->methods()).' '.$route->uri());

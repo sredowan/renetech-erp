@@ -9,6 +9,9 @@ import { fetchPublicJson } from "@/lib/serverApi";
 import TableOfContents from "@/components/blog/TableOfContents";
 import BlogCard from "@/components/blog/BlogCard";
 import ShareButtons from "@/components/blog/ShareButtons";
+import { STATIC_BLOG_SLUGS, getStaticBlog } from "@/lib/staticFallbacks";
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   try {
@@ -20,11 +23,11 @@ export async function generateStaticParams() {
       }
     }
   } catch {}
-  return [];
+  return STATIC_BLOG_SLUGS.map((slug) => ({ slug }));
 }
 
 async function getBlogDetails(slug) {
-  return fetchPublicJson(`/api/public/blog/${slug}`, { fallback: null });
+  return fetchPublicJson(`/api/public/blog/${slug}`, { fallback: getStaticBlog(slug) });
 }
 
 async function getRelatedBlogs(currentSlug) {

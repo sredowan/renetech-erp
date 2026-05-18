@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\RbacConfig;
 use App\Models\User;
 use App\Support\ApiResponse;
+use App\Support\PasswordVerifier;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -35,14 +35,14 @@ class AuthController extends Controller
             return ApiResponse::error('Invalid credentials', 401);
         }
 
-        // Node.js bcryptjs uses $2b$ prefix; PHP bcrypt expects $2y$. They are compatible.
-        $storedHash = $user->password;
-        if (str_starts_with($storedHash, '$2b$')) {
-            $storedHash = '$2y$' . substr($storedHash, 4);
+        $passwordCheck = PasswordVerifier::verify($data['password'], $user->password);
+        if (!$passwordCheck['valid']) {
+            return ApiResponse::error('Invalid credentials', 401);
         }
 
-        if (!Hash::check($data['password'], $storedHash)) {
-            return ApiResponse::error('Invalid credentials', 401);
+        if ($passwordCheck['needs_rehash']) {
+            $user->password = $data['password'];
+            $user->save();
         }
 
         if ($user->status && $user->status !== 'active') {

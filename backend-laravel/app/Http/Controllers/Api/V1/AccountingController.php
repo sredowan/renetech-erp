@@ -69,15 +69,72 @@ class AccountingController extends Controller
 
     public function getJournal(Request $request): JsonResponse
     {
-        $journal = BranchScope::apply(JournalEntry::query(), $request)
-            ->with(['lines.account:id,code,name,type', 'poster:id,name,email'])
-            ->when($request->query('start'), fn ($query, $date) => $query->whereDate('date', '>=', $date))
-            ->when($request->query('end'), fn ($query, $date) => $query->whereDate('date', '<=', $date))
-            ->orderByDesc('date')
-            ->orderByDesc('id')
-            ->get();
+        // The frontend (AdminJournal.jsx) expects flat JournalLine records
+        // with nested JournalEntry and Account relations, not grouped entries.
+        $query = JournalLine::query()
+            ->with([
+                'journalEntry:id,ref_no,description,date,branch_id,posted_by',
+                'journalEntry.poster:id,name,email',
+                'account:id,code,name,type',
+            ])
+            ->whereHas('journalEntry', function ($q) use ($request) {
+                BranchScope::apply($q, $request);
 
-        return ApiResponse::success($journal);
+                // Date filters — frontend sends 'from'/'to'
+                if ($request->query('from')) {
+                    $q->whereDate('date', '>=', $request->query('from'));
+                }
+                if ($request->query('to')) {
+                    $q->whereDate('date', '<=', $request->query('to'));
+                }
+            });
+
+        // Search filter
+        if ($search = $request->query('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->whereHas('journalEntry', fn ($je) => $je->where('description', 'like', "%{$search}%")
+                    ->orWhere('ref_no', 'like', "%{$search}%"))
+                  ->orWhere('notes', 'like', "%{$search}%");
+            });
+        }
+
+        // Account type filter
+        if ($type = $request->query('type')) {
+            if ($type !== 'all') {
+                $query->whereHas('account', fn ($q) => $q->where('type', $type));
+            }
+        }
+
+        // Account ID filter
+        if ($accountId = $request->query('account_id')) {
+            if ($accountId !== 'all') {
+                $query->where('account_id', $accountId);
+            }
+        }
+
+        $lines = $query->orderByDesc('id')->get();
+
+        // Rename relations to PascalCase to match frontend expectations
+        // (line.JournalEntry, line.Account, line.JournalEntry.Poster)
+        $result = $lines->map(function ($line) {
+            $data = $line->toArray();
+            // Rename snake_case keys to PascalCase for the frontend
+            if (isset($data['journal_entry'])) {
+                $data['JournalEntry'] = $data['journal_entry'];
+                if (isset($data['JournalEntry']['poster'])) {
+                    $data['JournalEntry']['Poster'] = $data['JournalEntry']['poster'];
+                    unset($data['JournalEntry']['poster']);
+                }
+                unset($data['journal_entry']);
+            }
+            if (isset($data['account'])) {
+                $data['Account'] = $data['account'];
+                unset($data['account']);
+            }
+            return $data;
+        });
+
+        return ApiResponse::success($result);
     }
 
     public function getLedgerSummary(Request $request): JsonResponse

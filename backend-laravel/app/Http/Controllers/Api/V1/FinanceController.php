@@ -110,11 +110,255 @@ class FinanceController extends Controller
 
     public function reportSuite(Request $request): JsonResponse
     {
+        $branchId = BranchScope::selectedBranchId($request);
+        $from = $request->query('from');
+        $to = $request->query('to');
+
+        // ── Income rows (successful transactions) ──
+        $txQuery = BranchScope::apply(Transaction::query(), $request)
+            ->where('status', 'success')
+            ->with([
+                'enrollment.student.user:id,name,email',
+                'enrollment.batch.course:id,title',
+                'account:id,name,code',
+            ])
+            ->orderByDesc('paid_at');
+
+        if ($from) $txQuery->whereDate('paid_at', '>=', $from);
+        if ($to) $txQuery->whereDate('paid_at', '<=', $to);
+
+        $transactions = $txQuery->get();
+        $incomeRows = $transactions->map(function ($tx) {
+            $enrollment = $tx->enrollment ?? $tx->Enrollment ?? null;
+            $student = $enrollment?->student ?? $enrollment?->Student ?? null;
+            $user = $student?->user ?? $student?->User ?? null;
+            $batch = $enrollment?->batch ?? $enrollment?->Batch ?? $student?->batch ?? $student?->Batch ?? null;
+            $course = $batch?->course ?? $batch?->Course ?? null;
+            $account = $tx->account ?? $tx->Account ?? null;
+            $studentName = $user?->name ?? 'Walk-in / Manual';
+            $courseName = $course?->title ?? 'General Income';
+            return [
+                'id' => $tx->id,
+                'date' => $tx->paid_at,
+                'receipt_no' => $tx->receipt_no,
+                'transaction_ref' => $tx->transaction_ref,
+                'amount' => (float) ($tx->amount ?? 0),
+                'method' => $tx->method,
+                'source' => $tx->source ?? 'pos_fee',
+                'source_label' => ucfirst(str_replace('_', ' ', $tx->source ?? 'POS Fee')),
+                'student_name' => $studentName,
+                'account_name' => $account?->name ?? 'Unmapped',
+                'description' => $studentName !== 'Walk-in / Manual'
+                    ? "{$studentName} · {$courseName}"
+                    : ucfirst(str_replace('_', ' ', $tx->source ?? 'POS Fee')),
+            ];
+        })->values()->all();
+        $totalIncome = array_sum(array_column($incomeRows, 'amount'));
+
+        // ── Expense rows ──
+        $expQuery = BranchScope::apply(Expense::query(), $request)
+            ->where('status', 'approved')
+            ->with('account:id,name,code')
+            ->orderByDesc('date');
+        if ($from) $expQuery->whereDate('date', '>=', $from);
+        if ($to) $expQuery->whereDate('date', '<=', $to);
+
+        $expenses = $expQuery->get();
+        $expenseRows = $expenses->map(function ($e) {
+            $account = $e->account ?? $e->Account ?? null;
+            return [
+                'id' => $e->id,
+                'date' => $e->date,
+                'category' => $e->category ?? $account?->name ?? 'Uncategorized',
+                'description' => $e->description,
+                'amount' => (float) ($e->amount ?? 0),
+                'status' => $e->status,
+                'payment_method' => $e->payment_method,
+                'account_name' => $account?->name ?? 'Unknown',
+            ];
+        })->values()->all();
+        $totalExpense = array_sum(array_column($expenseRows, 'amount'));
+
+        // ── Bank statement (journal lines for liquid accounts) ──
+        $liquidAccounts = Account::query()
+            ->where('type', 'asset')
+            ->where('is_active', true)
+            ->where(function ($q) {
+                $q->where('code', 'like', '10%')
+                  ->orWhereIn('sub_type', ['cash', 'bank', 'mfs']);
+            })
+            ->when($branchId, fn ($q) => $q->where('branch_id', $branchId))
+            ->orderBy('code')
+            ->get();
+
+        $liquidIds = $liquidAccounts->pluck('id')->all();
+        $bankRows = [];
+        if ($liquidIds) {
+            $bankQuery = JournalLine::query()
+                ->whereIn('account_id', $liquidIds)
+                ->with([
+                    'account:id,name,code,sub_type',
+                    'journalEntry:id,date,ref_no,description,branch_id',
+                ])
+                ->whereHas('journalEntry', function ($q) use ($branchId, $from, $to) {
+                    if ($branchId) $q->where('branch_id', $branchId);
+                    if ($from) $q->whereDate('date', '>=', $from);
+                    if ($to) $q->whereDate('date', '<=', $to);
+                })
+                ->orderByDesc('id');
+
+            $bankRows = $bankQuery->get()->map(function ($line) {
+                $je = $line->journalEntry ?? $line->JournalEntry ?? null;
+                $acc = $line->account ?? $line->Account ?? null;
+                $debit = (float) ($line->debit ?? 0);
+                $credit = (float) ($line->credit ?? 0);
+                return [
+                    'id' => $line->id,
+                    'date' => $je?->date,
+                    'reference' => $je?->ref_no,
+                    'description' => $je?->description,
+                    'account_name' => $acc?->name ?? 'Account',
+                    'account_code' => $acc?->code ?? '',
+                    'debit' => $debit,
+                    'credit' => $credit,
+                    'amount' => max($debit, $credit),
+                    'entry_type' => $debit > 0 ? 'inflow' : 'outflow',
+                    'balance_effect' => $debit - $credit,
+                ];
+            })->values()->all();
+        }
+
+        // ── Receivables (unpaid invoices) ──
+        $invQuery = BranchScope::apply(Invoice::query(), $request)
+            ->with([
+                'student.user:id,name,email',
+                'student.batch.course:id,title',
+                'enrollment.batch.course:id,title',
+            ])
+            ->orderByDesc('due_date');
+        if ($from) $invQuery->whereDate('due_date', '>=', $from);
+        if ($to) $invQuery->whereDate('due_date', '<=', $to);
+
+        $receivableRows = $invQuery->get()
+            ->map(function ($inv) {
+                $student = $inv->student ?? $inv->Student ?? null;
+                $user = $student?->user ?? $student?->User ?? null;
+                $batch = $student?->batch ?? $student?->Batch ?? null;
+                if (!$batch) {
+                    $enrollment = $inv->enrollment ?? $inv->Enrollment ?? null;
+                    $batch = $enrollment?->batch ?? $enrollment?->Batch ?? null;
+                }
+                $due = max((float) ($inv->amount ?? 0) - (float) ($inv->paid ?? 0), 0);
+                return [
+                    'invoice_id' => $inv->id,
+                    'invoice_no' => $inv->invoice_no,
+                    'invoice_number' => $inv->invoice_no,
+                    'due_date' => $inv->due_date,
+                    'student_name' => $user?->name ?? 'Unknown',
+                    'batch_name' => $batch?->code ?? $batch?->name ?? 'N/A',
+                    'course_name' => ($batch?->course ?? $batch?->Course)?->title ?? 'N/A',
+                    'amount' => (float) ($inv->amount ?? 0),
+                    'paid' => (float) ($inv->paid ?? 0),
+                    'due' => $due,
+                    'status' => $inv->status,
+                ];
+            })
+            ->filter(fn ($r) => $r['due'] > 0)
+            ->values()->all();
+
+        // ── Referral rows ──
+        $refRows = [];
+        if (class_exists(\App\Models\Student::class)) {
+            $refQuery = \App\Models\Student::query()
+                ->where('referral_amount', '>', 0)
+                ->with(['user:id,name,email', 'batch.course:id,title']);
+            if ($branchId) $refQuery->where('branch_id', $branchId);
+            if ($from) $refQuery->whereDate('updated_at', '>=', $from);
+            if ($to) $refQuery->whereDate('updated_at', '<=', $to);
+
+            $refRows = $refQuery->orderByDesc('enrollment_date')->get()->map(function ($s) {
+                $user = $s->user ?? $s->User ?? null;
+                $batch = $s->batch ?? $s->Batch ?? null;
+                $course = $batch?->course ?? $batch?->Course ?? null;
+                return [
+                    'id' => $s->id,
+                    'student_name' => $user?->name ?? 'Unknown',
+                    'course_name' => $course?->title ?? 'N/A',
+                    'batch_name' => $batch?->code ?? 'Unassigned',
+                    'enrollment_date' => $s->enrollment_date,
+                    'referred_by' => $s->referred_by ?? 'Unknown',
+                    'amount' => (float) ($s->referral_amount ?? 0),
+                ];
+            })->values()->all();
+        }
+
+        // ── Trial balance ──
+        $tbQuery = DB::table('accounts')
+            ->leftJoin('journal_lines', 'journal_lines.account_id', '=', 'accounts.id')
+            ->leftJoin('journal_entries', 'journal_entries.id', '=', 'journal_lines.journal_entry_id')
+            ->select('accounts.id', 'accounts.code as account_code', 'accounts.name as account_name', 'accounts.type')
+            ->selectRaw('COALESCE(SUM(journal_lines.debit), 0) as debit, COALESCE(SUM(journal_lines.credit), 0) as credit')
+            ->groupBy('accounts.id', 'accounts.code', 'accounts.name', 'accounts.type')
+            ->orderBy('accounts.code');
+        if ($branchId) $tbQuery->where('accounts.branch_id', $branchId);
+        if ($from) $tbQuery->where('journal_entries.date', '>=', $from);
+        if ($to) $tbQuery->where('journal_entries.date', '<=', $to);
+
+        $tbRows = $tbQuery->get()->filter(fn ($r) => (float) $r->debit > 0 || (float) $r->credit > 0)
+            ->map(function ($r) {
+                return [
+                    'account_name' => $r->account_name,
+                    'account_code' => $r->account_code,
+                    'type' => $r->type,
+                    'debit' => (float) $r->debit,
+                    'credit' => (float) $r->credit,
+                    'balance' => (float) $r->debit - (float) $r->credit,
+                ];
+            })->values()->all();
+
+        $tbDebits = array_sum(array_column($tbRows, 'debit'));
+        $tbCredits = array_sum(array_column($tbRows, 'credit'));
+
+        // ── Summary ──
+        $totalReferralPayout = array_sum(array_column($refRows, 'amount'));
+        $totalReceivables = array_sum(array_column($receivableRows, 'due'));
+
         return ApiResponse::success([
-            'overview' => $this->overview($request)->getData(true),
-            'profitLoss' => $this->profitLoss($request)->getData(true),
-            'trialBalance' => $this->trialBalance($request)->getData(true),
-            'cashflow' => $this->cashflow($request)->getData(true),
+            'range' => ['from' => $from, 'to' => $to],
+            'summary' => [
+                'total_income' => $totalIncome,
+                'total_expense' => $totalExpense,
+                'net_profit' => $totalIncome - $totalExpense,
+                'total_receivables' => $totalReceivables,
+                'income_transactions' => count($incomeRows),
+                'expense_transactions' => count($expenseRows),
+                'total_referral_payout' => $totalReferralPayout,
+            ],
+            'income' => [
+                'total' => $totalIncome,
+                'rows' => $incomeRows,
+            ],
+            'expenses' => [
+                'total' => $totalExpense,
+                'rows' => $expenseRows,
+            ],
+            'receivables' => [
+                'total_due' => $totalReceivables,
+                'rows' => $receivableRows,
+            ],
+            'bank_statement' => [
+                'rows' => $bankRows,
+            ],
+            'trial_balance' => [
+                'rows' => $tbRows,
+                'total_debits' => $tbDebits,
+                'total_credits' => $tbCredits,
+                'difference' => $tbDebits - $tbCredits,
+            ],
+            'referrals' => [
+                'total' => $totalReferralPayout,
+                'rows' => $refRows,
+            ],
         ]);
     }
 

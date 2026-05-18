@@ -13,6 +13,7 @@ use App\Models\Lead;
 use App\Models\Opportunity;
 use App\Models\Student;
 use App\Models\User;
+use App\Services\FacebookCapiService;
 use App\Support\ApiResponse;
 use App\Support\BranchScope;
 use Illuminate\Http\JsonResponse;
@@ -54,6 +55,20 @@ class CrmController extends Controller
             'branch_id' => BranchScope::selectedBranchId($request) ?: $request->user()->branch_id,
             'counselor_id' => $request->input('counselor_id', $request->user()->id),
         ]));
+
+        // Fire Facebook CAPI 'Lead' event (non-blocking)
+        try {
+            $course = $lead->course_id ? Course::find($lead->course_id) : null;
+            FacebookCapiService::sendLeadEvent($request, [
+                'name' => $lead->name,
+                'email' => $lead->email,
+                'phone' => $lead->phone,
+                'courseName' => $course?->title ?? 'General Enquiry',
+                'value' => (float) ($lead->deal_value ?? 0),
+            ]);
+        } catch (\Throwable $e) {
+            // Non-blocking — log and continue
+        }
 
         return ApiResponse::success($lead, 201);
     }
@@ -218,6 +233,20 @@ class CrmController extends Controller
 
             return compact('user', 'student', 'enrollment', 'invoice', 'lead');
         });
+
+        // Fire Facebook CAPI 'CompleteRegistration' event (non-blocking)
+        try {
+            $course = Course::find($lead->course_id);
+            FacebookCapiService::sendRegistrationEvent($request, [
+                'name' => $result['user']->name ?? $lead->name,
+                'email' => $result['user']->email ?? $lead->email,
+                'phone' => $result['student']->mobile_no ?? $lead->phone,
+                'courseName' => $course?->title ?? 'Course Enrollment',
+                'value' => (float) ($course?->base_fee ?? $lead->deal_value ?? 0),
+            ]);
+        } catch (\Throwable $e) {
+            // Non-blocking — log and continue
+        }
 
         return ApiResponse::success(array_merge($result, [
             'message' => 'Student created & pending invoice sent to POS. Go to Finance → POS to collect fees.',

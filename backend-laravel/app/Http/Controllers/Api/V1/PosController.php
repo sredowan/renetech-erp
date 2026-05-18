@@ -17,6 +17,7 @@ use App\Models\Opportunity;
 use App\Models\Student;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Services\FacebookCapiService;
 use App\Support\ApiResponse;
 use App\Support\BranchScope;
 use Illuminate\Http\JsonResponse;
@@ -172,6 +173,29 @@ class PosController extends Controller
                 ['journal_entry_id' => $entry->id, 'account_id' => $debitAccount->id, 'debit' => $amount, 'credit' => 0, 'notes' => $notes ?: 'POS Payment', 'created_at' => now(), 'updated_at' => now()],
                 ['journal_entry_id' => $entry->id, 'account_id' => $creditAccount->id, 'debit' => 0, 'credit' => $amount, 'notes' => 'Tuition Revenue', 'created_at' => now(), 'updated_at' => now()],
             ]);
+
+            // Fire Facebook CAPI 'Purchase' event (non-blocking)
+            try {
+                $student = $enrollment->student ?? Student::find($enrollment->student_id);
+                $user = $student?->user ?? ($student?->user_id ? User::find($student->user_id) : null);
+                $batch = $enrollment->batch ?? Batch::find($enrollment->batch_id);
+                $course = $batch?->course ?? ($batch?->course_id ? Course::find($batch->course_id) : null);
+
+                FacebookCapiService::sendPurchaseEvent($request, [
+                    'name' => $user?->name ?? 'Walk-in',
+                    'email' => $user?->email ?? $student?->email,
+                    'phone' => $student?->mobile_no,
+                    'courseName' => $course?->title ?? 'Course Enrollment',
+                    'courseId' => $course?->id,
+                    'value' => $amount,
+                    'orderId' => $txn->id,
+                    'paymentMethod' => $method,
+                    'branchId' => $branchId,
+                    'externalId' => $student?->id,
+                ]);
+            } catch (\Throwable $e) {
+                // Non-blocking — log and continue
+            }
 
             return ApiResponse::success([
                 'message' => 'Fee collected successfully',

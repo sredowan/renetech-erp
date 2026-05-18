@@ -12,6 +12,7 @@ use App\Models\Lead;
 use App\Models\Opportunity;
 use App\Models\Resource;
 use App\Models\SystemSetting;
+use App\Services\FacebookCapiService;
 use App\Support\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -130,6 +131,21 @@ class PublicController extends Controller
 
         $result = $this->createPublicLead($request, 'Website Enquiry', $request->input('message'));
 
+        // Fire Facebook CAPI 'Lead' event (non-blocking)
+        try {
+            $lead = $result['lead'];
+            $course = $lead->course_id ? Course::find($lead->course_id) : null;
+            FacebookCapiService::sendLeadEvent($request, [
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'phone' => $request->input('phone'),
+                'courseName' => $course?->title ?? 'Website Enquiry',
+                'value' => (float) ($course?->base_fee ?? 0),
+            ]);
+        } catch (\Throwable $e) {
+            // Non-blocking
+        }
+
         return ApiResponse::success(['message' => 'Enquiry submitted successfully! We will contact you shortly.', 'leadId' => $result['lead']->id], 201);
     }
 
@@ -138,6 +154,21 @@ class PublicController extends Controller
         $request->validate(['name' => ['required', 'string'], 'email' => ['nullable', 'email']]);
 
         $result = $this->createPublicLead($request, 'website', $request->input('message'));
+
+        // Fire Facebook CAPI 'Lead' event (non-blocking)
+        try {
+            $lead = $result['lead'];
+            $course = $lead->course_id ? Course::find($lead->course_id) : null;
+            FacebookCapiService::sendLeadEvent($request, [
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'phone' => $request->input('phone'),
+                'courseName' => $course?->title ?? 'Course Enquiry',
+                'value' => (float) ($course?->base_fee ?? 0),
+            ]);
+        } catch (\Throwable $e) {
+            // Non-blocking
+        }
 
         return ApiResponse::success(['message' => 'Enquiry submitted successfully! We will get in touch shortly.', 'leadId' => $result['lead']->id], 201);
     }
@@ -149,6 +180,21 @@ class PublicController extends Controller
         $request->validate(['name' => ['required', 'string'], 'phone' => ['required', 'string'], 'email' => ['required', 'email']]);
 
         $result = $this->createPublicLead($request, 'Student Booking', $request->input('message'));
+
+        // Fire Facebook CAPI 'Lead' event (non-blocking)
+        try {
+            $lead = $result['lead'];
+            $course = $lead->course_id ? Course::find($lead->course_id) : null;
+            FacebookCapiService::sendLeadEvent($request, [
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'phone' => $request->input('phone'),
+                'courseName' => $course?->title ?? 'Student Booking',
+                'value' => (float) ($course?->base_fee ?? 0),
+            ]);
+        } catch (\Throwable $e) {
+            // Non-blocking
+        }
 
         return ApiResponse::success(['message' => 'Booking submitted successfully! We will contact you shortly.', 'leadId' => $result['lead']->id], 201);
     }

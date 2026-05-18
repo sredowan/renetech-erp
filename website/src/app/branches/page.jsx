@@ -7,8 +7,8 @@ import { fetchPublicJson } from "@/lib/serverApi";
 
 
 export const metadata = {
-  title: "Language Academy Branches - PTE, IELTS and English Courses in Bangladesh",
-  description: "Find active Language Academy branches and see branch-specific PTE, IELTS and English courses, schedules, contact details, and booking links.",
+  title: "Our Branches | Best PTE Coaching Centre Dhaka & IELTS Training",
+  description: "Find our PTE centre branches in Dhaka. Discover schedules for PTE practice online, offline PTE courses, and IELTS coaching at Language Academy.",
   alternates: { canonical: "https://languageacademy.com.bd/branches" },
 };
 

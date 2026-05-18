@@ -1,0 +1,157 @@
+1:"$Sreact.fragment"
+6:I[78557,["/_next/static/chunks/0btl8g2wson3c.js","/_next/static/chunks/10~t6emm0lg0r.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/09wk2~d0_pc0q.js"],"default"]
+a:I[97367,["/_next/static/chunks/0btl8g2wson3c.js","/_next/static/chunks/10~t6emm0lg0r.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+b:"$Sreact.suspense"
+2:Tbb9,{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What skills are tested in the PTE Listening section?","acceptedAnswer":{"@type":"Answer","text":"Identifying key information from spoken audio clips, understanding different English accents, accurate note-taking under time pressure, identifying errors in spoken content, writing from dictation, and selecting the most appropriate summary."}},{"@type":"Question","name":"How do I choose the right course?","acceptedAnswer":{"@type":"Answer","text":"Start with a free consultation. Our academic advisors assess your current level, timeline, and target score to recommend the perfect course and batch for you."}},{"@type":"Question","name":"Do you offer flexible schedules?","acceptedAnswer":{"@type":"Answer","text":"Yes. We run weekday morning, afternoon, and weekend batches so you can fit serious preparation into your busy routine."}},{"@type":"Question","name":"Is mock test support included?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. All courses include AI-scored full-length mock tests, detailed analytics, and trainer-led review sessions."}},{"@type":"Question","name":"What is the class size?","acceptedAnswer":{"@type":"Answer","text":"We maintain a maximum of 12 students per cohort to ensure personalized attention, stronger accountability, and faster improvement."}},{"@type":"Question","name":"What is the difference between PTE and IELTS?","acceptedAnswer":{"@type":"Answer","text":"PTE Academic is fully computer-based with AI scoring and results in 1–2 days, while IELTS has a face-to-face speaking test with results in 3–13 days. Both are accepted worldwide. PTE is especially popular for Australia and New Zealand immigration."}},{"@type":"Question","name":"What PTE score do I need to study in Australia?","acceptedAnswer":{"@type":"Answer","text":"For Australian student visas, you typically need a PTE score of 50–65 depending on the course. For Skilled Migration (PR), a PTE score of 65+ is generally required, with higher scores earning additional points."}},{"@type":"Question","name":"Do you offer study abroad consulting?","acceptedAnswer":{"@type":"Answer","text":"Yes. Along with PTE and IELTS coaching, we provide study abroad guidance for Australia, Canada, UK, New Zealand, and more. Our advisors help with university selection, visa requirements, and score targets."}},{"@type":"Question","name":"Can I prepare for PTE or IELTS online?","acceptedAnswer":{"@type":"Answer","text":"Yes. Language Academy offers both online and offline classes from our Dhanmondi, Dhaka centre. Online students get the same curriculum, AI mock tests, and trainer support as in-person learners."}},{"@type":"Question","name":"How long does PTE or IELTS preparation take?","acceptedAnswer":{"@type":"Answer","text":"Most students achieve their target score within 4–8 weeks of focused preparation. The exact timeline depends on your current English level and target score."}}]}0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://languageacademy.com.bd\"}]}"}}],"$L3"],["$L4"],"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"t606dRghLKzUBUKLmEoSs"}
+7:T904,<h2>Why Study in the USA?</h2>
+<p>The United States hosts over <strong>1 million international students</strong> and is home to the world's most prestigious universities. With unmatched research opportunities, diverse campus cultures, and strong alumni networks, a US degree opens global doors.</p>
+
+<h2>Top US Universities</h2>
+<ul>
+<li><strong>MIT</strong> — #1 globally (QS 2026)</li>
+<li><strong>Harvard University</strong> — #4 globally</li>
+<li><strong>Stanford University</strong> — #7 globally</li>
+<li><strong>University of California, Berkeley</strong> — #12 globally</li>
+<li><strong>University of Chicago</strong> — #21 globally</li>
+</ul>
+
+<h2>Cost of Studying in the USA</h2>
+<table>
+<tr><th>Expense</th><th>Annual Cost (USD)</th></tr>
+<tr><td>Public University Tuition</td><td>$20,000 - $40,000</td></tr>
+<tr><td>Private University Tuition</td><td>$40,000 - $60,000+</td></tr>
+<tr><td>Living Costs</td><td>$10,000 - $18,000</td></tr>
+<tr><td>Health Insurance</td><td>$1,500 - $2,500</td></tr>
+</table>
+
+<h2>F-1 Student Visa</h2>
+<h3>Requirements</h3>
+<ul>
+<li><strong>I-20 form</strong> from a SEVP-certified institution</li>
+<li><strong>English proficiency</strong>: TOEFL 80+, IELTS 6.5+, or PTE 58+</li>
+<li>Proof of financial ability to cover first year</li>
+<li><strong>DS-160 application</strong> + visa interview at US Embassy</li>
+<li>SEVIS fee payment ($350)</li>
+</ul>
+
+<h2>Work Rights & OPT</h2>
+<ul>
+<li>On-campus work: <strong>20 hours/week</strong> during term</li>
+<li><strong>CPT</strong> (Curricular Practical Training): internship during study</li>
+<li><strong>OPT</strong> (Optional Practical Training): 12 months post-graduation</li>
+<li><strong>STEM OPT Extension</strong>: additional 24 months for STEM graduates</li>
+</ul>
+
+<h2>Financial Aid & Scholarships</h2>
+<ul>
+<li><strong>Fulbright Program</strong> — fully funded for graduate study</li>
+<li><strong>University merit scholarships</strong> — varies by institution</li>
+<li><strong>Graduate assistantships</strong> — tuition waiver + stipend</li>
+<li><strong>Need-blind admissions</strong> at some Ivy League schools</li>
+</ul>
+
+<h2>Prepare for USA with Language Academy</h2>
+<p>Get your English test score ready for US universities. <a href="/courses">Start preparation</a> at Language Academy!</p>8:Ta46,<h2>IELTS Speaking Test: Complete Guide</h2>
+<p>The IELTS Speaking test is a <strong>face-to-face interview</strong> with a certified examiner lasting 11-14 minutes. It's the only section where you interact with a real person, making it both the most personal and the most nerve-wracking part of the exam.</p>
+
+<h2>Test Structure</h2>
+<h3>Part 1: Introduction & Interview (4-5 minutes)</h3>
+<p>The examiner asks <strong>familiar topics</strong>: work, studies, hobbies, hometown, family.</p>
+<ul>
+<li>Give answers of <strong>2-3 sentences</strong> — not too short, not too long</li>
+<li>Use the format: <strong>Answer + Reason + Example</strong></li>
+<li>Example: "I enjoy reading. It helps me relax after a long day. I usually read fiction novels before bed."</li>
+</ul>
+
+<h3>Part 2: Individual Long Turn (3-4 minutes)</h3>
+<p>You receive a <strong>cue card</strong> with a topic and 1 minute to prepare. Speak for 1-2 minutes.</p>
+<h4>2026 Common Cue Card Topics</h4>
+<ul>
+<li>Describe a person who inspires you</li>
+<li>Talk about a time you helped someone</li>
+<li>Describe a place you'd like to visit</li>
+<li>Talk about a skill you want to learn</li>
+<li>Describe an important decision you made</li>
+</ul>
+
+<h3>Part 3: Discussion (4-5 minutes)</h3>
+<p>The examiner asks <strong>abstract, opinion-based questions</strong> related to the Part 2 topic.</p>
+<ul>
+<li>Give <strong>developed answers</strong> with reasons, examples, and comparisons</li>
+<li>Use phrases like: "From my perspective...", "I'd argue that..."</li>
+<li>It's OK to pause briefly to think — use fillers like "That's an interesting question..."</li>
+</ul>
+
+<h2>Band 7+ Speaking Strategies</h2>
+<ul>
+<li>Use <strong>idiomatic expressions</strong> naturally: "It's a piece of cake", "Once in a blue moon"</li>
+<li>Show <strong>self-correction</strong>: "I went... I mean, I had gone there before"</li>
+<li>Vary your <strong>intonation</strong> — don't speak in a monotone</li>
+<li>Use <strong>discourse markers</strong>: "Having said that", "On the other hand"</li>
+<li>Maintain <strong>eye contact</strong> with the examiner</li>
+</ul>
+
+<h2>Common Mistakes to Avoid</h2>
+<ul>
+<li>❌ Memorizing scripted answers (examiners can tell)</li>
+<li>❌ Speaking too fast or too slowly</li>
+<li>❌ Giving yes/no answers without elaboration</li>
+<li>❌ Using vocabulary you're not comfortable with</li>
+<li>❌ Going off-topic during Part 2</li>
+</ul>
+
+<h2>Practice Speaking at Language Academy</h2>
+<p>Our IELTS courses include mock speaking tests with experienced instructors. <a href="/courses">Join Language Academy</a> and practice with confidence!</p>9:T9ee,<h2>Best Scholarships for International Students in 2026</h2>
+<p>Funding is often the biggest barrier to studying abroad. Fortunately, many governments and universities offer <strong>generous scholarships</strong> that cover tuition, living expenses, and even travel costs.</p>
+
+<h2>Government-Funded Scholarships</h2>
+
+<h3>🇦🇺 Australia Awards Scholarships</h3>
+<ul>
+<li><strong>Coverage</strong>: Full tuition, living allowance, airfare, health insurance</li>
+<li><strong>Eligibility</strong>: Students from participating countries</li>
+<li><strong>Deadline</strong>: Usually April-May each year</li>
+</ul>
+
+<h3>🇬🇧 Chevening Scholarships (UK)</h3>
+<ul>
+<li><strong>Coverage</strong>: Full tuition, living expenses, travel, visa</li>
+<li><strong>Eligibility</strong>: 2+ years work experience, return to home country</li>
+<li><strong>Deadline</strong>: November each year</li>
+</ul>
+
+<h3>🇨🇦 Vanier Canada Graduate Scholarships</h3>
+<ul>
+<li><strong>Coverage</strong>: CAD $50,000/year for 3 years</li>
+<li><strong>Eligibility</strong>: PhD students with leadership and academic excellence</li>
+</ul>
+
+<h3>🇺🇸 Fulbright Foreign Student Program</h3>
+<ul>
+<li><strong>Coverage</strong>: Tuition, living expenses, airfare, health insurance</li>
+<li><strong>Eligibility</strong>: Graduate students from 160+ countries</li>
+</ul>
+
+<h2>University-Specific Scholarships</h2>
+<table>
+<tr><th>University</th><th>Scholarship</th><th>Value</th></tr>
+<tr><td>University of Melbourne</td><td>Graduate Research Scholarships</td><td>Full tuition + AUD $35,000/yr</td></tr>
+<tr><td>University of Toronto</td><td>Lester B. Pearson Scholarships</td><td>Full tuition + living costs</td></tr>
+<tr><td>University of Oxford</td><td>Clarendon Scholarships</td><td>Full tuition + living costs</td></tr>
+<tr><td>MIT</td><td>MIT Scholarships</td><td>Need-based full funding</td></tr>
+</table>
+
+<h2>How to Improve Your Scholarship Chances</h2>
+<ul>
+<li>Achieve a <strong>high English test score</strong> (IELTS 7+ or PTE 65+)</li>
+<li>Write a <strong>compelling personal statement</strong></li>
+<li>Demonstrate <strong>leadership and community involvement</strong></li>
+<li>Apply to <strong>multiple scholarships</strong> simultaneously</li>
+<li>Meet all deadlines — late applications are never considered</li>
+</ul>
+
+<h2>Language Academy: Your Scholarship-Ready Partner</h2>
+<p>A strong PTE or IELTS score is essential for scholarship applications. <a href="/courses">Prepare with Language Academy</a> and maximize your scholarship chances!</p>3:["$","$L6",null,{"courses":[{"id":7,"branch_id":1,"title":"TEST","description":"","category":"IELTS","base_fee":"15000.00","duration_weeks":12,"created_at":"2026-04-05T12:00:21.000000Z","updated_at":"2026-05-18T03:43:17.000000Z","slug":"test","short_description":"","level":"beginner","image_url":"","instructor_name":"","instructor_bio":null,"instructor_video_url":"","what_you_will_learn":[],"modules":[],"tags":null,"is_published":true,"status":"active","Branch":{"id":1,"name":"Dhanmondi Branch (HQ)","slug":"dhanmondi-branch-hq"}},{"id":3,"branch_id":1,"title":"PTE Basic","description":"Perfect for students who need a quick refresher. Covers the PTE format over 4 specialized classes, and includes access to our unlimited mock test platform.","category":"PTE","base_fee":"5500.00","duration_weeks":2,"created_at":"2026-04-01T16:23:17.000000Z","updated_at":"2026-05-18T03:41:44.000000Z","slug":"pte-basic","short_description":"2 Weeks, 4 classes. (Unlimited Mock test Included).","level":"beginner","image_url":"/uploads/courses/course_1779040829_ChatGPT Image May 10, 2026, 02_01_09 AM.jpg","instructor_name":null,"instructor_bio":null,"instructor_video_url":null,"what_you_will_learn":["Understanding the PTE Exam Format","Quick refresh of core modules: Speaking, Writing, Reading, Listening","Time management strategies","Unlimited Mock tests for confidence building"],"modules":[{"title":"Week 1: Foundations","lessons":[{"title":"Class 1: Speaking & Writing","duration":"120"},{"title":"Class 2: Reading & Listening","duration":"120"}]},{"title":"Week 2: Mock Tests & Reviews","lessons":[{"title":"Class 3: Assessment","duration":"120"},{"title":"Class 4: Final Tips","duration":"120"}]}],"tags":null,"is_published":true,"status":"active","Branch":{"id":1,"name":"Dhanmondi Branch (HQ)","slug":"dhanmondi-branch-hq"}},{"id":4,"branch_id":1,"title":"PTE Core","description":"Our most popular standard tier. Gain solid insights over 4 weeks with 8 focused classes, plus unlimited access to live classes and our mock examination platform.","category":"PTE","base_fee":"10500.00","duration_weeks":4,"created_at":"2026-04-01T16:23:17.000000Z","updated_at":"2026-05-09T15:07:50.000000Z","slug":"pte-core","short_description":"4 Weeks, 8 Classes. (Unlimited Mock test and class access).","level":"intermediate","image_url":"/uploads/courses/course-1778360867811-526444506.jpg","instructor_name":null,"instructor_bio":null,"instructor_video_url":null,"what_you_will_learn":["Detailed strategies for high-weightage questions","Template utilization for essays and spoken responses","Pronunciation and fluency improvement techniques","Unlimited mock test access with AI scoring"],"modules":[{"title":"Week 1-2: Intensive Speaking & Writing","lessons":[{"title":"Session 1-4","duration":"120"}]},{"title":"Week 3-4: Intensive Reading & Listening","lessons":[{"title":"Session 5-8","duration":"120"}]}],"tags":null,"is_published":true,"status":"active","Branch":{"id":1,"name":"Dhanmondi Branch (HQ)","slug":"dhanmondi-branch-hq"}},{"id":5,"branch_id":1,"title":"PTE Advanced","description":"For students aiming for a 79+ superior score. Spend 8 weeks practicing advanced grammar, complex reading passages, and native-level fluency with 16 dedicated classes.","category":"PTE","base_fee":"18000.00","duration_weeks":8,"created_at":"2026-04-01T16:23:17.000000Z","updated_at":"2026-05-09T15:07:59.000000Z","slug":"pte-advanced","short_description":"8 Weeks, 16 Classes. (Unlimited Mock test and class access).","level":"advanced","image_url":"/uploads/courses/course-1778360876787-840464385.jpg","instructor_name":null,"instructor_bio":null,"instructor_video_url":null,"what_you_will_learn":["Advanced grammatical structures for maximum points","Handling complex audio cues in listening","Reading fill-in-the-blanks mastery","Weekly one-on-one evaluations"],"modules":[{"title":"Month 1: Core Fundamentals & Intermediate Concepts","lessons":[{"title":"8 Classes on all 4 modules","duration":"120"}]},{"title":"Month 2: Advanced Perfection","lessons":[{"title":"8 Classes focusing on high-difficulty questions","duration":"120"}]}],"tags":null,"is_published":true,"status":"active","Branch":{"id":1,"name":"Dhanmondi Branch (HQ)","slug":"dhanmondi-branch-hq"}},{"id":6,"branch_id":1,"title":"PTE Premium","description":"Our flagship 3-month comprehensive package. Enjoy 24 extensive classes that build your English skills from the ground up to advanced PTE superiority.","category":"PTE","base_fee":"25000.00","duration_weeks":12,"created_at":"2026-04-01T16:23:17.000000Z","updated_at":"2026-05-09T15:08:14.000000Z","slug":"pte-premium","short_description":"12 Weeks, 24 Classes. (Unlimited Mock test and class access).","level":"advanced","image_url":"/uploads/courses/course-1778360892216-670855281.jpg","instructor_name":null,"instructor_bio":null,"instructor_video_url":null,"what_you_will_learn":["Absolute ground-up fundamentals for struggling speakers","Comprehensive grammar and vocabulary building","AI-driven error correction over 3 months","Complete unlimited access to all platform tools"],"modules":[{"title":"Month 1: General English Enhancement","lessons":[{"title":"8 Classes","duration":"120"}]},{"title":"Month 2: PTE Core Strategy","lessons":[{"title":"8 Classes","duration":"120"}]},{"title":"Month 3: Advanced Scoring & Mock Trials","lessons":[{"title":"8 Classes","duration":"120"}]}],"tags":null,"is_published":true,"status":"active","Branch":{"id":1,"name":"Dhanmondi Branch (HQ)","slug":"dhanmondi-branch-hq"}}],"blogs":[{"id":19,"branch_id":1,"author_id":1,"title":"Study in USA 2026: Top Universities, F-1 Visa Guide & Financial Aid for International Students","slug":"study-in-usa-guide-2026","excerpt":"Comprehensive guide to studying in USA in 2026. Ivy League and top universities, F-1 student visa process, costs, OPT work rights, and scholarship opportunities.","content":"$7","image_url":"/uploads/blogs/study-in-usa-guide.webp","is_published":true,"published_at":"2026-05-10T08:21:40.000000Z","created_at":"2026-05-10T08:21:40.000000Z","updated_at":"2026-05-11T05:15:58.000000Z","category":"Study Abroad","tags":["[\"Study in USA\"","\"American Universities\"","\"F-1 Visa\"","\"OPT\"","\"USA Education\"]"],"course_relation":"PTE","reading_time":10,"seo_title":"Study in USA 2026 | Top Universities, F-1 Visa & Scholarships","seo_description":"Complete guide to study in USA 2026. Top universities, F-1 visa, costs, OPT work rights & scholarships for international students.","is_featured":false},{"id":18,"branch_id":1,"author_id":1,"title":"IELTS Speaking Test 2026: Common Topics, Cue Cards & Expert Tips for Band 7+","slug":"ielts-speaking-test-tips-2026","excerpt":"Ace the IELTS Speaking test with expert tips for all 3 parts. Common 2026 cue card topics, vocabulary tips, and strategies to score Band 7+ confidently.","content":"$8","image_url":"/uploads/blogs/ielts-speaking-test-tips.webp","is_published":true,"published_at":"2026-05-10T08:21:40.000000Z","created_at":"2026-05-10T08:21:40.000000Z","updated_at":"2026-05-11T05:15:58.000000Z","category":"IELTS","tags":["[\"[\\\"IELTS Speaking\\\"\"","\"\\\"Speaking Tips\\\"\"","\"\\\"Cue Cards\\\"\"","\"\\\"IELTS Band 7\\\"\"","\"\\\"Speaking Test\\\"]\"]"],"course_relation":"IELTS","reading_time":8,"seo_title":"IELTS Speaking Tips 2026 | Cue Cards & Band 7+ Strategies","seo_description":"Master IELTS Speaking with expert tips for Part 1, 2 & 3. Common 2026 cue card topics and vocabulary strategies for Band 7+. Language Academy.","is_featured":false},{"id":17,"branch_id":1,"author_id":1,"title":"Top Scholarships for International Students 2026: Fully Funded Opportunities Worldwide","slug":"top-scholarships-international-students-2026","excerpt":"Discover the best fully funded scholarships for international students in 2026. Government scholarships, university grants, and financial aid across top destinations.","content":"$9","image_url":"/uploads/blogs/scholarships-international-students.webp","is_published":true,"published_at":"2026-05-10T08:21:35.000000Z","created_at":"2026-05-10T08:21:35.000000Z","updated_at":"2026-05-11T05:15:58.000000Z","category":"Study Abroad","tags":["[\"Scholarships\"","\"Fully Funded\"","\"International Students\"","\"Study Abroad Scholarships\"","\"Financial Aid\"]"],"course_relation":"PTE","reading_time":10,"seo_title":"Top Scholarships for International Students 2026 | Fully Funded","seo_description":"Best fully funded scholarships for international students 2026. Government scholarships, university grants for Australia, Canada, UK, USA & more.","is_featured":true}]}]
+4:["$","script","script-0",{"src":"/_next/static/chunks/09wk2~d0_pc0q.js","async":true}]
+5:["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]
+c:null

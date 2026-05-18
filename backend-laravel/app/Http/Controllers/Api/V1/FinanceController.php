@@ -145,7 +145,19 @@ class FinanceController extends Controller
             $query->where('accounts.branch_id', $branchId);
         }
 
-        return ApiResponse::success($query->get());
+        $rows = $query->get();
+
+        $totalDebits = $rows->sum(fn ($r) => (float) $r->debit);
+        $totalCredits = $rows->sum(fn ($r) => (float) $r->credit);
+        $difference = round($totalDebits - $totalCredits, 2);
+
+        return ApiResponse::success([
+            'accounts' => $rows,
+            'totalDebits' => $totalDebits,
+            'totalCredits' => $totalCredits,
+            'difference' => $difference,
+            'isBalanced' => abs($difference) < 0.01,
+        ]);
     }
 
     public function cashflow(Request $request): JsonResponse

@@ -5,6 +5,15 @@ use App\Http\Controllers\UploadController;
 
 Route::get('/uploads/{path}', [UploadController::class, 'show'])->where('path', '.*');
 
+// Serve Next.js static assets from the site export directory
+Route::get('/_next/{path}', function (string $path) {
+    $file = public_path("site/_next/{$path}");
+    if (!is_file($file)) abort(404);
+    $ext = pathinfo($file, PATHINFO_EXTENSION);
+    $mimeMap = ['js' => 'application/javascript', 'css' => 'text/css', 'woff2' => 'font/woff2', 'woff' => 'font/woff', 'png' => 'image/png', 'jpg' => 'image/jpeg', 'webp' => 'image/webp', 'svg' => 'image/svg+xml'];
+    return response()->file($file, ['Content-Type' => $mimeMap[$ext] ?? 'application/octet-stream', 'Cache-Control' => 'public, max-age=31536000, immutable']);
+})->where('path', '.*');
+
 Route::redirect('/admin', '/admin/');
 Route::redirect('/student', '/student/');
 Route::redirect('/teacher', '/teacher/');

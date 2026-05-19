@@ -6,8 +6,13 @@
     RewriteRule ^(\.env|composer\.(json|lock)|package(-lock)?\.json)$ - [F,L]
     RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)(/|$) - [F,L]
 
-    # Let Laravel handle portal roots before Apache treats them as physical directories.
-    RewriteRule ^(admin|student|teacher|hrm|brandmanager|accounting)$ public/index.php [L]
+    # Serve static portal apps before Laravel so Hostinger does not expose physical directories.
+    RewriteCond %{DOCUMENT_ROOT}/public/$1 -f [OR]
+    RewriteCond %{DOCUMENT_ROOT}/public/$1 -d
+    RewriteRule ^((admin|student|teacher|hrm|brandmanager|accounting)(/.*)?)$ public/$1 [L]
+
+    RewriteCond %{REQUEST_URI} !\.[^/]+$
+    RewriteRule ^(admin|student|teacher|hrm|brandmanager|accounting)(/.*)?$ public/$1/index.html [L]
 
     RewriteCond %{DOCUMENT_ROOT}/public/$1 -f [OR]
     RewriteCond %{DOCUMENT_ROOT}/public/$1 -d

@@ -20,6 +20,24 @@ use Illuminate\Support\Facades\DB;
 
 class PublicController extends Controller
 {
+    public function cacheVersion(): JsonResponse
+    {
+        $sources = [
+            'manual' => SystemSetting::query()->where('setting_key', 'WEBSITE_CACHE_VERSION')->value('setting_value') ?: '',
+            'courses' => (string) (Course::query()->max('updated_at') ?: ''),
+            'blogs' => (string) (BlogPost::query()->max('updated_at') ?: ''),
+            'resources' => (string) (Resource::query()->max('updated_at') ?: ''),
+            'branches' => (string) (Branch::query()->max('updated_at') ?: ''),
+            'site_index' => $this->siteFileVersion('index.html'),
+        ];
+
+        return ApiResponse::success([
+            'version' => sha1(json_encode($sources)),
+            'generated_at' => now()->toISOString(),
+            'sources' => $sources,
+        ])->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+    }
+
     public function trackingConfig(): JsonResponse
     {
         $pixelId = SystemSetting::query()->where('setting_key', 'FB_PIXEL_ID')->value('setting_value') ?: env('FB_PIXEL_ID', '');
@@ -213,6 +231,13 @@ class PublicController extends Controller
         $branch = $request->query('branch_id') ?: $request->query('branchId') ?: $request->query('branch');
 
         return $branch ? (int) $branch : null;
+    }
+
+    private function siteFileVersion(string $relativePath): string
+    {
+        $file = public_path('site/'.$relativePath);
+
+        return is_file($file) ? (string) filemtime($file) : '';
     }
 
     private function createPublicLead(Request $request, string $source, ?string $message): array

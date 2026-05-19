@@ -129,6 +129,37 @@ textarea {
     min-height: calc(100vh - var(--topbar-height));
 }
 
+@media (min-width: 769px) {
+  html,
+  body,
+  #app {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .app-container {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: var(--sidebar-width);
+    z-index: 900;
+    margin-left: 0;
+    border-radius: 0;
+  }
+
+  .canvas {
+    height: calc(100vh - var(--topbar-height));
+    margin-top: var(--topbar-height);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
 button {
     cursor: pointer;
     transition: all 0.2s ease;

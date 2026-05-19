@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use App\Models\Expense;
+use App\Models\Payroll;
 use App\Models\ExpenseCategory;
 use App\Support\ApiResponse;
 use App\Support\BranchScope;
@@ -107,13 +109,31 @@ class ExpenseController extends Controller
 
     public function selectPaymentSource(Request $request, int $id): JsonResponse
     {
+        $request->validate(['account_id' => ['required', 'integer']]);
+
         $expense = BranchScope::apply(Expense::query(), $request)->find($id);
         if (!$expense) {
             return ApiResponse::error('Expense not found', 404);
         }
 
+        if (in_array($expense->status, ['approved', 'deleted'], true)) {
+            return ApiResponse::error('Payment source cannot be changed after approval or deletion', 422);
+        }
+
+        $account = Account::query()
+            ->where('id', $request->input('account_id'))
+            ->where('branch_id', $expense->branch_id)
+            ->where('type', 'asset')
+            ->whereIn('sub_type', ['cash', 'bank', 'mfs'])
+            ->first();
+
+        if (!$account) {
+            return ApiResponse::error('Choose a valid cash, bank, or mobile wallet account for this branch', 422);
+        }
+
         $expense->fill([
-            'account_id' => $request->input('account_id', $expense->account_id),
+            'account_id' => $account->id,
+            'payment_method' => $account->sub_type ?: $expense->payment_method,
             'payment_source_selected' => true,
             'payment_source_selected_by' => $request->user()->id,
             'payment_source_selected_at' => now(),
@@ -134,7 +154,7 @@ class ExpenseController extends Controller
 
     public function reject(Request $request, int $id): JsonResponse
     {
-        return $this->setStatus($request, $id, 'rejected', ['rejection_reason' => $request->input('reason')]);
+        return $this->setStatus($request, $id, 'rejected', ['rejection_reason' => $request->input('reason') ?: $request->input('rejection_reason')]);
     }
 
     public function destroy(Request $request, int $id): JsonResponse
@@ -222,7 +242,31 @@ class ExpenseController extends Controller
             return ApiResponse::error('Expense not found', 404);
         }
 
+        if ($status === 'approved' && $expense->expense_origin === 'payroll') {
+            if (!$expense->payment_source_selected || !$expense->account_id) {
+                return ApiResponse::error('Select a payroll disbursement account before approval', 422);
+            }
+        }
+
         $expense->fill(array_merge(['status' => $status], $extra))->save();
+
+        if ($expense->expense_origin === 'payroll' && $expense->payroll_id) {
+            $payrollStatus = match ($status) {
+                'approved' => 'paid',
+                'rejected' => 'rejected',
+                'deleted' => 'draft',
+                default => 'pending_accounting',
+            };
+
+            Payroll::query()
+                ->where('id', $expense->payroll_id)
+                ->where('branch_id', $expense->branch_id)
+                ->update([
+                    'status' => $payrollStatus,
+                    'expense_id' => $expense->id,
+                    'rejection_reason' => $status === 'rejected' ? ($request->input('reason') ?: $request->input('rejection_reason')) : null,
+                ]);
+        }
 
         return ApiResponse::success($expense);
     }

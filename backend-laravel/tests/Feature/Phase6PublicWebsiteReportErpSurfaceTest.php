@@ -12,6 +12,7 @@ class Phase6PublicWebsiteReportErpSurfaceTest extends TestCase
             ->map(fn ($route) => implode('|', $route->methods()).' '.$route->uri());
 
         foreach ([
+            'GET|HEAD api/v1/public/cache-version',
             'GET|HEAD api/v1/public/tracking-config',
             'GET|HEAD api/v1/public/branches',
             'GET|HEAD api/v1/public/branches/{slug}',
@@ -27,6 +28,7 @@ class Phase6PublicWebsiteReportErpSurfaceTest extends TestCase
             'POST api/v1/public/contact',
             'POST api/v1/public/enquiries',
             'POST api/v1/public/student-bookings',
+            'POST api/v1/website/cache-version/clear',
             'GET|HEAD api/v1/website/blogs',
             'POST api/v1/website/blogs',
             'PUT api/v1/website/blogs/{id}',
@@ -59,6 +61,7 @@ class Phase6PublicWebsiteReportErpSurfaceTest extends TestCase
         $routes = collect(app('router')->getRoutes());
 
         foreach ([
+            'api/v1/public/cache-version',
             'api/v1/public/tracking-config',
             'api/v1/public/branches',
             'api/v1/public/branches/{slug}',
@@ -82,8 +85,28 @@ class Phase6PublicWebsiteReportErpSurfaceTest extends TestCase
         }
     }
 
+    public function test_phase_6_pwa_assets_are_served_with_cache_headers(): void
+    {
+        $serviceWorker = $this->get('/sw.js')
+            ->assertOk()
+            ->assertHeader('Content-Type', 'application/javascript; charset=UTF-8');
+        $this->assertStringContainsString('no-store', $serviceWorker->headers->get('Cache-Control'));
+        $this->assertStringContainsString('no-cache', $serviceWorker->headers->get('Cache-Control'));
+        $this->assertStringContainsString('CACHE_VERSION', file_get_contents(public_path('site/sw.js')));
+
+        $manifest = $this->get('/manifest.json')
+            ->assertOk()
+            ->assertHeader('Content-Type', 'application/manifest+json; charset=UTF-8');
+        $this->assertStringContainsString('max-age=3600', $manifest->headers->get('Cache-Control'));
+        $this->assertSame('Language Academy Bangladesh', json_decode(file_get_contents(public_path('site/manifest.json')), true)['name'] ?? null);
+
+        $offline = $this->get('/offline.html')->assertOk();
+        $this->assertStringContainsString('max-age=0', $offline->headers->get('Cache-Control'));
+    }
+
     public function test_phase_6_protected_routes_require_bearer_token(): void
     {
+        $this->postJson('/api/v1/website/cache-version/clear')->assertUnauthorized();
         $this->getJson('/api/v1/website/blogs')->assertUnauthorized();
         $this->getJson('/api/v1/website/courses')->assertUnauthorized();
         $this->getJson('/api/v1/website/resources')->assertUnauthorized();

@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import FacebookPixel from "@/components/FacebookPixel";
 import JsonLd, { localBusinessSchema, websiteSchema, breadcrumbSchema } from "@/components/JsonLd";
+import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -57,6 +58,12 @@ export const metadata = {
     icon: [{ url: "/logo.webp", type: "image/webp" }],
     shortcut: ["/logo.webp"],
     apple: [{ url: "/logo.webp", type: "image/webp" }],
+  },
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Language Academy",
   },
 
   alternates: {
@@ -117,10 +124,19 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  themeColor: "#0f172a",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${jakarta.variable} ${outfit.variable}`}>
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.facebook.com" />
+        <meta name="mobile-web-app-capable" content="yes" />
         {/* ── Structured Data for AI + Search Engines ─── */}
         <JsonLd data={localBusinessSchema()} />
         <JsonLd data={websiteSchema()} />
@@ -136,6 +152,7 @@ export default function RootLayout({ children }) {
         </div>
         <WhatsAppButton />
         <FacebookPixel />
+        <ServiceWorkerRegistration />
       </body>
     </html>
   );

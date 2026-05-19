@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BlogPost;
 use App\Models\Course;
 use App\Models\Resource;
+use App\Models\SystemSetting;
 use App\Support\ApiResponse;
 use App\Support\BranchScope;
 use Illuminate\Http\JsonResponse;
@@ -90,6 +91,25 @@ class WebsiteController extends Controller
     public function resources(): JsonResponse
     {
         return ApiResponse::success(Resource::query()->orderByDesc('created_at')->get());
+    }
+
+    public function clearCacheVersion(Request $request): JsonResponse
+    {
+        $version = now()->timestamp.'-'.Str::random(8);
+
+        SystemSetting::query()->updateOrCreate([
+            'setting_key' => 'WEBSITE_CACHE_VERSION',
+        ], [
+            'setting_value' => $version,
+            'description' => 'Manual public website cache version used by the service worker.',
+            'is_secret' => false,
+            'category' => 'website',
+        ]);
+
+        return ApiResponse::success([
+            'message' => 'Website cache version updated. Visitors will receive fresh pages on their next visit.',
+            'version' => $version,
+        ]);
     }
 
     public function createResource(Request $request): JsonResponse

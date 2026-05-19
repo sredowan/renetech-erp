@@ -271,20 +271,38 @@ class PayrollController extends Controller
             return ApiResponse::error('Payroll not found', 404);
         }
 
-        $expense = Expense::query()->create([
+        $expense = $payroll->expense_id
+            ? Expense::query()->where('id', $payroll->expense_id)->where('branch_id', $payroll->branch_id)->first()
+            : Expense::query()->where('payroll_id', $payroll->id)->where('branch_id', $payroll->branch_id)->first();
+
+        $payload = [
             'branch_id' => $payroll->branch_id,
             'amount' => $payroll->net_salary,
             'description' => "Payroll payment for {$payroll->month}/{$payroll->year}",
             'category' => 'Payroll',
-            'payment_method' => $request->input('payment_method', 'cash'),
             'date' => now()->toDateString(),
-            'status' => 'approved',
-            'approved_by' => $request->user()->id,
+            'status' => 'pending',
             'expense_origin' => 'payroll',
             'payroll_id' => $payroll->id,
-        ]);
+            'payment_source_selected' => false,
+            'payment_source_selected_by' => null,
+            'payment_source_selected_at' => null,
+            'account_id' => null,
+            'payment_method' => null,
+            'approved_by' => null,
+        ];
 
-        $payroll->fill(['status' => 'paid', 'expense_id' => $expense->id])->save();
+        if ($expense) {
+            if ($expense->status === 'approved') {
+                return ApiResponse::error('Payroll has already been approved for disbursement', 422);
+            }
+
+            $expense->fill($payload)->save();
+        } else {
+            $expense = Expense::query()->create($payload);
+        }
+
+        $payroll->fill(['status' => 'pending_accounting', 'expense_id' => $expense->id, 'rejection_reason' => null])->save();
 
         return ApiResponse::success(['payroll' => $payroll, 'expense' => $expense]);
     }

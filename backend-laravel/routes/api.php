@@ -376,6 +376,7 @@ Route::prefix('v1')->middleware('throttle:api')->group(function () {
     });
 
     Route::prefix('public')->middleware('throttle:public-api')->group(function () {
+        Route::get('/cache-version', [PublicController::class, 'cacheVersion']);
         Route::get('/tracking-config', [PublicController::class, 'trackingConfig']);
         Route::get('/branches', [PublicController::class, 'branches']);
         Route::get('/branches/{slug}', [PublicController::class, 'branchDetails']);
@@ -394,6 +395,7 @@ Route::prefix('v1')->middleware('throttle:api')->group(function () {
     });
 
     Route::prefix('website')->middleware(['auth:sanctum', 'role:super_admin,branch_admin,hr'])->group(function () {
+        Route::post('/cache-version/clear', [WebsiteController::class, 'clearCacheVersion']);
         Route::get('/blogs', [WebsiteController::class, 'blogs']);
         Route::post('/blogs', [WebsiteController::class, 'createBlog']);
         Route::put('/blogs/{id}', [WebsiteController::class, 'updateBlog']);

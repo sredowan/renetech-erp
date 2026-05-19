@@ -2,10 +2,15 @@
 
 namespace Tests\Feature;
 
+use App\Models\Branch;
+use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class Phase1AuthSurfaceTest extends TestCase
 {
+    use DatabaseTransactions;
+
     public function test_login_requires_email_and_password_with_node_compatible_error(): void
     {
         $response = $this->postJson('/api/v1/auth/login', []);
@@ -31,6 +36,38 @@ class Phase1AuthSurfaceTest extends TestCase
             ->assertJson([
                 'error' => 'Unauthenticated.',
             ]);
+    }
+
+    public function test_login_returns_lowercase_user_payload_for_admin_frontend(): void
+    {
+        $branch = Branch::query()->create([
+            'name' => 'Test HQ',
+            'code' => 'TEST-HQ',
+            'slug' => 'test-hq-'.uniqid(),
+            'type' => 'head',
+            'is_active' => true,
+        ]);
+
+        $email = 'admin-'.uniqid().'@example.com';
+
+        User::query()->create([
+            'name' => 'Test Admin',
+            'email' => $email,
+            'password' => 'Password123',
+            'role' => 'super_admin',
+            'branch_id' => $branch->id,
+            'status' => 'active',
+        ]);
+
+        $response = $this->postJson('/api/v1/auth/login', [
+            'email' => $email,
+            'password' => 'Password123',
+        ]);
+
+        $response
+            ->assertOk()
+            ->assertJsonStructure(['token', 'user' => ['id', 'name', 'email', 'role', 'branch_id']])
+            ->assertJsonMissingPath('User');
     }
 
     public function test_phase_1_routes_are_registered(): void

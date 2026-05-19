@@ -78,6 +78,10 @@ class PascalCaseRelations
         $response = $next($request);
 
         if ($response instanceof JsonResponse) {
+            if ($request->is('api/*/auth/*') || $request->is('api/auth/*')) {
+                return $response;
+            }
+
             $data = $response->getData(true);
             $data = $this->transformKeys($data);
             $response->setData($data);

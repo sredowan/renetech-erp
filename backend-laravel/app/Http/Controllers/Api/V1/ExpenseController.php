@@ -17,7 +17,7 @@ class ExpenseController extends Controller
     public function index(Request $request): JsonResponse
     {
         $expenses = BranchScope::apply(Expense::query(), $request)
-            ->with(['account:id,code,name,type,sub_type'])
+            ->with(['account:id,code,name,type,sub_type', 'branch:id,name'])
             ->when($request->query('status'), fn ($query, $value) => $query->where('status', $value))
             ->when($request->query('category'), fn ($query, $value) => $query->where('category', $value))
             ->when($request->query('from') ?: $request->query('start'), fn ($query, $value) => $query->whereDate('date', '>=', $value))
@@ -30,6 +30,9 @@ class ExpenseController extends Controller
         $expenses->each(function ($exp) {
             if ($exp->relationLoaded('account') && $exp->account) {
                 $exp->setAttribute('Account', $exp->account);
+            }
+            if ($exp->relationLoaded('branch') && $exp->branch) {
+                $exp->setAttribute('Branch', $exp->branch);
             }
         });
 

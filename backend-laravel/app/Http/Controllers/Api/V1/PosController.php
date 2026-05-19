@@ -38,7 +38,9 @@ class PosController extends Controller
                     'enrollment.student.user:id,name,email',
                     'enrollment.batch.course:id,title',
                     'invoice.customer',
+                    'invoice.incomeCategory:id,name',
                     'account:id,name,code',
+                    'branch:id,name',
                 ])
                 ->orderByDesc('paid_at')
                 ->orderByDesc('id')
@@ -57,6 +59,8 @@ class PosController extends Controller
                 'enrollment.student.user:id,name,email',
                 'enrollment.batch.course:id,title',
                 'customer',
+                'incomeCategory:id,name',
+                'branch:id,name',
             ])
             ->whereIn('status', ['pending', 'partial', 'overdue'])
             ->orderBy('due_date')

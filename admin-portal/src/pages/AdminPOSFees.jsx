@@ -136,6 +136,14 @@ const POSFees = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .hide-mobile { display: none !important; }
+          .stitch th, .stitch td { padding: 4px 6px !important; font-size: 10px !important; }
+          .stitch td button { padding: 2px 6px !important; font-size: 9px !important; }
+          .td-mono { font-size: 9px !important; }
+        }
+      `}</style>
       {/* Header */}
       <div className="view-head">
         <div>
@@ -158,14 +166,25 @@ const POSFees = () => {
           <div className="pc-label">Pending</div>
           <div className="pc-value">৳{stats.pending.toLocaleString()}</div>
         </div>
-        <div className="pulse-card c-rose">
-          <div className="pc-label">Overdue</div>
-          <div className="pc-value">৳{stats.overdue.toLocaleString()}</div>
+        <div className="pulse-card hide-mobile" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 15px', background: 'var(--bg-deep)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            {Object.keys(methodColors).map((ch) => (
+              <div key={ch} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: methodColors[ch] }}></span>
+                <span style={{ fontSize: '10px', textTransform: 'capitalize', color: 'var(--text-main)' }}>{ch.replace('_', ' ')}</span>
+              </div>
+            ))}
+          </div>
+          <div style={{ width: '70px', height: '70px', borderRadius: '50%', background: `conic-gradient(#e2136e 0% 57%, #f6921e 57% 84%, #3b82f6 84% 96%, #10b981 96% 100%)`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'var(--bg-deep)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ fontSize: '0.85rem', fontWeight: '800' }}>5</span>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Main Area */}
-      <div className="g65">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         <div className="sc">
           {activeTab === 'recent' && (
             <>
@@ -195,11 +214,11 @@ const POSFees = () => {
                   <thead>
                     <tr>
                       <th style={{ padding: '8px 10px', width: '80px' }}>Receipt</th>
-                      <th style={{ padding: '8px 10px', minWidth: '150px' }}>Student / Customer</th>
-                      <th style={{ padding: '8px 10px', minWidth: '150px' }}>Description</th>
+                      <th style={{ padding: '8px 10px', minWidth: '100px' }}>Student / Customer</th>
+                      <th className="hide-mobile" style={{ padding: '8px 10px', minWidth: '120px' }}>Description</th>
                       <th style={{ padding: '8px 10px' }}>Amount</th>
                       <th style={{ padding: '8px 10px' }}>Method</th>
-                      <th style={{ padding: '8px 10px' }}>Date</th>
+                      <th className="hide-mobile" style={{ padding: '8px 10px' }}>Date</th>
                       <th style={{ padding: '8px 10px' }}>Action</th>
                     </tr>
                   </thead>
@@ -212,17 +231,17 @@ const POSFees = () => {
                       <tr key={row.id}>
                         <td className="td-mono">TRX-{row.id}</td>
                         <td className="td-name">{row.source === 'manual' ? (row.Invoice?.Customer?.name || row.Invoice?.customer_name || 'Customer') : (row.Enrollment?.Student?.User?.name || 'Unknown')}</td>
-                        <td style={{ fontSize: '11px', color: 'var(--text-dim)' }}>{row.source === 'manual' ? (row.Invoice?.IncomeCategory?.name || 'Custom Income') : (row.Enrollment?.Batch?.Course?.title || 'Tuition Fee')}</td>
+                        <td className="hide-mobile" style={{ fontSize: '11px', color: 'var(--text-dim)' }}>{row.source === 'manual' ? (row.Invoice?.IncomeCategory?.name || 'Custom Income') : (row.Enrollment?.Batch?.Course?.title || 'Tuition Fee')}</td>
                         <td style={{ fontWeight: 700 }}>৳{parseFloat(row.amount).toLocaleString()}</td>
                         <td>
-                          <span className="sb2" style={{ background: `${methodColors[row.method] || '#ccc'}15`, color: methodColors[row.method] || '#ccc', border: `1px solid ${methodColors[row.method] || '#ccc'}30` }}>
+                          <span className="sb2" style={{ background: `${methodColors[row.method] || '#ccc'}15`, color: methodColors[row.method] || '#ccc', border: `1px solid ${methodColors[row.method] || '#ccc'}30`, padding: '2px 4px', fontSize: '9px' }}>
                             {row.method}
                           </span>
                         </td>
-                        <td style={{ fontSize: '12px', color: 'var(--text-dim)' }}>{new Date(row.paid_at).toLocaleDateString()}</td>
+                        <td className="hide-mobile" style={{ fontSize: '12px', color: 'var(--text-dim)' }}>{new Date(row.paid_at).toLocaleDateString()}</td>
                         <td>
                           <button onClick={() => openReceipt(row)} className="btn-ghost" style={{ padding: '3px 10px', fontSize: '11px', borderColor: 'rgba(0,212,255,0.3)', color: '#38E8FF' }}>
-                            <Receipt size={12} /> Receipt
+                            <Receipt size={12} /> <span className="hide-mobile">Receipt</span>
                           </button>
                         </td>
                       </tr>
@@ -266,11 +285,11 @@ const POSFees = () => {
                 <table className="stitch" style={{ width: '100%' }}>
                   <thead>
                     <tr>
-                      <th style={{ padding: '8px 10px', width: '100px' }}>Invoice</th>
-                      <th style={{ padding: '8px 10px', minWidth: '150px' }}>Student / Customer</th>
-                      <th style={{ padding: '8px 10px', minWidth: '150px' }}>Description</th>
-                      <th style={{ padding: '8px 10px' }}>Due Amount</th>
-                      <th style={{ padding: '8px 10px' }}>Status</th>
+                      <th style={{ padding: '8px 10px', width: '80px' }}>Invoice</th>
+                      <th style={{ padding: '8px 10px', minWidth: '100px' }}>Student / Customer</th>
+                      <th className="hide-mobile" style={{ padding: '8px 10px', minWidth: '120px' }}>Description</th>
+                      <th style={{ padding: '8px 10px' }}>Due</th>
+                      <th className="hide-mobile" style={{ padding: '8px 10px' }}>Status</th>
                       <th style={{ padding: '8px 10px' }}>Action</th>
                     </tr>
                   </thead>
@@ -285,18 +304,18 @@ const POSFees = () => {
                         <tr key={inv.id}>
                           <td className="td-mono">{inv.invoice_no}</td>
                           <td className="td-name">{getInvoiceStudentName(inv)}</td>
-                          <td style={{ fontSize: '11px', color: 'var(--text-dim)' }}>
+                          <td className="hide-mobile" style={{ fontSize: '11px', color: 'var(--text-dim)' }}>
                             <div>{inv.invoice_type === 'custom' ? (inv.IncomeCategory?.name || 'Manual Invoice') : (inv.Enrollment?.Batch?.Course?.title || 'Tuition Fee')}{inv.invoice_type === 'custom' ? <span className="sb2" style={{ marginLeft: 6, fontSize: 9, background: 'rgba(6,182,212,0.1)', color: '#06b6d4', borderColor: 'rgba(6,182,212,0.3)' }}>Custom</span> : ''}</div>
                             {inv.website_payment?.method === 'bkash_manual' && (
                               <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: 3 }}>
-                                <span className="sb2" style={{ width: 'fit-content', background: '#e2136e15', color: '#e2136e', borderColor: '#e2136e30' }}>bKash submitted</span>
-                                <span><strong>bKash No:</strong> {inv.website_payment.bkash_number || 'N/A'}</span>
-                                <span><strong>TrxID:</strong> {inv.website_payment.bkash_transaction_id || 'N/A'}</span>
+                                <span className="sb2" style={{ width: 'fit-content', background: '#e2136e15', color: '#e2136e', borderColor: '#e2136e30', padding: '2px 4px', fontSize: '9px' }}>bKash submitted</span>
+                                <span style={{fontSize: '9px'}}><strong>No:</strong> {inv.website_payment.bkash_number || 'N/A'}</span>
+                                <span style={{fontSize: '9px'}}><strong>Trx:</strong> {inv.website_payment.bkash_transaction_id || 'N/A'}</span>
                               </div>
                             )}
                           </td>
                           <td style={{ fontWeight: 700, color: '#275fa7' }}>৳{due.toLocaleString()}</td>
-                          <td><span className="sb2 sb2-amber" style={{ background: 'rgba(39,95,167,0.1)', color: '#275fa7', borderColor: 'rgba(39,95,167,0.3)' }}>{inv.status}</span></td>
+                          <td className="hide-mobile"><span className="sb2 sb2-amber" style={{ background: 'rgba(39,95,167,0.1)', color: '#275fa7', borderColor: 'rgba(39,95,167,0.3)', padding: '2px 4px', fontSize: '9px' }}>{inv.status}</span></td>
                           <td>
                             <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
                               <button onClick={() => {
@@ -343,30 +362,6 @@ const POSFees = () => {
           )}
         </div>
 
-        {/* Payment Channels */}
-        <div className="sc">
-          <div className="sc-head">
-            <span className="sc-title">Payment Channels</span>
-          </div>
-          <div className="sc-body">
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-              <div style={{ width: '120px', height: '120px', borderRadius: '50%', background: `conic-gradient(#e2136e 0% 57%, #f6921e 57% 84%, #3b82f6 84% 96%, #10b981 96% 100%)`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div style={{ width: '72px', height: '72px', borderRadius: '50%', background: 'var(--bg-deep)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ fontSize: '1rem', fontWeight: '800' }}>5</span>
-                  <span style={{ fontSize: '0.5rem', color: 'var(--text-dim)' }}>Channels</span>
-                </div>
-              </div>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {Object.keys(methodColors).map((ch) => (
-                <div key={ch} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: methodColors[ch] }}></span>
-                  <span style={{ fontSize: '12px', textTransform: 'capitalize', color: 'var(--text-main)' }}>{ch.replace('_', ' ')}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Collect Fee Modal */}

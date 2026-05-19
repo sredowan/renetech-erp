@@ -488,19 +488,17 @@ const Students = () => {
 
       {activeTab === 'all_students' ? (
       <>
-      <div className="glass-morphism desktop-data-table students-table-shell" style={{ padding: '0', overflowX: 'auto' }}>
-        <table className="students-compact-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '1040px' }}>
+      <div className="glass-morphism desktop-data-table students-table-shell" style={{ padding: '0', overflowX: 'hidden' }}>
+        <table className="students-compact-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid var(--border)', color: 'var(--text-dim)', fontSize: '0.8rem' }}>
-              <th style={{ padding: '1rem' }}>Student</th>
-              <th style={{ padding: '1rem' }}>Contact</th>
-              <th style={{ padding: '1rem' }}>Course</th>
-              <th style={{ padding: '1rem' }}>Batch</th>
-              <th style={{ padding: '1rem' }}>Enrollment</th>
-              <th style={{ padding: '1rem' }}>Referred By</th>
-              <th style={{ padding: '1rem' }}>Completion</th>
-              <th style={{ padding: '1rem' }}>State</th>
-              <th style={{ padding: '1rem' }}>Actions</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Student</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Contact</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Course & Batch</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Timeline</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Referred By</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>State</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -509,59 +507,63 @@ const Students = () => {
               const style = stateStyle[state] || stateStyle.unassigned;
               return (
                 <tr key={student.id} style={{ borderBottom: '1px solid var(--border)' }}>
-                  <td style={{ padding: '1rem' }}>
-                    <div style={{ fontWeight: 600 }}>
+                  <td style={{ padding: '0.8rem 0.6rem', verticalAlign: 'top' }}>
+                    <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>
                       {student.User?.name}
                     </div>
                     <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>ID: STU-{student.id}</div>
                   </td>
-                  <td style={{ padding: '1rem', fontSize: '0.82rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}><Mail size={13} />{student.User?.email || 'N/A'}</div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-dim)', marginTop: '0.2rem' }}><Phone size={13} />{student.mobile_no || 'N/A'}</div>
+                  <td style={{ padding: '0.8rem 0.6rem', fontSize: '0.8rem', verticalAlign: 'top', maxWidth: '200px' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.4rem' }}><Mail size={13} style={{ marginTop: '0.15rem', flexShrink: 0 }} /><span style={{ wordBreak: 'break-all' }}>{student.User?.email || 'N/A'}</span></div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-dim)', marginTop: '0.3rem' }}><Phone size={13} style={{ flexShrink: 0 }} /><span>{student.mobile_no || 'N/A'}</span></div>
                   </td>
-                  <td style={{ padding: '1rem', fontSize: '0.82rem' }}>{student.Batch?.Course?.title || 'N/A'}</td>
-                  <td style={{ padding: '1rem', fontSize: '0.82rem' }}>{student.Batch?.code || 'Unassigned'}</td>
-                  <td style={{ padding: '1rem', fontSize: '0.82rem' }}><div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}><Calendar size={13} />{formatDate(student.enrollment_date)}</div></td>
-                  <td style={{ padding: '1rem', fontSize: '0.82rem' }}>
+                  <td style={{ padding: '0.8rem 0.6rem', fontSize: '0.8rem', verticalAlign: 'top' }}>
+                    <div style={{ fontWeight: 500, color: 'var(--text-main)', marginBottom: '0.2rem' }}>{student.Batch?.Course?.title || 'N/A'}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>Batch: {student.Batch?.code || 'Unassigned'}</div>
+                  </td>
+                  <td style={{ padding: '0.8rem 0.6rem', fontSize: '0.8rem', verticalAlign: 'top' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '0.2rem' }}><Calendar size={13} style={{ color: 'var(--text-dim)' }} />{formatDate(student.enrollment_date)}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>{state === 'course_completed' ? `Finished: ${formatDate(student.completionDate)}` : 'In Progress'}</div>
+                  </td>
+                  <td style={{ padding: '0.8rem 0.6rem', fontSize: '0.8rem', verticalAlign: 'top' }}>
                     {student.referred_by ? (
                       <div>
-                        <div>{student.referred_by}</div>
+                        <div style={{ wordBreak: 'break-word' }}>{student.referred_by}</div>
                         {student.referral_amount > 0 && <span style={{ fontSize: '0.65rem', color: '#10b981', fontWeight: 'bold' }}>৳{parseFloat(student.referral_amount).toLocaleString()}</span>}
                       </div>
-                    ) : '—'}
+                    ) : <span style={{ color: 'var(--text-dim)' }}>—</span>}
                   </td>
-                  <td style={{ padding: '1rem', fontSize: '0.82rem' }}>{state === 'course_completed' ? formatDate(student.completionDate) : 'In Progress'}</td>
-                  <td style={{ padding: '1rem' }}>
-                    <span style={{ fontSize: '0.72rem', padding: '4px 10px', borderRadius: '12px', background: style.bg, color: style.color, border: `1px solid ${style.border}` }}>
+                  <td style={{ padding: '0.8rem 0.6rem', verticalAlign: 'top' }}>
+                    <span style={{ fontSize: '0.7rem', padding: '4px 8px', borderRadius: '12px', background: style.bg, color: style.color, border: `1px solid ${style.border}`, whiteSpace: 'nowrap' }}>
                       {stateLabel[state]}
                     </span>
                   </td>
-                  <td style={{ padding: '1rem' }}>
-                    <div style={{ display: 'grid', gap: '0.45rem' }}>
+                  <td style={{ padding: '0.8rem 0.6rem', verticalAlign: 'top' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', minWidth: '130px' }}>
                       {!isAccountant && (
-                      <div style={{ display: 'flex', gap: '0.4rem' }}>
-                        <select className="glass-input" value={batchDrafts[student.id] || ''} onChange={(e) => setBatchDrafts({ ...batchDrafts, [student.id]: e.target.value })} style={{ appearance: 'auto', padding: '0.4rem', minWidth: '140px' }}>
+                      <div style={{ display: 'flex', gap: '0.3rem' }}>
+                        <select className="glass-input" value={batchDrafts[student.id] || ''} onChange={(e) => setBatchDrafts({ ...batchDrafts, [student.id]: e.target.value })} style={{ appearance: 'auto', padding: '0.35rem', fontSize: '0.75rem', flex: 1, minWidth: '0' }}>
                           <option value="">Unassign</option>
                           {batches.map((batch) => <option key={batch.id} value={batch.id}>{batch.code}</option>)}
                         </select>
-                        <button className="btn-secondary" onClick={() => handleSaveBatch(student)} disabled={rowSavingId === student.id} style={{ padding: '0.4rem 0.7rem' }}>
-                          {rowSavingId === student.id ? <Loader2 size={14} className="animate-spin" /> : 'Save'}
+                        <button className="btn-secondary" onClick={() => handleSaveBatch(student)} disabled={rowSavingId === student.id} style={{ padding: '0.35rem 0.5rem', fontSize: '0.75rem' }}>
+                          {rowSavingId === student.id ? <Loader2 size={12} className="animate-spin" /> : 'Save'}
                         </button>
                       </div>
                       )}
-                      <div style={{ display: 'flex', gap: '0.4rem' }}>
-                        <button className="btn-secondary" onClick={() => navigate(`/students/${student.id}`)} style={{ padding: '0.4rem 0.7rem' }}>Profile</button>
+                      <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'wrap' }}>
+                        <button className="btn-secondary" onClick={() => navigate(`/students/${student.id}`)} style={{ padding: '0.35rem 0.6rem', fontSize: '0.75rem', flex: 1 }}>Profile</button>
                         {!isAccountant && student.derivedState === 'fees_pending' && (
-                          <button className="btn-secondary" onClick={() => navigate('/pos')} style={{ padding: '0.4rem 0.7rem', borderColor: '#f97316', color: '#f97316' }}>Collect Fee</button>
+                          <button className="btn-secondary" onClick={() => navigate('/pos')} style={{ padding: '0.35rem 0.6rem', fontSize: '0.75rem', flex: 1, borderColor: '#f97316', color: '#f97316' }}>Collect</button>
                         )}
                         {isAccountant && student.derivedState === 'fees_pending' && (
-                          <button className="btn-secondary" onClick={() => navigate('/pos')} style={{ padding: '0.4rem 0.7rem', borderColor: '#f97316', color: '#f97316' }}>Collect Fee</button>
+                          <button className="btn-secondary" onClick={() => navigate('/pos')} style={{ padding: '0.35rem 0.6rem', fontSize: '0.75rem', flex: 1, borderColor: '#f97316', color: '#f97316' }}>Collect</button>
                         )}
                         {!isAccountant && (
                           student.status === 'dropped' ? (
-                            <button className="btn-secondary" onClick={() => handleStatusChange(student, 'active')} style={{ padding: '0.4rem 0.7rem', borderColor: '#10b981', color: '#10b981' }}>Reactivate</button>
+                            <button className="btn-secondary" onClick={() => handleStatusChange(student, 'active')} style={{ padding: '0.35rem 0.6rem', fontSize: '0.75rem', flex: 1, borderColor: '#10b981', color: '#10b981' }}>Active</button>
                           ) : (
-                            <button className="btn-secondary" onClick={() => handleStatusChange(student, 'dropped')} style={{ padding: '0.4rem 0.7rem', borderColor: '#ef4444', color: '#ef4444' }}>Drop</button>
+                            <button className="btn-secondary" onClick={() => handleStatusChange(student, 'dropped')} style={{ padding: '0.35rem 0.6rem', fontSize: '0.75rem', flex: 1, borderColor: '#ef4444', color: '#ef4444' }}>Drop</button>
                           )
                         )}
                       </div>
@@ -598,65 +600,68 @@ const Students = () => {
       </>
       ) : activeTab === 'enrolled_students' ? (
       <>
-      <div className="glass-morphism desktop-data-table students-table-shell" style={{ padding: '0', overflowX: 'auto' }}>
-        <table className="students-compact-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '900px' }}>
+      <div className="glass-morphism desktop-data-table students-table-shell" style={{ padding: '0', overflowX: 'hidden' }}>
+        <table className="students-compact-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid var(--border)', color: 'var(--text-dim)', fontSize: '0.8rem' }}>
-              <th style={{ padding: '1rem' }}>Student</th>
-              <th style={{ padding: '1rem' }}>Contact</th>
-              <th style={{ padding: '1rem' }}>Course</th>
-              <th style={{ padding: '1rem' }}>Batch</th>
-              <th style={{ padding: '1rem' }}>Enrollment</th>
-              <th style={{ padding: '1rem' }}>Referred By</th>
-              <th style={{ padding: '1rem' }}>Actions</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Student</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Contact</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Course & Batch</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Enrollment</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Referred By</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {enrolledStudents.map((student) => (
               <tr key={student.id} style={{ borderBottom: '1px solid var(--border)' }}>
-                <td style={{ padding: '1rem' }}>
-                  <div style={{ fontWeight: 600 }}>
+                <td style={{ padding: '0.8rem 0.6rem', verticalAlign: 'top' }}>
+                  <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>
                     {student.User?.name}
                   </div>
                   <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>ID: STU-{student.id}</div>
                 </td>
-                <td style={{ padding: '1rem', fontSize: '0.82rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}><Mail size={13} />{student.User?.email || 'N/A'}</div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-dim)', marginTop: '0.2rem' }}><Phone size={13} />{student.mobile_no || 'N/A'}</div>
+                <td style={{ padding: '0.8rem 0.6rem', fontSize: '0.8rem', verticalAlign: 'top', maxWidth: '200px' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.4rem' }}><Mail size={13} style={{ marginTop: '0.15rem', flexShrink: 0 }} /><span style={{ wordBreak: 'break-all' }}>{student.User?.email || 'N/A'}</span></div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-dim)', marginTop: '0.3rem' }}><Phone size={13} style={{ flexShrink: 0 }} /><span>{student.mobile_no || 'N/A'}</span></div>
                 </td>
-                <td style={{ padding: '1rem', fontSize: '0.82rem' }}>{student.Batch?.Course?.title || 'N/A'}</td>
-                <td style={{ padding: '1rem', fontSize: '0.82rem' }}>{student.Batch?.code || 'N/A'}</td>
-                <td style={{ padding: '1rem', fontSize: '0.82rem' }}><div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}><Calendar size={13} />{formatDate(student.enrollment_date)}</div></td>
-                <td style={{ padding: '1rem', fontSize: '0.82rem' }}>
+                <td style={{ padding: '0.8rem 0.6rem', fontSize: '0.8rem', verticalAlign: 'top' }}>
+                  <div style={{ fontWeight: 500, color: 'var(--text-main)', marginBottom: '0.2rem' }}>{student.Batch?.Course?.title || 'N/A'}</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>Batch: {student.Batch?.code || 'N/A'}</div>
+                </td>
+                <td style={{ padding: '0.8rem 0.6rem', fontSize: '0.8rem', verticalAlign: 'top' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><Calendar size={13} style={{ color: 'var(--text-dim)' }} />{formatDate(student.enrollment_date)}</div>
+                </td>
+                <td style={{ padding: '0.8rem 0.6rem', fontSize: '0.8rem', verticalAlign: 'top' }}>
                   {student.referred_by ? (
                     <div>
-                      <div>{student.referred_by}</div>
+                      <div style={{ wordBreak: 'break-word' }}>{student.referred_by}</div>
                       {student.referral_amount > 0 && <span style={{ fontSize: '0.65rem', color: '#10b981', fontWeight: 'bold' }}>৳{parseFloat(student.referral_amount).toLocaleString()}</span>}
                     </div>
-                  ) : '—'}
+                  ) : <span style={{ color: 'var(--text-dim)' }}>—</span>}
                 </td>
-                <td style={{ padding: '1rem' }}>
+                <td style={{ padding: '0.8rem 0.6rem', verticalAlign: 'top' }}>
                   <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
                     <button
                       className="btn-secondary"
                       onClick={() => handleRequestPartnerAccess(student)}
                       disabled={requestingAccessId === student.id}
                       style={{
-                        padding: '0.45rem 0.85rem',
+                        padding: '0.35rem 0.6rem',
                         borderColor: '#6366f1',
                         color: '#a78bfa',
                         background: requestingAccessId === student.id ? 'rgba(99,102,241,0.15)' : 'rgba(99,102,241,0.08)',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '0.35rem',
-                        fontSize: '0.78rem',
+                        fontSize: '0.75rem',
                         fontWeight: 600
                       }}
                     >
-                      {requestingAccessId === student.id ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />}
-                      {requestingAccessId === student.id ? 'Sending...' : 'Portal Access'}
+                      {requestingAccessId === student.id ? <Loader2 size={12} className="animate-spin" /> : <Send size={12} />}
+                      {requestingAccessId === student.id ? 'Sending...' : 'Access'}
                     </button>
-                    <button className="btn-secondary" onClick={() => navigate(`/students/${student.id}`)} style={{ padding: '0.45rem 0.7rem' }}>Profile</button>
+                    <button className="btn-secondary" onClick={() => navigate(`/students/${student.id}`)} style={{ padding: '0.35rem 0.6rem', fontSize: '0.75rem' }}>Profile</button>
                   </div>
                 </td>
               </tr>
@@ -694,41 +699,44 @@ const Students = () => {
       </>
       ) : (
       <>
-      <div className="glass-morphism desktop-data-table students-table-shell" style={{ padding: '0', overflowX: 'auto' }}>
-        <table className="students-compact-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '980px' }}>
+      <div className="glass-morphism desktop-data-table students-table-shell" style={{ padding: '0', overflowX: 'hidden' }}>
+        <table className="students-compact-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid var(--border)', color: 'var(--text-dim)', fontSize: '0.8rem' }}>
-              <th style={{ padding: '1rem' }}>Student</th>
-              <th style={{ padding: '1rem' }}>Course</th>
-              <th style={{ padding: '1rem' }}>Completion</th>
-              <th style={{ padding: '1rem' }}>Final Result</th>
-              <th style={{ padding: '1rem' }}>Target Country</th>
-              <th style={{ padding: '1rem' }}>Destination Country</th>
-              <th style={{ padding: '1rem' }}>English Level</th>
-              <th style={{ padding: '1rem' }}>Recorded</th>
-              <th style={{ padding: '1rem' }}>Actions</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Student</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Course & Details</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Result & Level</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Destinations</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Recorded</th>
+              <th style={{ padding: '0.8rem 0.6rem' }}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {successRecordStudents.map((student) => (
               <tr key={student.id} style={{ borderBottom: '1px solid var(--border)' }}>
-                <td style={{ padding: '1rem' }}>
-                  <div style={{ fontWeight: 600 }}>{student.User?.name}</div>
+                <td style={{ padding: '0.8rem 0.6rem', verticalAlign: 'top' }}>
+                  <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>{student.User?.name}</div>
                   <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>ID: STU-{student.id}</div>
                 </td>
-                <td style={{ padding: '1rem', fontSize: '0.82rem' }}>{student.Batch?.Course?.title || 'N/A'}</td>
-                <td style={{ padding: '1rem', fontSize: '0.82rem' }}>{formatDate(student.course_completion_date || student.Batch?.end_date)}</td>
-                <td style={{ padding: '1rem', fontSize: '0.82rem' }}>{student.final_course_result || 'Not recorded'}</td>
-                <td style={{ padding: '1rem', fontSize: '0.82rem' }}>{student.target_country || 'N/A'}</td>
-                <td style={{ padding: '1rem', fontSize: '0.82rem' }}>{student.success_destination_country || 'Not recorded'}</td>
-                <td style={{ padding: '1rem', fontSize: '0.82rem' }}>{student.english_level ? `${student.english_level.charAt(0).toUpperCase()}${student.english_level.slice(1)}` : 'N/A'}</td>
-                <td style={{ padding: '1rem', fontSize: '0.82rem' }}>{formatDate(student.success_recorded_at)}</td>
-                <td style={{ padding: '1rem' }}>
-                  <div style={{ display: 'flex', gap: '0.4rem' }}>
-                    <button className="btn-secondary" onClick={() => openSuccessModal(student)} style={{ padding: '0.4rem 0.7rem', borderColor: '#10b981', color: '#10b981' }}>
+                <td style={{ padding: '0.8rem 0.6rem', fontSize: '0.8rem', verticalAlign: 'top' }}>
+                  <div style={{ fontWeight: 500, color: 'var(--text-main)', marginBottom: '0.2rem' }}>{student.Batch?.Course?.title || 'N/A'}</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>Completed: {formatDate(student.course_completion_date || student.Batch?.end_date)}</div>
+                </td>
+                <td style={{ padding: '0.8rem 0.6rem', fontSize: '0.8rem', verticalAlign: 'top' }}>
+                  <div style={{ marginBottom: '0.2rem' }}><span style={{ color: 'var(--text-dim)' }}>Result:</span> {student.final_course_result || 'N/A'}</div>
+                  <div style={{ fontSize: '0.75rem' }}><span style={{ color: 'var(--text-dim)' }}>Level:</span> {student.english_level ? `${student.english_level.charAt(0).toUpperCase()}${student.english_level.slice(1)}` : 'N/A'}</div>
+                </td>
+                <td style={{ padding: '0.8rem 0.6rem', fontSize: '0.8rem', verticalAlign: 'top' }}>
+                  <div style={{ marginBottom: '0.2rem' }}><span style={{ color: 'var(--text-dim)' }}>Target:</span> {student.target_country || 'N/A'}</div>
+                  <div style={{ fontSize: '0.75rem' }}><span style={{ color: 'var(--text-dim)' }}>Achieved:</span> {student.success_destination_country || 'N/A'}</div>
+                </td>
+                <td style={{ padding: '0.8rem 0.6rem', fontSize: '0.8rem', verticalAlign: 'top' }}>{formatDate(student.success_recorded_at)}</td>
+                <td style={{ padding: '0.8rem 0.6rem', verticalAlign: 'top' }}>
+                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
+                    <button className="btn-secondary" onClick={() => openSuccessModal(student)} style={{ padding: '0.35rem 0.6rem', fontSize: '0.75rem', borderColor: '#10b981', color: '#10b981' }}>
                       {student.has_success_record ? 'Edit Record' : 'Add Record'}
                     </button>
-                    <button className="btn-secondary" onClick={() => navigate(`/students/${student.id}`)} style={{ padding: '0.4rem 0.7rem' }}>Profile</button>
+                    <button className="btn-secondary" onClick={() => navigate(`/students/${student.id}`)} style={{ padding: '0.35rem 0.6rem', fontSize: '0.75rem' }}>Profile</button>
                   </div>
                 </td>
               </tr>

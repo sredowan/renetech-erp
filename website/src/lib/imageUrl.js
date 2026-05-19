@@ -10,7 +10,7 @@ const PUBLIC_ASSET_BASE = normalizeAssetBase(
 
 export function getPublicImageUrl(value, fallback = '/hero_banner.webp') {
   const imageUrl = String(value || '').trim();
-  if (!imageUrl) return fallback;
+  if (!imageUrl || imageUrl === 'null' || imageUrl === 'undefined') return fallback;
   if (/^(https?:)?\/\//i.test(imageUrl) || imageUrl.startsWith('data:')) return imageUrl;
   if (imageUrl.startsWith('/uploads') && PUBLIC_ASSET_BASE) {
     return `${PUBLIC_ASSET_BASE.replace(/\/$/, '')}${imageUrl}`;

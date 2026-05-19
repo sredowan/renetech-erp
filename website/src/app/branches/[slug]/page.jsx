@@ -6,6 +6,7 @@ import JsonLd, { breadcrumbSchema } from "@/components/JsonLd";
 import { getPublicImageUrl } from "@/lib/imageUrl";
 import { fetchPublicJson } from "@/lib/serverApi";
 import { STATIC_BRANCHES, getStaticBranch } from "@/lib/staticFallbacks";
+import BranchDetailLive from "@/components/BranchDetailLive";
 
 export const dynamicParams = false;
 
@@ -148,13 +149,7 @@ export default async function BranchDetailPage({ params }) {
                 <Link href={`/enroll?branch=${branch.id}`} className="secondary-btn border-white/25 bg-white/10 text-white hover:bg-white/20">Enroll at this branch</Link>
               </div>
             </div>
-            <div className="rounded-[32px] border border-white/10 bg-white/10 p-6 backdrop-blur" data-depth="3">
-              <div className="space-y-4 text-sm font-medium text-white/75">
-                <p className="flex items-start gap-3"><MapPin className="mt-1 shrink-0 text-accent" size={18} />{branch.address || "Address will be announced soon"}</p>
-                {branch.phone && <p className="flex items-center gap-3"><Phone className="shrink-0 text-accent" size={18} />{branch.phone}</p>}
-                <p className="flex items-center gap-3"><Clock3 className="shrink-0 text-accent" size={18} />{branch.opening_hours || "Sat-Thu: 9:00 AM - 8:00 PM"}</p>
-              </div>
-            </div>
+            <BranchDetailLive slug={branch.slug || slug} staticBranch={branch} />
           </div>
         </section>
 

@@ -6,6 +6,9 @@
     RewriteRule ^(\.env|composer\.(json|lock)|package(-lock)?\.json)$ - [F,L]
     RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)(/|$) - [F,L]
 
+    # Let Laravel handle portal roots before Apache treats them as physical directories.
+    RewriteRule ^(admin|student|teacher|hrm|brandmanager|accounting)$ public/index.php [L]
+
     RewriteCond %{DOCUMENT_ROOT}/public/$1 -f [OR]
     RewriteCond %{DOCUMENT_ROOT}/public/$1 -d
     RewriteRule ^(.*)$ public/$1 [L]

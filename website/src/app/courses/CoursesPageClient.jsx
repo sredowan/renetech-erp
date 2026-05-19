@@ -13,14 +13,16 @@ export default function CoursesPageClient({ initialCourses }) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Client-side fallback: re-fetch if SSR delivered empty data
+  // Static exports can go stale after admin edits; refresh from the live API.
   useEffect(() => {
-    if (!initialCourses || initialCourses.length === 0) {
-      fetch("/api/public/courses")
-        .then((res) => res.ok ? res.json() : [])
-        .then((data) => { setCourses(Array.isArray(data) && data.length > 0 ? data : COURSE_FALLBACKS); })
-        .catch(() => { setCourses(COURSE_FALLBACKS); });
-    }
+    fetch("/api/public/courses", { cache: "no-store" })
+      .then((res) => res.ok ? res.json() : null)
+      .then((data) => {
+        if (Array.isArray(data)) setCourses(data.length > 0 ? data : COURSE_FALLBACKS);
+      })
+      .catch(() => {
+        if (!initialCourses || initialCourses.length === 0) setCourses(COURSE_FALLBACKS);
+      });
   }, [initialCourses]);
 
   const categories = ["All", "PTE", "IELTS", "Spoken English"];

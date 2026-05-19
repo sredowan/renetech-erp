@@ -712,6 +712,109 @@ table.stitch tbody tr:hover td { background: rgba(255,255,255,0.03); }
 .mobile-card-list { display: none; }
 .desktop-data-table { display: block; }
 
+/* Students desktop tables: dense CRM-style scanning instead of tall card rows. */
+.students-page .students-table-shell {
+  border-radius: 12px;
+  overflow: hidden auto;
+}
+
+.students-page .students-compact-table {
+  table-layout: fixed;
+}
+
+.students-page .students-compact-table thead tr {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.students-page .students-compact-table th,
+.students-page .students-compact-table td {
+  padding: 0.52rem 0.65rem !important;
+  vertical-align: middle;
+  line-height: 1.22;
+}
+
+.students-page .students-compact-table th {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.students-page .students-compact-table td {
+  font-size: 0.78rem !important;
+}
+
+.students-page .students-compact-table tbody tr {
+  min-height: 48px;
+}
+
+.students-page .students-compact-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.028);
+}
+
+.students-page .students-compact-table td > div {
+  min-width: 0;
+}
+
+.students-page .students-compact-table td:nth-child(1) {
+  width: 150px;
+}
+
+.students-page .students-compact-table td:nth-child(2) {
+  width: 210px;
+}
+
+.students-page .students-compact-table td:nth-child(3) {
+  width: 190px;
+}
+
+.students-page .students-compact-table td:nth-child(4),
+.students-page .students-compact-table td:nth-child(5),
+.students-page .students-compact-table td:nth-child(6),
+.students-page .students-compact-table td:nth-child(7),
+.students-page .students-compact-table td:nth-child(8) {
+  width: 108px;
+}
+
+.students-page .students-compact-table td:last-child {
+  width: 230px;
+}
+
+.students-page .students-compact-table .glass-input {
+  min-height: 32px;
+  padding: 0.32rem 0.5rem !important;
+  font-size: 0.74rem;
+}
+
+.students-page .students-compact-table .btn-secondary {
+  min-height: 32px;
+  padding: 0.34rem 0.58rem !important;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.students-page .students-compact-table svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.students-page .students-filter-wrapper input,
+.students-page .students-filter-wrapper select {
+  min-height: 38px;
+}
+
+.students-page .students-metrics-strip > .glass-morphism {
+  padding: 0.72rem 0.85rem !important;
+}
+
+.students-page .students-metrics-strip h3 {
+  margin-top: 0.25rem !important;
+  line-height: 1;
+}
+
 /* ── Mobile-native student cards ── */
 .student-mobile-card {
   padding: 14px;

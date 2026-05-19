@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UploadController;
+use App\Models\Course;
 
 Route::get('/uploads/{path}', [UploadController::class, 'show'])->where('path', '.*');
 
@@ -130,6 +131,16 @@ Route::get('/enroll/success', function () use ($siteFileResponse) {
 Route::get('/courses', fn () => $siteFileResponse('courses.html'));
 
 Route::get('/courses/{slug}', function (string $slug) use ($siteFileResponse) {
+    $course = Course::query()
+        ->where('slug', $slug)
+        ->where('is_published', true)
+        ->where('status', 'active')
+        ->first();
+
+    if (!$course) {
+        abort(404);
+    }
+
     $file = public_path("site/courses/{$slug}.html");
     if (is_file($file)) return $siteFileResponse("courses/{$slug}.html");
     return $siteFileResponse('courses.html');

@@ -7,6 +7,8 @@
     RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)(/|$) - [F,L]
 
     # Serve static portal apps before Laravel so Hostinger does not expose physical directories.
+    RewriteRule ^(admin|student|teacher|hrm|brandmanager|accounting)/?$ public/$1/index.html [L]
+
     RewriteCond %{DOCUMENT_ROOT}/public/$1 -f [OR]
     RewriteCond %{DOCUMENT_ROOT}/public/$1 -d
     RewriteRule ^((admin|student|teacher|hrm|brandmanager|accounting)(/.*)?)$ public/$1 [L]
